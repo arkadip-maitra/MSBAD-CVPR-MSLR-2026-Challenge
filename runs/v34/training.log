@@ -1,0 +1,72 @@
+2026-03-20 11:40:17,617 [INFO] GPU: NVIDIA H200
+2026-03-20 11:40:17,617 [INFO] Config: {
+  "data_dir": "/data/slr/track2_",
+  "output_dir": "/data/slr/checkpoints_v34",
+  "max_frames": 48,
+  "img_size": 224,
+  "n_classes": 126,
+  "teacher_img_size": 224,
+  "teacher_max_frames": 48,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 48,
+  "num_workers": 4,
+  "stage1_epochs": 15,
+  "stage1_lr": 0.0005,
+  "stage2_epochs": 150,
+  "stage2_lr": 8e-05,
+  "swa_epochs": 20,
+  "swa_lr": 8e-06,
+  "weight_decay": 0.05,
+  "warmup_pct": 0.05,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 50,
+  "grad_clip_norm": 1.0,
+  "llrd_decay": 0.75,
+  "kd_alpha": 0.1,
+  "kd_tau": 4.0,
+  "mixup_alpha": 0.4,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "random_erase_prob": 0.2,
+  "circ_shift_prob": 0.3,
+  "circ_shift_max": 8,
+  "amp_scale_prob": 0.5,
+  "amp_scale_lo": 0.8,
+  "amp_scale_hi": 1.2,
+  "model_name": "swinv2_tiny_window8_256.ms_in1k",
+  "drop_path_rate": 0.2,
+  "proj_dim": 384,
+  "drop_rate": 0.3,
+  "ms_dropout_samples": 5,
+  "seed": 42
+}
+2026-03-20 11:40:17,617 [INFO] ★★★ swinv2_tiny_window8_256.ms_in1k @ 224 ★★★
+2026-03-20 11:40:17,690 [INFO] Train: 14742 | Eval: 9828
+2026-03-20 11:40:22,219 [INFO] Pre-computing teacher soft labels …
+2026-03-20 11:40:25,910 [INFO]   Loaded 10 teachers
+2026-03-20 11:42:28,010 [INFO] ================================================================
+2026-03-20 11:42:28,011 [INFO] FOLD 1 / 5
+2026-03-20 11:42:28,011 [INFO] ================================================================
+2026-03-20 11:42:28,346 [INFO] Loading pretrained weights from Hugging Face hub (timm/swinv2_tiny_window8_256.ms_in1k)
+2026-03-20 11:42:28,409 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swinv2_tiny_window8_256.ms_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-20 11:42:28,410 [INFO] [timm/swinv2_tiny_window8_256.ms_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-20 11:42:28,431 [INFO] Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-20 11:42:28,462 [INFO] ── Stage 1: head warmup (15 ep) ──

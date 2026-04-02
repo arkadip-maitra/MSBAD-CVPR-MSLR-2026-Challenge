@@ -1,0 +1,42 @@
+{
+  "data_dir": "/data/slr/track-2",
+  "output_dir": "/data/slr/checkpoints_v2",
+  "max_frames": 48,
+  "n_range_bins": 256,
+  "n_classes": 126,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 64,
+  "num_workers": 4,
+  "epochs": 120,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "warmup_epochs": 5,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 25,
+  "grad_clip_norm": 1.0,
+  "mixup_alpha": 0.4,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "tta_enabled": true,
+  "pretrained": true,
+  "dropout": 0.3,
+  "seed": 42
+}

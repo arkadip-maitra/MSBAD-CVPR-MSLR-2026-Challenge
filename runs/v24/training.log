@@ -1,0 +1,780 @@
+2026-03-19 14:17:40,643 [INFO] GPU: NVIDIA H200
+2026-03-19 14:17:40,643 [INFO] Config: {
+  "data_dir": "/data/slr/track2_",
+  "output_dir": "/data/slr/checkpoints_v24",
+  "max_frames": 48,
+  "img_size": 384,
+  "n_classes": 126,
+  "teacher_img_size": 224,
+  "teacher_max_frames": 48,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 24,
+  "num_workers": 4,
+  "stage1_epochs": 5,
+  "stage1_lr": 0.0002,
+  "stage2_epochs": 80,
+  "stage2_lr": 4e-05,
+  "swa_epochs": 15,
+  "swa_lr": 4e-06,
+  "weight_decay": 0.05,
+  "warmup_pct": 0.05,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 30,
+  "grad_clip_norm": 1.0,
+  "llrd_decay": 0.75,
+  "kd_alpha": 0.3,
+  "kd_tau": 4.0,
+  "mixup_alpha": 0.4,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "random_erase_prob": 0.2,
+  "circ_shift_prob": 0.3,
+  "circ_shift_max": 8,
+  "amp_scale_prob": 0.5,
+  "amp_scale_lo": 0.8,
+  "amp_scale_hi": 1.2,
+  "model_name": "tf_efficientnetv2_s.in21k_ft_in1k",
+  "drop_path_rate": 0.2,
+  "proj_dim": 384,
+  "drop_rate": 0.3,
+  "ms_dropout_samples": 5,
+  "seed": 42
+}
+2026-03-19 14:17:40,643 [INFO] ★★★ EfficientNetV2-S @ 384 + SWA ★★★
+2026-03-19 14:17:40,713 [INFO] Train: 14742 | Eval: 9828
+2026-03-19 14:17:44,911 [INFO] Pre-computing teacher soft labels (z-score @ 224) …
+2026-03-19 14:17:48,081 [INFO]   Loaded 10 teachers
+2026-03-19 14:19:43,531 [INFO]   Soft labels: 14742
+2026-03-19 14:19:43,531 [INFO] KD α=0.30 τ=4.0 | born-again from v12
+2026-03-19 14:19:43,536 [INFO] ================================================================
+2026-03-19 14:19:43,536 [INFO] FOLD 1 / 5
+2026-03-19 14:19:43,536 [INFO] ================================================================
+2026-03-19 14:19:43,705 [INFO] Loading pretrained weights from Hugging Face hub (timm/tf_efficientnetv2_s.in21k_ft_in1k)
+2026-03-19 14:19:43,889 [INFO] HTTP Request: HEAD https://huggingface.co/timm/tf_efficientnetv2_s.in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-19 14:19:43,891 [INFO] [timm/tf_efficientnetv2_s.in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-19 14:19:43,917 [WARNING] Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+2026-03-19 14:19:44,085 [INFO]   Born-again from /data/slr/checkpoints_v12/best_fold0.pt (val 87.08%)
+2026-03-19 14:19:44,087 [INFO] ── Stage 1: head warmup (5 ep) ──
+2026-03-19 14:20:18,161 [INFO]   S1 Ep 1/5  loss=1.7688 acc=10.7%  val=13.6%  34s
+2026-03-19 14:20:18,271 [INFO]   ★ best 13.60%
+2026-03-19 14:20:33,290 [INFO]   S1 Ep 2/5  loss=1.7223 acc=12.7%  val=17.4%  15s
+2026-03-19 14:20:33,428 [INFO]   ★ best 17.36%
+2026-03-19 14:20:48,613 [INFO]   S1 Ep 3/5  loss=1.6814 acc=14.3%  val=19.3%  15s
+2026-03-19 14:20:48,754 [INFO]   ★ best 19.26%
+2026-03-19 14:21:03,699 [INFO]   S1 Ep 4/5  loss=1.6530 acc=16.0%  val=20.1%  15s
+2026-03-19 14:21:03,831 [INFO]   ★ best 20.11%
+2026-03-19 14:21:18,714 [INFO]   S1 Ep 5/5  loss=1.6309 acc=17.5%  val=20.3%  15s
+2026-03-19 14:21:18,840 [INFO]   ★ best 20.28%
+2026-03-19 14:21:18,841 [INFO] ── Stage 2: full fine-tune (80 ep) ──
+2026-03-19 14:21:18,844 [INFO] LLRD: 14 groups, LR [7.12e-06 … 4.00e-05]
+2026-03-19 14:22:03,377 [INFO]   S2 Ep   1/80  loss=1.7334 acc=12.7%  val=32.5%  lr=7.23e-06    45s
+2026-03-19 14:22:03,534 [INFO]   ★ best 32.49%
+2026-03-19 14:22:37,043 [INFO]   S2 Ep   2/80  loss=1.5333 acc=27.3%  val=66.5%  lr=2.08e-05    34s
+2026-03-19 14:22:37,217 [INFO]   ★ best 66.53%
+2026-03-19 14:23:11,094 [INFO]   S2 Ep   3/80  loss=1.2644 acc=44.2%  val=78.5%  lr=3.44e-05    34s
+2026-03-19 14:23:11,232 [INFO]   ★ best 78.50%
+2026-03-19 14:23:45,117 [INFO]   S2 Ep   4/80  loss=1.1192 acc=52.7%  val=81.2%  lr=4.00e-05    34s
+2026-03-19 14:23:45,284 [INFO]   ★ best 81.25%
+2026-03-19 14:24:19,263 [INFO]   S2 Ep   5/80  loss=1.0775 acc=54.8%  val=82.9%  lr=4.00e-05    34s
+2026-03-19 14:24:19,404 [INFO]   ★ best 82.94%
+2026-03-19 14:24:53,041 [INFO]   S2 Ep   6/80  loss=1.0064 acc=58.6%  val=83.9%  lr=3.99e-05    34s
+2026-03-19 14:24:53,184 [INFO]   ★ best 83.93%
+2026-03-19 14:25:26,936 [INFO]   S2 Ep   7/80  loss=0.9777 acc=60.0%  val=84.7%  lr=3.98e-05    34s
+2026-03-19 14:25:27,099 [INFO]   ★ best 84.74%
+2026-03-19 14:26:00,753 [INFO]   S2 Ep   8/80  loss=0.9597 acc=61.9%  val=83.8%  lr=3.97e-05    34s
+2026-03-19 14:26:34,611 [INFO]   S2 Ep   9/80  loss=0.9418 acc=62.5%  val=85.2%  lr=3.96e-05    34s
+2026-03-19 14:26:34,747 [INFO]   ★ best 85.25%
+2026-03-19 14:27:08,546 [INFO]   S2 Ep  10/80  loss=0.9441 acc=62.7%  val=85.1%  lr=3.94e-05    34s
+2026-03-19 14:27:42,054 [INFO]   S2 Ep  11/80  loss=0.9267 acc=63.3%  val=85.0%  lr=3.92e-05    34s
+2026-03-19 14:28:15,930 [INFO]   S2 Ep  12/80  loss=0.9233 acc=63.4%  val=85.3%  lr=3.89e-05    34s
+2026-03-19 14:28:16,096 [INFO]   ★ best 85.32%
+2026-03-19 14:28:50,659 [INFO]   S2 Ep  13/80  loss=0.9040 acc=65.2%  val=85.4%  lr=3.86e-05    35s
+2026-03-19 14:28:50,824 [INFO]   ★ best 85.38%
+2026-03-19 14:29:24,337 [INFO]   S2 Ep  14/80  loss=0.9179 acc=64.0%  val=86.2%  lr=3.83e-05    34s
+2026-03-19 14:29:24,485 [INFO]   ★ best 86.16%
+2026-03-19 14:29:58,161 [INFO]   S2 Ep  15/80  loss=0.8947 acc=65.7%  val=85.4%  lr=3.80e-05    34s
+2026-03-19 14:30:32,169 [INFO]   S2 Ep  16/80  loss=0.8715 acc=67.2%  val=85.9%  lr=3.76e-05    34s
+2026-03-19 14:31:05,885 [INFO]   S2 Ep  17/80  loss=0.9008 acc=65.2%  val=85.8%  lr=3.72e-05    34s
+2026-03-19 14:31:39,662 [INFO]   S2 Ep  18/80  loss=0.8768 acc=66.4%  val=85.7%  lr=3.67e-05    34s
+2026-03-19 14:32:13,303 [INFO]   S2 Ep  19/80  loss=0.8919 acc=65.7%  val=85.6%  lr=3.63e-05    34s
+2026-03-19 14:32:46,994 [INFO]   S2 Ep  20/80  loss=0.8872 acc=66.2%  val=85.9%  lr=3.58e-05    34s
+2026-03-19 14:33:20,967 [INFO]   S2 Ep  21/80  loss=0.8659 acc=67.4%  val=86.2%  lr=3.53e-05    34s
+2026-03-19 14:33:55,114 [INFO]   S2 Ep  22/80  loss=0.8483 acc=68.3%  val=85.8%  lr=3.47e-05    34s
+2026-03-19 14:34:30,390 [INFO]   S2 Ep  23/80  loss=0.8659 acc=67.2%  val=85.8%  lr=3.41e-05    35s
+2026-03-19 14:35:05,308 [INFO]   S2 Ep  24/80  loss=0.8754 acc=66.6%  val=85.6%  lr=3.35e-05    35s
+2026-03-19 14:35:40,037 [INFO]   S2 Ep  25/80  loss=0.8478 acc=68.3%  val=86.2%  lr=3.29e-05    35s
+2026-03-19 14:36:13,904 [INFO]   S2 Ep  26/80  loss=0.8742 acc=66.6%  val=86.1%  lr=3.23e-05    34s
+2026-03-19 14:36:47,904 [INFO]   S2 Ep  27/80  loss=0.8510 acc=68.1%  val=86.3%  lr=3.16e-05    34s
+2026-03-19 14:36:48,035 [INFO]   ★ best 86.33%
+2026-03-19 14:37:22,043 [INFO]   S2 Ep  28/80  loss=0.8289 acc=69.5%  val=86.1%  lr=3.09e-05    34s
+2026-03-19 14:37:55,796 [INFO]   S2 Ep  29/80  loss=0.8373 acc=69.1%  val=86.0%  lr=3.02e-05    34s
+2026-03-19 14:38:29,402 [INFO]   S2 Ep  30/80  loss=0.8439 acc=68.9%  val=86.8%  lr=2.95e-05    34s
+2026-03-19 14:38:29,536 [INFO]   ★ best 86.81%
+2026-03-19 14:39:03,167 [INFO]   S2 Ep  31/80  loss=0.8526 acc=67.7%  val=86.6%  lr=2.88e-05    34s
+2026-03-19 14:39:36,970 [INFO]   S2 Ep  32/80  loss=0.8540 acc=68.0%  val=86.1%  lr=2.80e-05    34s
+2026-03-19 14:40:10,854 [INFO]   S2 Ep  33/80  loss=0.8433 acc=68.4%  val=86.9%  lr=2.73e-05    34s
+2026-03-19 14:40:11,035 [INFO]   ★ best 86.91%
+2026-03-19 14:40:44,804 [INFO]   S2 Ep  34/80  loss=0.8319 acc=69.0%  val=86.7%  lr=2.65e-05    34s
+2026-03-19 14:41:19,217 [INFO]   S2 Ep  35/80  loss=0.8513 acc=67.8%  val=86.4%  lr=2.57e-05    34s
+2026-03-19 14:41:53,399 [INFO]   S2 Ep  36/80  loss=0.8227 acc=69.7%  val=86.9%  lr=2.49e-05    34s
+2026-03-19 14:42:27,066 [INFO]   S2 Ep  37/80  loss=0.8317 acc=68.8%  val=87.2%  lr=2.41e-05    34s
+2026-03-19 14:42:27,240 [INFO]   ★ best 87.25%
+2026-03-19 14:43:01,176 [INFO]   S2 Ep  38/80  loss=0.8409 acc=68.8%  val=87.1%  lr=2.33e-05    34s
+2026-03-19 14:43:35,058 [INFO]   S2 Ep  39/80  loss=0.8393 acc=68.7%  val=87.0%  lr=2.25e-05    34s
+2026-03-19 14:44:08,611 [INFO]   S2 Ep  40/80  loss=0.8312 acc=69.2%  val=87.4%  lr=2.17e-05    34s
+2026-03-19 14:44:08,772 [INFO]   ★ best 87.42%
+2026-03-19 14:44:42,607 [INFO]   S2 Ep  41/80  loss=0.7961 acc=71.0%  val=86.9%  lr=2.08e-05    34s
+2026-03-19 14:45:16,093 [INFO]   S2 Ep  42/80  loss=0.8102 acc=70.6%  val=87.1%  lr=2.00e-05    33s
+2026-03-19 14:45:49,751 [INFO]   S2 Ep  43/80  loss=0.8170 acc=70.2%  val=86.9%  lr=1.92e-05    34s
+2026-03-19 14:46:23,452 [INFO]   S2 Ep  44/80  loss=0.8000 acc=70.9%  val=87.0%  lr=1.83e-05    34s
+2026-03-19 14:46:57,324 [INFO]   S2 Ep  45/80  loss=0.8327 acc=69.3%  val=86.9%  lr=1.75e-05    34s
+2026-03-19 14:47:32,095 [INFO]   S2 Ep  46/80  loss=0.8026 acc=70.9%  val=87.0%  lr=1.67e-05    35s
+2026-03-19 14:48:06,446 [INFO]   S2 Ep  47/80  loss=0.8088 acc=70.7%  val=87.4%  lr=1.59e-05    34s
+2026-03-19 14:48:39,760 [INFO]   S2 Ep  48/80  loss=0.7806 acc=72.5%  val=87.3%  lr=1.51e-05    33s
+2026-03-19 14:49:13,118 [INFO]   S2 Ep  49/80  loss=0.8213 acc=70.2%  val=86.9%  lr=1.43e-05    33s
+2026-03-19 14:49:47,290 [INFO]   S2 Ep  50/80  loss=0.8262 acc=69.0%  val=87.1%  lr=1.35e-05    34s
+2026-03-19 14:50:20,692 [INFO]   S2 Ep  51/80  loss=0.8070 acc=70.8%  val=87.2%  lr=1.27e-05    33s
+2026-03-19 14:50:55,430 [INFO]   S2 Ep  52/80  loss=0.8153 acc=69.8%  val=87.2%  lr=1.20e-05    35s
+2026-03-19 14:51:30,336 [INFO]   S2 Ep  53/80  loss=0.7983 acc=71.1%  val=87.8%  lr=1.12e-05    35s
+2026-03-19 14:51:30,479 [INFO]   ★ best 87.76%
+2026-03-19 14:52:04,650 [INFO]   S2 Ep  54/80  loss=0.7915 acc=71.5%  val=88.0%  lr=1.05e-05    34s
+2026-03-19 14:52:04,789 [INFO]   ★ best 88.03%
+2026-03-19 14:52:38,428 [INFO]   S2 Ep  55/80  loss=0.8032 acc=71.3%  val=87.7%  lr=9.76e-06    34s
+2026-03-19 14:53:12,152 [INFO]   S2 Ep  56/80  loss=0.8060 acc=70.9%  val=87.9%  lr=9.06e-06    34s
+2026-03-19 14:53:45,701 [INFO]   S2 Ep  57/80  loss=0.8122 acc=70.1%  val=87.9%  lr=8.38e-06    34s
+2026-03-19 14:54:19,053 [INFO]   S2 Ep  58/80  loss=0.7933 acc=71.4%  val=87.7%  lr=7.72e-06    33s
+2026-03-19 14:54:52,994 [INFO]   S2 Ep  59/80  loss=0.8360 acc=68.8%  val=88.0%  lr=7.07e-06    34s
+2026-03-19 14:55:26,677 [INFO]   S2 Ep  60/80  loss=0.8062 acc=70.7%  val=87.6%  lr=6.45e-06    34s
+2026-03-19 14:56:00,224 [INFO]   S2 Ep  61/80  loss=0.7861 acc=71.9%  val=87.3%  lr=5.86e-06    34s
+2026-03-19 14:56:33,628 [INFO]   S2 Ep  62/80  loss=0.8082 acc=70.6%  val=87.6%  lr=5.29e-06    33s
+2026-03-19 14:57:07,671 [INFO]   S2 Ep  63/80  loss=0.8004 acc=70.8%  val=87.6%  lr=4.74e-06    34s
+2026-03-19 14:57:41,203 [INFO]   S2 Ep  64/80  loss=0.7859 acc=72.1%  val=87.8%  lr=4.22e-06    34s
+2026-03-19 14:58:14,955 [INFO]   S2 Ep  65/80  loss=0.8122 acc=70.6%  val=87.6%  lr=3.72e-06    34s
+2026-03-19 14:58:49,660 [INFO]   S2 Ep  66/80  loss=0.8102 acc=70.3%  val=87.5%  lr=3.26e-06    35s
+2026-03-19 14:59:24,011 [INFO]   S2 Ep  67/80  loss=0.8000 acc=71.1%  val=87.6%  lr=2.82e-06    34s
+2026-03-19 14:59:57,709 [INFO]   S2 Ep  68/80  loss=0.7634 acc=73.1%  val=87.7%  lr=2.41e-06    34s
+2026-03-19 15:00:31,117 [INFO]   S2 Ep  69/80  loss=0.8011 acc=70.4%  val=87.7%  lr=2.03e-06    33s
+2026-03-19 15:01:04,949 [INFO]   S2 Ep  70/80  loss=0.8127 acc=70.2%  val=87.6%  lr=1.69e-06    34s
+2026-03-19 15:01:38,545 [INFO]   S2 Ep  71/80  loss=0.8126 acc=70.3%  val=87.5%  lr=1.37e-06    34s
+2026-03-19 15:02:12,308 [INFO]   S2 Ep  72/80  loss=0.8009 acc=70.5%  val=87.7%  lr=1.08e-06    34s
+2026-03-19 15:02:45,871 [INFO]   S2 Ep  73/80  loss=0.7932 acc=71.3%  val=87.7%  lr=8.33e-07    34s
+2026-03-19 15:03:20,275 [INFO]   S2 Ep  74/80  loss=0.7816 acc=72.0%  val=87.9%  lr=6.13e-07    34s
+2026-03-19 15:03:53,823 [INFO]   S2 Ep  75/80  loss=0.8063 acc=70.3%  val=87.9%  lr=4.27e-07    34s
+2026-03-19 15:04:27,252 [INFO]   S2 Ep  76/80  loss=0.8170 acc=70.1%  val=87.5%  lr=2.74e-07    33s
+2026-03-19 15:05:00,906 [INFO]   S2 Ep  77/80  loss=0.7919 acc=71.2%  val=87.3%  lr=1.55e-07    34s
+2026-03-19 15:05:35,187 [INFO]   S2 Ep  78/80  loss=0.7840 acc=71.6%  val=87.9%  lr=6.98e-08    34s
+2026-03-19 15:06:09,241 [INFO]   S2 Ep  79/80  loss=0.7820 acc=72.4%  val=87.6%  lr=1.86e-08    34s
+2026-03-19 15:06:42,995 [INFO]   S2 Ep  80/80  loss=0.7816 acc=72.1%  val=88.0%  lr=1.60e-09    34s
+2026-03-19 15:06:42,997 [INFO] ── Stage 3: SWA (15 ep) ──
+2026-03-19 15:07:17,214 [INFO]   SWA Ep  1/15  loss=0.7910  swa_val=87.7%  34s
+2026-03-19 15:07:51,672 [INFO]   SWA Ep  2/15  loss=0.8039  swa_val=87.4%  34s
+2026-03-19 15:08:25,644 [INFO]   SWA Ep  3/15  loss=0.8115  swa_val=87.8%  34s
+2026-03-19 15:09:02,388 [INFO]   SWA Ep  4/15  loss=0.7963  swa_val=87.7%  37s
+2026-03-19 15:09:36,039 [INFO]   SWA Ep  5/15  loss=0.7969  swa_val=87.3%  34s
+2026-03-19 15:10:10,071 [INFO]   SWA Ep  6/15  loss=0.7994  swa_val=87.9%  34s
+2026-03-19 15:10:43,856 [INFO]   SWA Ep  7/15  loss=0.7896  swa_val=87.4%  34s
+2026-03-19 15:11:17,629 [INFO]   SWA Ep  8/15  loss=0.8147  swa_val=87.6%  34s
+2026-03-19 15:11:51,202 [INFO]   SWA Ep  9/15  loss=0.7954  swa_val=87.9%  34s
+2026-03-19 15:12:25,148 [INFO]   SWA Ep 10/15  loss=0.8010  swa_val=87.4%  34s
+2026-03-19 15:12:59,088 [INFO]   SWA Ep 11/15  loss=0.8199  swa_val=87.9%  34s
+2026-03-19 15:13:32,722 [INFO]   SWA Ep 12/15  loss=0.8120  swa_val=88.2%  34s
+2026-03-19 15:14:06,393 [INFO]   SWA Ep 13/15  loss=0.7913  swa_val=88.0%  34s
+2026-03-19 15:14:40,648 [INFO]   SWA Ep 14/15  loss=0.7857  swa_val=87.8%  34s
+2026-03-19 15:15:14,858 [INFO]   SWA Ep 15/15  loss=0.7961  swa_val=87.7%  34s
+2026-03-19 15:15:32,584 [INFO]   SWA final: 87.89% (regular best: 88.03%)
+2026-03-19 15:15:32,588 [INFO]   Fold 1 best: 88.03%
+2026-03-19 15:15:34,331 [INFO] ================================================================
+2026-03-19 15:15:34,331 [INFO] FOLD 2 / 5
+2026-03-19 15:15:34,331 [INFO] ================================================================
+2026-03-19 15:15:34,509 [INFO] Loading pretrained weights from Hugging Face hub (timm/tf_efficientnetv2_s.in21k_ft_in1k)
+2026-03-19 15:15:34,579 [INFO] HTTP Request: HEAD https://huggingface.co/timm/tf_efficientnetv2_s.in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-19 15:15:34,580 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-19 15:15:34,581 [INFO] [timm/tf_efficientnetv2_s.in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-19 15:15:34,607 [WARNING] Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+2026-03-19 15:15:34,770 [INFO]   Born-again from /data/slr/checkpoints_v12/best_fold1.pt (val 87.42%)
+2026-03-19 15:15:34,771 [INFO] ── Stage 1: head warmup (5 ep) ──
+2026-03-19 15:15:51,992 [INFO]   S1 Ep 1/5  loss=1.7478 acc=12.2%  val=16.1%  17s
+2026-03-19 15:15:52,106 [INFO]   ★ best 16.07%
+2026-03-19 15:16:07,101 [INFO]   S1 Ep 2/5  loss=1.7096 acc=13.0%  val=19.1%  15s
+2026-03-19 15:16:07,227 [INFO]   ★ best 19.13%
+2026-03-19 15:16:22,528 [INFO]   S1 Ep 3/5  loss=1.6632 acc=15.8%  val=21.6%  15s
+2026-03-19 15:16:22,655 [INFO]   ★ best 21.60%
+2026-03-19 15:16:37,844 [INFO]   S1 Ep 4/5  loss=1.6328 acc=17.1%  val=23.5%  15s
+2026-03-19 15:16:37,972 [INFO]   ★ best 23.50%
+2026-03-19 15:16:53,276 [INFO]   S1 Ep 5/5  loss=1.6191 acc=17.9%  val=23.3%  15s
+2026-03-19 15:16:53,276 [INFO] ── Stage 2: full fine-tune (80 ep) ──
+2026-03-19 15:16:53,278 [INFO] LLRD: 14 groups, LR [7.12e-06 … 4.00e-05]
+2026-03-19 15:17:27,214 [INFO]   S2 Ep   1/80  loss=1.7107 acc=14.8%  val=36.8%  lr=7.23e-06    34s
+2026-03-19 15:17:27,350 [INFO]   ★ best 36.79%
+2026-03-19 15:18:01,399 [INFO]   S2 Ep   2/80  loss=1.5217 acc=27.9%  val=66.9%  lr=2.08e-05    34s
+2026-03-19 15:18:01,535 [INFO]   ★ best 66.94%
+2026-03-19 15:18:35,263 [INFO]   S2 Ep   3/80  loss=1.2197 acc=46.8%  val=78.0%  lr=3.44e-05    34s
+2026-03-19 15:18:35,400 [INFO]   ★ best 77.99%
+2026-03-19 15:19:09,196 [INFO]   S2 Ep   4/80  loss=1.0950 acc=54.1%  val=81.9%  lr=4.00e-05    34s
+2026-03-19 15:19:09,332 [INFO]   ★ best 81.89%
+2026-03-19 15:19:42,894 [INFO]   S2 Ep   5/80  loss=1.0410 acc=57.1%  val=82.3%  lr=4.00e-05    34s
+2026-03-19 15:19:43,033 [INFO]   ★ best 82.30%
+2026-03-19 15:20:16,595 [INFO]   S2 Ep   6/80  loss=0.9668 acc=61.2%  val=84.0%  lr=3.99e-05    34s
+2026-03-19 15:20:16,727 [INFO]   ★ best 84.03%
+2026-03-19 15:20:50,596 [INFO]   S2 Ep   7/80  loss=0.9578 acc=61.6%  val=84.8%  lr=3.98e-05    34s
+2026-03-19 15:20:50,733 [INFO]   ★ best 84.77%
+2026-03-19 15:21:24,291 [INFO]   S2 Ep   8/80  loss=0.9553 acc=61.9%  val=85.2%  lr=3.97e-05    34s
+2026-03-19 15:21:24,423 [INFO]   ★ best 85.25%
+2026-03-19 15:21:57,963 [INFO]   S2 Ep   9/80  loss=0.9481 acc=62.2%  val=84.6%  lr=3.96e-05    34s
+2026-03-19 15:22:31,737 [INFO]   S2 Ep  10/80  loss=0.9271 acc=63.6%  val=85.6%  lr=3.94e-05    34s
+2026-03-19 15:22:31,869 [INFO]   ★ best 85.62%
+2026-03-19 15:23:05,418 [INFO]   S2 Ep  11/80  loss=0.9274 acc=63.5%  val=84.9%  lr=3.92e-05    34s
+2026-03-19 15:23:39,170 [INFO]   S2 Ep  12/80  loss=0.9173 acc=63.9%  val=85.5%  lr=3.89e-05    34s
+2026-03-19 15:24:12,949 [INFO]   S2 Ep  13/80  loss=0.9202 acc=63.9%  val=85.8%  lr=3.86e-05    34s
+2026-03-19 15:24:13,086 [INFO]   ★ best 85.76%
+2026-03-19 15:24:46,367 [INFO]   S2 Ep  14/80  loss=0.9009 acc=65.1%  val=85.6%  lr=3.83e-05    33s
+2026-03-19 15:25:20,079 [INFO]   S2 Ep  15/80  loss=0.9050 acc=64.9%  val=85.7%  lr=3.80e-05    34s
+2026-03-19 15:25:53,866 [INFO]   S2 Ep  16/80  loss=0.8838 acc=66.1%  val=86.1%  lr=3.76e-05    34s
+2026-03-19 15:25:54,003 [INFO]   ★ best 86.06%
+2026-03-19 15:26:28,057 [INFO]   S2 Ep  17/80  loss=0.8753 acc=66.9%  val=86.3%  lr=3.72e-05    34s
+2026-03-19 15:26:28,198 [INFO]   ★ best 86.30%
+2026-03-19 15:27:02,381 [INFO]   S2 Ep  18/80  loss=0.8806 acc=66.1%  val=85.9%  lr=3.67e-05    34s
+2026-03-19 15:27:36,608 [INFO]   S2 Ep  19/80  loss=0.8641 acc=67.0%  val=86.3%  lr=3.63e-05    34s
+2026-03-19 15:28:10,460 [INFO]   S2 Ep  20/80  loss=0.8601 acc=67.4%  val=86.2%  lr=3.58e-05    34s
+2026-03-19 15:28:44,130 [INFO]   S2 Ep  21/80  loss=0.8635 acc=67.4%  val=86.5%  lr=3.53e-05    34s
+2026-03-19 15:28:44,264 [INFO]   ★ best 86.47%
+2026-03-19 15:29:18,034 [INFO]   S2 Ep  22/80  loss=0.8505 acc=68.3%  val=86.1%  lr=3.47e-05    34s
+2026-03-19 15:29:51,694 [INFO]   S2 Ep  23/80  loss=0.8459 acc=68.1%  val=86.2%  lr=3.41e-05    34s
+2026-03-19 15:30:25,372 [INFO]   S2 Ep  24/80  loss=0.8555 acc=67.5%  val=86.1%  lr=3.35e-05    34s
+2026-03-19 15:30:59,114 [INFO]   S2 Ep  25/80  loss=0.8635 acc=67.3%  val=86.3%  lr=3.29e-05    34s
+2026-03-19 15:31:32,875 [INFO]   S2 Ep  26/80  loss=0.8373 acc=69.0%  val=86.1%  lr=3.23e-05    34s
+2026-03-19 15:32:06,689 [INFO]   S2 Ep  27/80  loss=0.8411 acc=68.5%  val=86.4%  lr=3.16e-05    34s
+2026-03-19 15:32:40,349 [INFO]   S2 Ep  28/80  loss=0.8397 acc=68.7%  val=86.0%  lr=3.09e-05    34s
+2026-03-19 15:33:14,181 [INFO]   S2 Ep  29/80  loss=0.8396 acc=68.5%  val=85.8%  lr=3.02e-05    34s
+2026-03-19 15:33:48,169 [INFO]   S2 Ep  30/80  loss=0.8265 acc=69.6%  val=86.3%  lr=2.95e-05    34s
+2026-03-19 15:34:22,278 [INFO]   S2 Ep  31/80  loss=0.8165 acc=69.8%  val=86.5%  lr=2.88e-05    34s
+2026-03-19 15:34:56,130 [INFO]   S2 Ep  32/80  loss=0.8457 acc=68.6%  val=86.1%  lr=2.80e-05    34s
+2026-03-19 15:35:30,067 [INFO]   S2 Ep  33/80  loss=0.8379 acc=68.7%  val=86.7%  lr=2.73e-05    34s
+2026-03-19 15:35:30,199 [INFO]   ★ best 86.67%
+2026-03-19 15:36:03,783 [INFO]   S2 Ep  34/80  loss=0.8272 acc=69.5%  val=86.7%  lr=2.65e-05    34s
+2026-03-19 15:36:03,918 [INFO]   ★ best 86.71%
+2026-03-19 15:36:37,843 [INFO]   S2 Ep  35/80  loss=0.8445 acc=68.2%  val=86.0%  lr=2.57e-05    34s
+2026-03-19 15:37:11,648 [INFO]   S2 Ep  36/80  loss=0.8283 acc=69.2%  val=86.0%  lr=2.49e-05    34s
+2026-03-19 15:37:45,487 [INFO]   S2 Ep  37/80  loss=0.8382 acc=68.7%  val=86.0%  lr=2.41e-05    34s
+2026-03-19 15:38:19,235 [INFO]   S2 Ep  38/80  loss=0.8539 acc=67.9%  val=86.2%  lr=2.33e-05    34s
+2026-03-19 15:38:52,810 [INFO]   S2 Ep  39/80  loss=0.8325 acc=68.7%  val=86.8%  lr=2.25e-05    34s
+2026-03-19 15:38:52,949 [INFO]   ★ best 86.78%
+2026-03-19 15:39:26,564 [INFO]   S2 Ep  40/80  loss=0.8167 acc=70.2%  val=86.9%  lr=2.17e-05    34s
+2026-03-19 15:39:26,702 [INFO]   ★ best 86.94%
+2026-03-19 15:40:00,760 [INFO]   S2 Ep  41/80  loss=0.8205 acc=70.2%  val=86.2%  lr=2.08e-05    34s
+2026-03-19 15:40:35,154 [INFO]   S2 Ep  42/80  loss=0.8576 acc=67.8%  val=86.5%  lr=2.00e-05    34s
+2026-03-19 15:41:09,475 [INFO]   S2 Ep  43/80  loss=0.8396 acc=68.7%  val=86.8%  lr=1.92e-05    34s
+2026-03-19 15:41:43,475 [INFO]   S2 Ep  44/80  loss=0.7987 acc=71.2%  val=86.6%  lr=1.83e-05    34s
+2026-03-19 15:42:17,395 [INFO]   S2 Ep  45/80  loss=0.7997 acc=70.7%  val=87.2%  lr=1.75e-05    34s
+2026-03-19 15:42:17,530 [INFO]   ★ best 87.22%
+2026-03-19 15:42:51,197 [INFO]   S2 Ep  46/80  loss=0.8110 acc=70.3%  val=86.3%  lr=1.67e-05    34s
+2026-03-19 15:43:25,032 [INFO]   S2 Ep  47/80  loss=0.8028 acc=70.5%  val=86.5%  lr=1.59e-05    34s
+2026-03-19 15:43:58,700 [INFO]   S2 Ep  48/80  loss=0.7915 acc=71.5%  val=86.5%  lr=1.51e-05    34s
+2026-03-19 15:44:33,300 [INFO]   S2 Ep  49/80  loss=0.7863 acc=71.9%  val=86.6%  lr=1.43e-05    35s
+2026-03-19 15:45:07,849 [INFO]   S2 Ep  50/80  loss=0.8148 acc=70.1%  val=87.0%  lr=1.35e-05    35s
+2026-03-19 15:45:41,731 [INFO]   S2 Ep  51/80  loss=0.7819 acc=72.1%  val=86.7%  lr=1.27e-05    34s
+2026-03-19 15:46:15,629 [INFO]   S2 Ep  52/80  loss=0.7983 acc=71.3%  val=87.0%  lr=1.20e-05    34s
+2026-03-19 15:46:49,327 [INFO]   S2 Ep  53/80  loss=0.8030 acc=70.9%  val=86.9%  lr=1.12e-05    34s
+2026-03-19 15:47:23,530 [INFO]   S2 Ep  54/80  loss=0.8022 acc=70.6%  val=87.3%  lr=1.05e-05    34s
+2026-03-19 15:47:23,664 [INFO]   ★ best 87.32%
+2026-03-19 15:47:57,507 [INFO]   S2 Ep  55/80  loss=0.8233 acc=70.0%  val=86.9%  lr=9.76e-06    34s
+2026-03-19 15:48:31,838 [INFO]   S2 Ep  56/80  loss=0.7965 acc=71.6%  val=87.2%  lr=9.06e-06    34s
+2026-03-19 15:49:05,509 [INFO]   S2 Ep  57/80  loss=0.7883 acc=71.8%  val=87.0%  lr=8.38e-06    34s
+2026-03-19 15:49:39,621 [INFO]   S2 Ep  58/80  loss=0.8233 acc=69.3%  val=87.4%  lr=7.72e-06    34s
+2026-03-19 15:49:39,761 [INFO]   ★ best 87.35%
+2026-03-19 15:50:13,939 [INFO]   S2 Ep  59/80  loss=0.7947 acc=71.2%  val=87.3%  lr=7.07e-06    34s
+2026-03-19 15:50:47,828 [INFO]   S2 Ep  60/80  loss=0.7932 acc=71.5%  val=87.1%  lr=6.45e-06    34s
+2026-03-19 15:51:21,625 [INFO]   S2 Ep  61/80  loss=0.7925 acc=71.3%  val=87.4%  lr=5.86e-06    34s
+2026-03-19 15:51:55,637 [INFO]   S2 Ep  62/80  loss=0.7964 acc=71.2%  val=87.8%  lr=5.29e-06    34s
+2026-03-19 15:51:55,770 [INFO]   ★ best 87.83%
+2026-03-19 15:52:29,488 [INFO]   S2 Ep  63/80  loss=0.8023 acc=70.8%  val=87.1%  lr=4.74e-06    34s
+2026-03-19 15:53:03,277 [INFO]   S2 Ep  64/80  loss=0.8037 acc=70.8%  val=87.5%  lr=4.22e-06    34s
+2026-03-19 15:53:37,202 [INFO]   S2 Ep  65/80  loss=0.7870 acc=71.6%  val=87.4%  lr=3.72e-06    34s
+2026-03-19 15:54:11,551 [INFO]   S2 Ep  66/80  loss=0.7858 acc=71.5%  val=87.5%  lr=3.26e-06    34s
+2026-03-19 15:54:45,458 [INFO]   S2 Ep  67/80  loss=0.7923 acc=71.1%  val=87.8%  lr=2.82e-06    34s
+2026-03-19 15:55:19,165 [INFO]   S2 Ep  68/80  loss=0.7991 acc=71.3%  val=87.6%  lr=2.41e-06    34s
+2026-03-19 15:55:53,209 [INFO]   S2 Ep  69/80  loss=0.7966 acc=71.2%  val=87.5%  lr=2.03e-06    34s
+2026-03-19 15:56:27,178 [INFO]   S2 Ep  70/80  loss=0.7908 acc=71.1%  val=87.6%  lr=1.69e-06    34s
+2026-03-19 15:57:00,829 [INFO]   S2 Ep  71/80  loss=0.7945 acc=71.1%  val=87.8%  lr=1.37e-06    34s
+2026-03-19 15:57:34,591 [INFO]   S2 Ep  72/80  loss=0.8004 acc=70.3%  val=87.5%  lr=1.08e-06    34s
+2026-03-19 15:58:08,279 [INFO]   S2 Ep  73/80  loss=0.7968 acc=71.2%  val=87.7%  lr=8.33e-07    34s
+2026-03-19 15:58:42,099 [INFO]   S2 Ep  74/80  loss=0.7951 acc=71.6%  val=87.7%  lr=6.13e-07    34s
+2026-03-19 15:59:15,930 [INFO]   S2 Ep  75/80  loss=0.7994 acc=70.9%  val=87.7%  lr=4.27e-07    34s
+2026-03-19 15:59:49,886 [INFO]   S2 Ep  76/80  loss=0.7592 acc=73.4%  val=87.7%  lr=2.74e-07    34s
+2026-03-19 16:00:23,578 [INFO]   S2 Ep  77/80  loss=0.7879 acc=71.6%  val=87.6%  lr=1.55e-07    34s
+2026-03-19 16:00:57,716 [INFO]   S2 Ep  78/80  loss=0.7767 acc=72.6%  val=87.9%  lr=6.98e-08    34s
+2026-03-19 16:00:57,847 [INFO]   ★ best 87.89%
+2026-03-19 16:01:31,762 [INFO]   S2 Ep  79/80  loss=0.7997 acc=70.9%  val=87.4%  lr=1.86e-08    34s
+2026-03-19 16:02:05,307 [INFO]   S2 Ep  80/80  loss=0.7829 acc=72.1%  val=87.5%  lr=1.60e-09    34s
+2026-03-19 16:02:05,309 [INFO] ── Stage 3: SWA (15 ep) ──
+2026-03-19 16:02:40,089 [INFO]   SWA Ep  1/15  loss=0.7978  swa_val=87.8%  35s
+2026-03-19 16:03:14,074 [INFO]   SWA Ep  2/15  loss=0.7748  swa_val=87.5%  34s
+2026-03-19 16:03:47,924 [INFO]   SWA Ep  3/15  loss=0.8044  swa_val=87.5%  34s
+2026-03-19 16:04:21,943 [INFO]   SWA Ep  4/15  loss=0.7882  swa_val=87.6%  34s
+2026-03-19 16:04:55,969 [INFO]   SWA Ep  5/15  loss=0.7895  swa_val=87.5%  34s
+2026-03-19 16:05:29,651 [INFO]   SWA Ep  6/15  loss=0.7973  swa_val=87.4%  34s
+2026-03-19 16:06:03,611 [INFO]   SWA Ep  7/15  loss=0.8059  swa_val=87.6%  34s
+2026-03-19 16:06:37,315 [INFO]   SWA Ep  8/15  loss=0.8213  swa_val=87.6%  34s
+2026-03-19 16:07:11,291 [INFO]   SWA Ep  9/15  loss=0.7733  swa_val=87.7%  34s
+2026-03-19 16:07:45,318 [INFO]   SWA Ep 10/15  loss=0.8060  swa_val=87.7%  34s
+2026-03-19 16:08:19,365 [INFO]   SWA Ep 11/15  loss=0.7982  swa_val=87.6%  34s
+2026-03-19 16:08:53,016 [INFO]   SWA Ep 12/15  loss=0.8076  swa_val=87.5%  34s
+2026-03-19 16:09:27,089 [INFO]   SWA Ep 13/15  loss=0.8057  swa_val=87.7%  34s
+2026-03-19 16:10:01,295 [INFO]   SWA Ep 14/15  loss=0.8137  swa_val=87.3%  34s
+2026-03-19 16:10:36,016 [INFO]   SWA Ep 15/15  loss=0.7806  swa_val=87.7%  35s
+2026-03-19 16:10:53,488 [INFO]   SWA final: 87.72% (regular best: 87.89%)
+2026-03-19 16:10:53,488 [INFO]   Fold 2 best: 87.89%
+2026-03-19 16:10:54,589 [INFO] ================================================================
+2026-03-19 16:10:54,589 [INFO] FOLD 3 / 5
+2026-03-19 16:10:54,589 [INFO] ================================================================
+2026-03-19 16:10:54,763 [INFO] Loading pretrained weights from Hugging Face hub (timm/tf_efficientnetv2_s.in21k_ft_in1k)
+2026-03-19 16:10:59,937 [INFO] HTTP Request: HEAD https://huggingface.co/timm/tf_efficientnetv2_s.in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-19 16:10:59,938 [INFO] [timm/tf_efficientnetv2_s.in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-19 16:10:59,969 [WARNING] Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+2026-03-19 16:11:00,130 [INFO]   Born-again from /data/slr/checkpoints_v12/best_fold2.pt (val 88.23%)
+2026-03-19 16:11:00,131 [INFO] ── Stage 1: head warmup (5 ep) ──
+2026-03-19 16:11:22,716 [INFO]   S1 Ep 1/5  loss=1.7565 acc=11.5%  val=14.7%  23s
+2026-03-19 16:11:22,822 [INFO]   ★ best 14.69%
+2026-03-19 16:11:37,494 [INFO]   S1 Ep 2/5  loss=1.7110 acc=13.2%  val=17.8%  15s
+2026-03-19 16:11:37,628 [INFO]   ★ best 17.81%
+2026-03-19 16:11:52,262 [INFO]   S1 Ep 3/5  loss=1.6689 acc=15.5%  val=19.5%  15s
+2026-03-19 16:11:52,396 [INFO]   ★ best 19.50%
+2026-03-19 16:12:07,092 [INFO]   S1 Ep 4/5  loss=1.6432 acc=17.1%  val=21.4%  15s
+2026-03-19 16:12:07,222 [INFO]   ★ best 21.40%
+2026-03-19 16:12:22,344 [INFO]   S1 Ep 5/5  loss=1.6210 acc=17.7%  val=21.8%  15s
+2026-03-19 16:12:22,484 [INFO]   ★ best 21.85%
+2026-03-19 16:12:22,484 [INFO] ── Stage 2: full fine-tune (80 ep) ──
+2026-03-19 16:12:22,487 [INFO] LLRD: 14 groups, LR [7.12e-06 … 4.00e-05]
+2026-03-19 16:12:56,363 [INFO]   S2 Ep   1/80  loss=1.7132 acc=14.5%  val=35.6%  lr=7.23e-06    34s
+2026-03-19 16:12:56,502 [INFO]   ★ best 35.62%
+2026-03-19 16:13:30,643 [INFO]   S2 Ep   2/80  loss=1.5105 acc=28.2%  val=69.6%  lr=2.08e-05    34s
+2026-03-19 16:13:30,788 [INFO]   ★ best 69.64%
+2026-03-19 16:14:05,827 [INFO]   S2 Ep   3/80  loss=1.2404 acc=45.7%  val=79.9%  lr=3.44e-05    35s
+2026-03-19 16:14:05,965 [INFO]   ★ best 79.88%
+2026-03-19 16:14:40,359 [INFO]   S2 Ep   4/80  loss=1.0705 acc=55.2%  val=84.2%  lr=4.00e-05    34s
+2026-03-19 16:14:40,492 [INFO]   ★ best 84.19%
+2026-03-19 16:15:14,311 [INFO]   S2 Ep   5/80  loss=1.0118 acc=58.3%  val=84.0%  lr=4.00e-05    34s
+2026-03-19 16:15:48,020 [INFO]   S2 Ep   6/80  loss=0.9747 acc=60.5%  val=84.0%  lr=3.99e-05    34s
+2026-03-19 16:16:21,544 [INFO]   S2 Ep   7/80  loss=0.9532 acc=62.1%  val=84.9%  lr=3.98e-05    34s
+2026-03-19 16:16:21,676 [INFO]   ★ best 84.87%
+2026-03-19 16:16:55,531 [INFO]   S2 Ep   8/80  loss=0.9467 acc=62.2%  val=85.8%  lr=3.97e-05    34s
+2026-03-19 16:16:55,671 [INFO]   ★ best 85.79%
+2026-03-19 16:17:29,517 [INFO]   S2 Ep   9/80  loss=0.9272 acc=63.7%  val=85.7%  lr=3.96e-05    34s
+2026-03-19 16:18:03,424 [INFO]   S2 Ep  10/80  loss=0.9334 acc=63.0%  val=86.6%  lr=3.94e-05    34s
+2026-03-19 16:18:03,564 [INFO]   ★ best 86.60%
+2026-03-19 16:18:37,241 [INFO]   S2 Ep  11/80  loss=0.8993 acc=64.8%  val=85.9%  lr=3.92e-05    34s
+2026-03-19 16:19:10,747 [INFO]   S2 Ep  12/80  loss=0.9160 acc=64.1%  val=86.0%  lr=3.89e-05    34s
+2026-03-19 16:19:44,470 [INFO]   S2 Ep  13/80  loss=0.8799 acc=66.0%  val=86.6%  lr=3.86e-05    34s
+2026-03-19 16:19:44,612 [INFO]   ★ best 86.64%
+2026-03-19 16:20:18,567 [INFO]   S2 Ep  14/80  loss=0.8810 acc=66.0%  val=86.5%  lr=3.83e-05    34s
+2026-03-19 16:20:52,007 [INFO]   S2 Ep  15/80  loss=0.8958 acc=65.5%  val=86.8%  lr=3.80e-05    33s
+2026-03-19 16:20:52,149 [INFO]   ★ best 86.84%
+2026-03-19 16:21:26,384 [INFO]   S2 Ep  16/80  loss=0.9162 acc=64.2%  val=87.0%  lr=3.76e-05    34s
+2026-03-19 16:21:26,529 [INFO]   ★ best 87.04%
+2026-03-19 16:22:00,206 [INFO]   S2 Ep  17/80  loss=0.8606 acc=67.3%  val=87.8%  lr=3.72e-05    34s
+2026-03-19 16:22:00,341 [INFO]   ★ best 87.75%
+2026-03-19 16:22:33,773 [INFO]   S2 Ep  18/80  loss=0.8806 acc=66.3%  val=87.4%  lr=3.67e-05    33s
+2026-03-19 16:23:07,432 [INFO]   S2 Ep  19/80  loss=0.8744 acc=66.3%  val=87.6%  lr=3.63e-05    34s
+2026-03-19 16:23:41,101 [INFO]   S2 Ep  20/80  loss=0.8615 acc=67.3%  val=87.6%  lr=3.58e-05    34s
+2026-03-19 16:24:14,759 [INFO]   S2 Ep  21/80  loss=0.8646 acc=67.3%  val=87.2%  lr=3.53e-05    34s
+2026-03-19 16:24:48,423 [INFO]   S2 Ep  22/80  loss=0.8600 acc=67.3%  val=87.0%  lr=3.47e-05    34s
+2026-03-19 16:25:22,061 [INFO]   S2 Ep  23/80  loss=0.8511 acc=67.9%  val=87.5%  lr=3.41e-05    34s
+2026-03-19 16:25:56,399 [INFO]   S2 Ep  24/80  loss=0.8505 acc=67.9%  val=87.4%  lr=3.35e-05    34s
+2026-03-19 16:26:30,581 [INFO]   S2 Ep  25/80  loss=0.8417 acc=68.6%  val=87.6%  lr=3.29e-05    34s
+2026-03-19 16:27:04,172 [INFO]   S2 Ep  26/80  loss=0.8211 acc=69.6%  val=87.9%  lr=3.23e-05    34s
+2026-03-19 16:27:04,313 [INFO]   ★ best 87.89%
+2026-03-19 16:27:38,088 [INFO]   S2 Ep  27/80  loss=0.8407 acc=69.0%  val=87.8%  lr=3.16e-05    34s
+2026-03-19 16:28:11,974 [INFO]   S2 Ep  28/80  loss=0.8319 acc=69.2%  val=87.8%  lr=3.09e-05    34s
+2026-03-19 16:28:45,538 [INFO]   S2 Ep  29/80  loss=0.8499 acc=67.7%  val=87.1%  lr=3.02e-05    34s
+2026-03-19 16:29:19,378 [INFO]   S2 Ep  30/80  loss=0.8386 acc=68.6%  val=87.8%  lr=2.95e-05    34s
+2026-03-19 16:29:52,801 [INFO]   S2 Ep  31/80  loss=0.8535 acc=67.5%  val=87.6%  lr=2.88e-05    33s
+2026-03-19 16:30:26,406 [INFO]   S2 Ep  32/80  loss=0.8645 acc=67.3%  val=87.6%  lr=2.80e-05    34s
+2026-03-19 16:31:00,122 [INFO]   S2 Ep  33/80  loss=0.8184 acc=69.7%  val=87.7%  lr=2.73e-05    34s
+2026-03-19 16:31:33,859 [INFO]   S2 Ep  34/80  loss=0.8406 acc=68.8%  val=87.9%  lr=2.65e-05    34s
+2026-03-19 16:32:07,696 [INFO]   S2 Ep  35/80  loss=0.8305 acc=69.0%  val=87.4%  lr=2.57e-05    34s
+2026-03-19 16:32:41,308 [INFO]   S2 Ep  36/80  loss=0.8511 acc=67.8%  val=88.2%  lr=2.49e-05    34s
+2026-03-19 16:32:41,452 [INFO]   ★ best 88.16%
+2026-03-19 16:33:15,539 [INFO]   S2 Ep  37/80  loss=0.8420 acc=68.3%  val=88.1%  lr=2.41e-05    34s
+2026-03-19 16:33:49,813 [INFO]   S2 Ep  38/80  loss=0.8366 acc=68.6%  val=87.7%  lr=2.33e-05    34s
+2026-03-19 16:34:23,998 [INFO]   S2 Ep  39/80  loss=0.8338 acc=69.2%  val=87.8%  lr=2.25e-05    34s
+2026-03-19 16:34:57,996 [INFO]   S2 Ep  40/80  loss=0.8039 acc=70.7%  val=87.9%  lr=2.17e-05    34s
+2026-03-19 16:35:32,326 [INFO]   S2 Ep  41/80  loss=0.8188 acc=69.8%  val=87.4%  lr=2.08e-05    34s
+2026-03-19 16:36:05,893 [INFO]   S2 Ep  42/80  loss=0.8062 acc=70.5%  val=88.3%  lr=2.00e-05    34s
+2026-03-19 16:36:06,031 [INFO]   ★ best 88.30%
+2026-03-19 16:36:39,865 [INFO]   S2 Ep  43/80  loss=0.8119 acc=70.6%  val=88.2%  lr=1.92e-05    34s
+2026-03-19 16:37:13,912 [INFO]   S2 Ep  44/80  loss=0.8204 acc=69.8%  val=88.5%  lr=1.83e-05    34s
+2026-03-19 16:37:14,052 [INFO]   ★ best 88.47%
+2026-03-19 16:37:48,139 [INFO]   S2 Ep  45/80  loss=0.7809 acc=71.9%  val=88.2%  lr=1.75e-05    34s
+2026-03-19 16:38:22,319 [INFO]   S2 Ep  46/80  loss=0.7948 acc=71.4%  val=88.3%  lr=1.67e-05    34s
+2026-03-19 16:38:57,655 [INFO]   S2 Ep  47/80  loss=0.8184 acc=70.0%  val=88.6%  lr=1.59e-05    35s
+2026-03-19 16:38:57,796 [INFO]   ★ best 88.57%
+2026-03-19 16:39:31,583 [INFO]   S2 Ep  48/80  loss=0.7997 acc=70.8%  val=88.1%  lr=1.51e-05    34s
+2026-03-19 16:40:05,314 [INFO]   S2 Ep  49/80  loss=0.7907 acc=71.2%  val=88.1%  lr=1.43e-05    34s
+2026-03-19 16:40:38,885 [INFO]   S2 Ep  50/80  loss=0.8010 acc=70.9%  val=88.1%  lr=1.35e-05    34s
+2026-03-19 16:41:12,561 [INFO]   S2 Ep  51/80  loss=0.8148 acc=70.2%  val=88.4%  lr=1.27e-05    34s
+2026-03-19 16:41:46,676 [INFO]   S2 Ep  52/80  loss=0.8089 acc=70.1%  val=88.0%  lr=1.20e-05    34s
+2026-03-19 16:42:20,256 [INFO]   S2 Ep  53/80  loss=0.8038 acc=70.7%  val=88.4%  lr=1.12e-05    34s
+2026-03-19 16:42:53,814 [INFO]   S2 Ep  54/80  loss=0.8190 acc=70.2%  val=88.6%  lr=1.05e-05    34s
+2026-03-19 16:42:53,950 [INFO]   ★ best 88.60%
+2026-03-19 16:43:27,640 [INFO]   S2 Ep  55/80  loss=0.7893 acc=71.6%  val=88.1%  lr=9.76e-06    34s
+2026-03-19 16:44:01,511 [INFO]   S2 Ep  56/80  loss=0.7834 acc=71.3%  val=88.2%  lr=9.06e-06    34s
+2026-03-19 16:44:35,289 [INFO]   S2 Ep  57/80  loss=0.8239 acc=69.5%  val=88.2%  lr=8.38e-06    34s
+2026-03-19 16:45:09,040 [INFO]   S2 Ep  58/80  loss=0.7964 acc=71.6%  val=88.7%  lr=7.72e-06    34s
+2026-03-19 16:45:09,180 [INFO]   ★ best 88.67%
+2026-03-19 16:45:42,842 [INFO]   S2 Ep  59/80  loss=0.7700 acc=72.7%  val=88.4%  lr=7.07e-06    34s
+2026-03-19 16:46:16,464 [INFO]   S2 Ep  60/80  loss=0.7876 acc=71.9%  val=88.7%  lr=6.45e-06    34s
+2026-03-19 16:46:16,595 [INFO]   ★ best 88.74%
+2026-03-19 16:46:50,657 [INFO]   S2 Ep  61/80  loss=0.7935 acc=71.2%  val=88.3%  lr=5.86e-06    34s
+2026-03-19 16:47:24,776 [INFO]   S2 Ep  62/80  loss=0.7825 acc=71.9%  val=88.1%  lr=5.29e-06    34s
+2026-03-19 16:47:58,537 [INFO]   S2 Ep  63/80  loss=0.7815 acc=72.1%  val=88.4%  lr=4.74e-06    34s
+2026-03-19 16:48:32,073 [INFO]   S2 Ep  64/80  loss=0.7877 acc=71.4%  val=88.7%  lr=4.22e-06    34s
+2026-03-19 16:49:06,508 [INFO]   S2 Ep  65/80  loss=0.8008 acc=71.4%  val=88.4%  lr=3.72e-06    34s
+2026-03-19 16:49:40,878 [INFO]   S2 Ep  66/80  loss=0.7739 acc=72.3%  val=88.8%  lr=3.26e-06    34s
+2026-03-19 16:49:41,019 [INFO]   ★ best 88.77%
+2026-03-19 16:50:14,527 [INFO]   S2 Ep  67/80  loss=0.7955 acc=71.4%  val=88.6%  lr=2.82e-06    34s
+2026-03-19 16:50:48,750 [INFO]   S2 Ep  68/80  loss=0.8000 acc=70.9%  val=88.8%  lr=2.41e-06    34s
+2026-03-19 16:50:48,891 [INFO]   ★ best 88.81%
+2026-03-19 16:51:22,706 [INFO]   S2 Ep  69/80  loss=0.7779 acc=72.1%  val=88.8%  lr=2.03e-06    34s
+2026-03-19 16:51:22,842 [INFO]   ★ best 88.84%
+2026-03-19 16:51:56,391 [INFO]   S2 Ep  70/80  loss=0.7899 acc=71.4%  val=89.0%  lr=1.69e-06    34s
+2026-03-19 16:51:56,525 [INFO]   ★ best 88.98%
+2026-03-19 16:52:30,114 [INFO]   S2 Ep  71/80  loss=0.7838 acc=72.1%  val=88.9%  lr=1.37e-06    34s
+2026-03-19 16:53:03,944 [INFO]   S2 Ep  72/80  loss=0.7974 acc=71.1%  val=89.1%  lr=1.08e-06    34s
+2026-03-19 16:53:04,089 [INFO]   ★ best 89.08%
+2026-03-19 16:53:37,844 [INFO]   S2 Ep  73/80  loss=0.7880 acc=71.5%  val=88.8%  lr=8.33e-07    34s
+2026-03-19 16:54:11,841 [INFO]   S2 Ep  74/80  loss=0.8130 acc=69.8%  val=89.0%  lr=6.13e-07    34s
+2026-03-19 16:54:45,314 [INFO]   S2 Ep  75/80  loss=0.7596 acc=73.2%  val=88.8%  lr=4.27e-07    33s
+2026-03-19 16:55:19,114 [INFO]   S2 Ep  76/80  loss=0.7964 acc=71.4%  val=89.2%  lr=2.74e-07    34s
+2026-03-19 16:55:19,258 [INFO]   ★ best 89.18%
+2026-03-19 16:55:52,831 [INFO]   S2 Ep  77/80  loss=0.7717 acc=72.9%  val=88.7%  lr=1.55e-07    34s
+2026-03-19 16:56:27,187 [INFO]   S2 Ep  78/80  loss=0.7765 acc=72.7%  val=89.1%  lr=6.98e-08    34s
+2026-03-19 16:57:01,027 [INFO]   S2 Ep  79/80  loss=0.8123 acc=69.9%  val=89.3%  lr=1.86e-08    34s
+2026-03-19 16:57:01,176 [INFO]   ★ best 89.28%
+2026-03-19 16:57:35,618 [INFO]   S2 Ep  80/80  loss=0.7833 acc=71.9%  val=88.6%  lr=1.60e-09    34s
+2026-03-19 16:57:35,620 [INFO] ── Stage 3: SWA (15 ep) ──
+2026-03-19 16:58:09,502 [INFO]   SWA Ep  1/15  loss=0.7934  swa_val=89.0%  34s
+2026-03-19 16:58:43,045 [INFO]   SWA Ep  2/15  loss=0.7883  swa_val=88.6%  34s
+2026-03-19 16:59:16,922 [INFO]   SWA Ep  3/15  loss=0.7997  swa_val=88.5%  34s
+2026-03-19 16:59:50,444 [INFO]   SWA Ep  4/15  loss=0.8090  swa_val=88.8%  34s
+2026-03-19 17:00:23,954 [INFO]   SWA Ep  5/15  loss=0.7765  swa_val=88.9%  34s
+2026-03-19 17:00:58,843 [INFO]   SWA Ep  6/15  loss=0.8092  swa_val=88.7%  35s
+2026-03-19 17:01:32,497 [INFO]   SWA Ep  7/15  loss=0.7807  swa_val=88.6%  34s
+2026-03-19 17:02:06,111 [INFO]   SWA Ep  8/15  loss=0.7641  swa_val=88.7%  34s
+2026-03-19 17:02:39,778 [INFO]   SWA Ep  9/15  loss=0.8028  swa_val=88.5%  34s
+2026-03-19 17:03:13,517 [INFO]   SWA Ep 10/15  loss=0.7915  swa_val=89.0%  34s
+2026-03-19 17:03:46,922 [INFO]   SWA Ep 11/15  loss=0.7796  swa_val=88.4%  33s
+2026-03-19 17:04:20,504 [INFO]   SWA Ep 12/15  loss=0.7813  swa_val=88.5%  34s
+2026-03-19 17:04:54,980 [INFO]   SWA Ep 13/15  loss=0.7754  swa_val=88.4%  34s
+2026-03-19 17:05:28,547 [INFO]   SWA Ep 14/15  loss=0.8141  swa_val=88.5%  34s
+2026-03-19 17:06:02,285 [INFO]   SWA Ep 15/15  loss=0.7717  swa_val=87.8%  34s
+2026-03-19 17:06:20,026 [INFO]   SWA final: 88.94% (regular best: 89.28%)
+2026-03-19 17:06:20,027 [INFO]   Fold 3 best: 89.28%
+2026-03-19 17:06:21,274 [INFO] ================================================================
+2026-03-19 17:06:21,274 [INFO] FOLD 4 / 5
+2026-03-19 17:06:21,274 [INFO] ================================================================
+2026-03-19 17:06:21,447 [INFO] Loading pretrained weights from Hugging Face hub (timm/tf_efficientnetv2_s.in21k_ft_in1k)
+2026-03-19 17:06:21,572 [INFO] HTTP Request: HEAD https://huggingface.co/timm/tf_efficientnetv2_s.in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-19 17:06:21,573 [INFO] [timm/tf_efficientnetv2_s.in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-19 17:06:21,599 [WARNING] Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+2026-03-19 17:06:21,755 [INFO]   Born-again from /data/slr/checkpoints_v12/best_fold3.pt (val 88.40%)
+2026-03-19 17:06:21,756 [INFO] ── Stage 1: head warmup (5 ep) ──
+2026-03-19 17:06:38,846 [INFO]   S1 Ep 1/5  loss=1.7492 acc=11.7%  val=15.1%  17s
+2026-03-19 17:06:38,968 [INFO]   ★ best 15.06%
+2026-03-19 17:06:54,061 [INFO]   S1 Ep 2/5  loss=1.7045 acc=13.8%  val=19.1%  15s
+2026-03-19 17:06:54,387 [INFO]   ★ best 19.06%
+2026-03-19 17:07:09,628 [INFO]   S1 Ep 3/5  loss=1.6589 acc=16.3%  val=21.8%  15s
+2026-03-19 17:07:09,764 [INFO]   ★ best 21.85%
+2026-03-19 17:07:24,830 [INFO]   S1 Ep 4/5  loss=1.6330 acc=17.3%  val=23.2%  15s
+2026-03-19 17:07:24,974 [INFO]   ★ best 23.20%
+2026-03-19 17:07:39,967 [INFO]   S1 Ep 5/5  loss=1.6153 acc=18.2%  val=23.2%  15s
+2026-03-19 17:07:39,968 [INFO] ── Stage 2: full fine-tune (80 ep) ──
+2026-03-19 17:07:39,970 [INFO] LLRD: 14 groups, LR [7.12e-06 … 4.00e-05]
+2026-03-19 17:08:13,603 [INFO]   S2 Ep   1/80  loss=1.7071 acc=14.9%  val=34.3%  lr=7.23e-06    34s
+2026-03-19 17:08:13,741 [INFO]   ★ best 34.29%
+2026-03-19 17:08:47,235 [INFO]   S2 Ep   2/80  loss=1.5197 acc=28.5%  val=69.5%  lr=2.08e-05    33s
+2026-03-19 17:08:47,374 [INFO]   ★ best 69.47%
+2026-03-19 17:09:22,301 [INFO]   S2 Ep   3/80  loss=1.2048 acc=47.9%  val=80.7%  lr=3.44e-05    35s
+2026-03-19 17:09:22,444 [INFO]   ★ best 80.73%
+2026-03-19 17:09:55,856 [INFO]   S2 Ep   4/80  loss=1.1250 acc=52.2%  val=83.0%  lr=4.00e-05    33s
+2026-03-19 17:09:55,996 [INFO]   ★ best 82.97%
+2026-03-19 17:10:29,535 [INFO]   S2 Ep   5/80  loss=1.0543 acc=56.0%  val=84.4%  lr=4.00e-05    34s
+2026-03-19 17:10:29,672 [INFO]   ★ best 84.36%
+2026-03-19 17:11:03,276 [INFO]   S2 Ep   6/80  loss=0.9779 acc=60.4%  val=84.6%  lr=3.99e-05    34s
+2026-03-19 17:11:03,408 [INFO]   ★ best 84.57%
+2026-03-19 17:11:36,933 [INFO]   S2 Ep   7/80  loss=0.9669 acc=61.2%  val=85.9%  lr=3.98e-05    34s
+2026-03-19 17:11:37,072 [INFO]   ★ best 85.85%
+2026-03-19 17:12:10,663 [INFO]   S2 Ep   8/80  loss=0.9671 acc=61.1%  val=86.6%  lr=3.97e-05    34s
+2026-03-19 17:12:10,806 [INFO]   ★ best 86.57%
+2026-03-19 17:12:44,480 [INFO]   S2 Ep   9/80  loss=0.9455 acc=62.4%  val=86.5%  lr=3.96e-05    34s
+2026-03-19 17:13:17,957 [INFO]   S2 Ep  10/80  loss=0.9582 acc=61.5%  val=86.3%  lr=3.94e-05    33s
+2026-03-19 17:13:51,472 [INFO]   S2 Ep  11/80  loss=0.9224 acc=63.7%  val=86.8%  lr=3.92e-05    34s
+2026-03-19 17:13:51,609 [INFO]   ★ best 86.77%
+2026-03-19 17:14:25,426 [INFO]   S2 Ep  12/80  loss=0.9425 acc=62.6%  val=87.4%  lr=3.89e-05    34s
+2026-03-19 17:14:25,561 [INFO]   ★ best 87.45%
+2026-03-19 17:14:59,265 [INFO]   S2 Ep  13/80  loss=0.8825 acc=65.7%  val=87.6%  lr=3.86e-05    34s
+2026-03-19 17:14:59,404 [INFO]   ★ best 87.62%
+2026-03-19 17:15:34,316 [INFO]   S2 Ep  14/80  loss=0.8778 acc=66.3%  val=87.2%  lr=3.83e-05    35s
+2026-03-19 17:16:07,896 [INFO]   S2 Ep  15/80  loss=0.8569 acc=67.5%  val=87.4%  lr=3.80e-05    34s
+2026-03-19 17:16:41,473 [INFO]   S2 Ep  16/80  loss=0.9146 acc=64.4%  val=86.6%  lr=3.76e-05    34s
+2026-03-19 17:17:16,908 [INFO]   S2 Ep  17/80  loss=0.8850 acc=66.0%  val=87.2%  lr=3.72e-05    35s
+2026-03-19 17:17:50,742 [INFO]   S2 Ep  18/80  loss=0.9019 acc=64.8%  val=86.8%  lr=3.67e-05    34s
+2026-03-19 17:18:24,406 [INFO]   S2 Ep  19/80  loss=0.8739 acc=66.7%  val=87.4%  lr=3.63e-05    34s
+2026-03-19 17:18:57,880 [INFO]   S2 Ep  20/80  loss=0.8687 acc=67.0%  val=87.6%  lr=3.58e-05    33s
+2026-03-19 17:19:32,167 [INFO]   S2 Ep  21/80  loss=0.8585 acc=67.6%  val=87.3%  lr=3.53e-05    34s
+2026-03-19 17:20:05,864 [INFO]   S2 Ep  22/80  loss=0.8614 acc=67.5%  val=86.9%  lr=3.47e-05    34s
+2026-03-19 17:20:39,376 [INFO]   S2 Ep  23/80  loss=0.8960 acc=65.3%  val=87.5%  lr=3.41e-05    34s
+2026-03-19 17:21:13,082 [INFO]   S2 Ep  24/80  loss=0.8658 acc=67.6%  val=86.7%  lr=3.35e-05    34s
+2026-03-19 17:21:47,061 [INFO]   S2 Ep  25/80  loss=0.8747 acc=66.6%  val=87.2%  lr=3.29e-05    34s
+2026-03-19 17:22:21,293 [INFO]   S2 Ep  26/80  loss=0.8465 acc=68.2%  val=87.2%  lr=3.23e-05    34s
+2026-03-19 17:22:55,310 [INFO]   S2 Ep  27/80  loss=0.8528 acc=68.1%  val=87.4%  lr=3.16e-05    34s
+2026-03-19 17:23:29,007 [INFO]   S2 Ep  28/80  loss=0.8421 acc=68.8%  val=87.9%  lr=3.09e-05    34s
+2026-03-19 17:23:29,155 [INFO]   ★ best 87.86%
+2026-03-19 17:24:04,197 [INFO]   S2 Ep  29/80  loss=0.8311 acc=69.1%  val=87.9%  lr=3.02e-05    35s
+2026-03-19 17:24:38,356 [INFO]   S2 Ep  30/80  loss=0.8529 acc=68.0%  val=87.8%  lr=2.95e-05    34s
+2026-03-19 17:25:14,942 [INFO]   S2 Ep  31/80  loss=0.8553 acc=68.0%  val=87.3%  lr=2.88e-05    37s
+2026-03-19 17:25:48,378 [INFO]   S2 Ep  32/80  loss=0.8145 acc=70.5%  val=87.7%  lr=2.80e-05    33s
+2026-03-19 17:26:21,882 [INFO]   S2 Ep  33/80  loss=0.8399 acc=68.5%  val=87.4%  lr=2.73e-05    34s
+2026-03-19 17:26:55,511 [INFO]   S2 Ep  34/80  loss=0.8309 acc=68.9%  val=87.0%  lr=2.65e-05    34s
+2026-03-19 17:27:28,999 [INFO]   S2 Ep  35/80  loss=0.8124 acc=70.3%  val=87.5%  lr=2.57e-05    33s
+2026-03-19 17:28:02,463 [INFO]   S2 Ep  36/80  loss=0.8244 acc=69.5%  val=87.6%  lr=2.49e-05    33s
+2026-03-19 17:28:36,084 [INFO]   S2 Ep  37/80  loss=0.8327 acc=69.7%  val=87.6%  lr=2.41e-05    34s
+2026-03-19 17:29:09,589 [INFO]   S2 Ep  38/80  loss=0.8342 acc=69.2%  val=87.8%  lr=2.33e-05    34s
+2026-03-19 17:29:43,167 [INFO]   S2 Ep  39/80  loss=0.8499 acc=68.4%  val=88.1%  lr=2.25e-05    34s
+2026-03-19 17:29:43,302 [INFO]   ★ best 88.09%
+2026-03-19 17:30:17,015 [INFO]   S2 Ep  40/80  loss=0.8203 acc=69.8%  val=87.6%  lr=2.17e-05    34s
+2026-03-19 17:30:50,648 [INFO]   S2 Ep  41/80  loss=0.8158 acc=70.5%  val=87.8%  lr=2.08e-05    34s
+2026-03-19 17:31:24,944 [INFO]   S2 Ep  42/80  loss=0.8410 acc=68.8%  val=87.4%  lr=2.00e-05    34s
+2026-03-19 17:31:58,635 [INFO]   S2 Ep  43/80  loss=0.8303 acc=69.5%  val=87.6%  lr=1.92e-05    34s
+2026-03-19 17:32:32,338 [INFO]   S2 Ep  44/80  loss=0.8058 acc=70.3%  val=87.3%  lr=1.83e-05    34s
+2026-03-19 17:33:05,979 [INFO]   S2 Ep  45/80  loss=0.8125 acc=70.4%  val=87.7%  lr=1.75e-05    34s
+2026-03-19 17:33:39,516 [INFO]   S2 Ep  46/80  loss=0.8446 acc=68.5%  val=87.9%  lr=1.67e-05    34s
+2026-03-19 17:34:13,416 [INFO]   S2 Ep  47/80  loss=0.8113 acc=70.7%  val=88.0%  lr=1.59e-05    34s
+2026-03-19 17:34:47,062 [INFO]   S2 Ep  48/80  loss=0.8087 acc=70.4%  val=87.7%  lr=1.51e-05    34s
+2026-03-19 17:35:20,776 [INFO]   S2 Ep  49/80  loss=0.8371 acc=68.8%  val=87.9%  lr=1.43e-05    34s
+2026-03-19 17:35:54,715 [INFO]   S2 Ep  50/80  loss=0.7987 acc=71.1%  val=87.9%  lr=1.35e-05    34s
+2026-03-19 17:36:28,172 [INFO]   S2 Ep  51/80  loss=0.8230 acc=69.9%  val=88.0%  lr=1.27e-05    33s
+2026-03-19 17:37:01,611 [INFO]   S2 Ep  52/80  loss=0.8147 acc=70.4%  val=87.7%  lr=1.20e-05    33s
+2026-03-19 17:37:35,702 [INFO]   S2 Ep  53/80  loss=0.7998 acc=71.0%  val=87.9%  lr=1.12e-05    34s
+2026-03-19 17:38:09,943 [INFO]   S2 Ep  54/80  loss=0.8066 acc=71.1%  val=88.1%  lr=1.05e-05    34s
+2026-03-19 17:38:43,582 [INFO]   S2 Ep  55/80  loss=0.7996 acc=71.0%  val=88.1%  lr=9.76e-06    34s
+2026-03-19 17:38:43,716 [INFO]   ★ best 88.13%
+2026-03-19 17:39:18,545 [INFO]   S2 Ep  56/80  loss=0.7960 acc=71.2%  val=88.3%  lr=9.06e-06    35s
+2026-03-19 17:39:18,676 [INFO]   ★ best 88.33%
+2026-03-19 17:39:52,260 [INFO]   S2 Ep  57/80  loss=0.8066 acc=70.9%  val=88.3%  lr=8.38e-06    34s
+2026-03-19 17:40:25,741 [INFO]   S2 Ep  58/80  loss=0.8083 acc=70.6%  val=88.1%  lr=7.72e-06    33s
+2026-03-19 17:41:00,814 [INFO]   S2 Ep  59/80  loss=0.8058 acc=70.8%  val=88.3%  lr=7.07e-06    35s
+2026-03-19 17:41:34,982 [INFO]   S2 Ep  60/80  loss=0.7860 acc=72.0%  val=88.3%  lr=6.45e-06    34s
+2026-03-19 17:42:08,558 [INFO]   S2 Ep  61/80  loss=0.7904 acc=71.8%  val=88.6%  lr=5.86e-06    34s
+2026-03-19 17:42:08,698 [INFO]   ★ best 88.57%
+2026-03-19 17:42:46,803 [INFO]   S2 Ep  62/80  loss=0.7815 acc=72.0%  val=88.4%  lr=5.29e-06    38s
+2026-03-19 17:43:20,322 [INFO]   S2 Ep  63/80  loss=0.8015 acc=70.8%  val=88.4%  lr=4.74e-06    34s
+2026-03-19 17:43:54,671 [INFO]   S2 Ep  64/80  loss=0.8056 acc=70.8%  val=87.9%  lr=4.22e-06    34s
+2026-03-19 17:44:28,809 [INFO]   S2 Ep  65/80  loss=0.7509 acc=73.5%  val=88.2%  lr=3.72e-06    34s
+2026-03-19 17:45:02,380 [INFO]   S2 Ep  66/80  loss=0.7881 acc=71.7%  val=88.1%  lr=3.26e-06    34s
+2026-03-19 17:45:37,742 [INFO]   S2 Ep  67/80  loss=0.8008 acc=71.0%  val=88.0%  lr=2.82e-06    35s
+2026-03-19 17:46:11,433 [INFO]   S2 Ep  68/80  loss=0.8122 acc=70.4%  val=88.2%  lr=2.41e-06    34s
+2026-03-19 17:46:44,900 [INFO]   S2 Ep  69/80  loss=0.8042 acc=70.8%  val=88.1%  lr=2.03e-06    33s
+2026-03-19 17:47:18,928 [INFO]   S2 Ep  70/80  loss=0.7837 acc=72.0%  val=88.4%  lr=1.69e-06    34s
+2026-03-19 17:47:53,755 [INFO]   S2 Ep  71/80  loss=0.7895 acc=71.2%  val=88.1%  lr=1.37e-06    35s
+2026-03-19 17:48:27,736 [INFO]   S2 Ep  72/80  loss=0.7835 acc=71.7%  val=88.3%  lr=1.08e-06    34s
+2026-03-19 17:49:01,843 [INFO]   S2 Ep  73/80  loss=0.7806 acc=72.2%  val=88.3%  lr=8.33e-07    34s
+2026-03-19 17:49:35,488 [INFO]   S2 Ep  74/80  loss=0.7749 acc=72.5%  val=88.3%  lr=6.13e-07    34s
+2026-03-19 17:50:09,935 [INFO]   S2 Ep  75/80  loss=0.8017 acc=70.9%  val=88.4%  lr=4.27e-07    34s
+2026-03-19 17:50:44,103 [INFO]   S2 Ep  76/80  loss=0.7947 acc=71.5%  val=87.8%  lr=2.74e-07    34s
+2026-03-19 17:51:18,890 [INFO]   S2 Ep  77/80  loss=0.8021 acc=70.8%  val=88.4%  lr=1.55e-07    35s
+2026-03-19 17:51:53,788 [INFO]   S2 Ep  78/80  loss=0.8058 acc=70.8%  val=88.2%  lr=6.98e-08    35s
+2026-03-19 17:52:27,222 [INFO]   S2 Ep  79/80  loss=0.7908 acc=71.5%  val=88.4%  lr=1.86e-08    33s
+2026-03-19 17:53:01,341 [INFO]   S2 Ep  80/80  loss=0.7998 acc=70.7%  val=88.2%  lr=1.60e-09    34s
+2026-03-19 17:53:01,343 [INFO] ── Stage 3: SWA (15 ep) ──
+2026-03-19 17:53:36,191 [INFO]   SWA Ep  1/15  loss=0.7856  swa_val=88.3%  35s
+2026-03-19 17:54:10,195 [INFO]   SWA Ep  2/15  loss=0.7881  swa_val=88.3%  34s
+2026-03-19 17:54:44,587 [INFO]   SWA Ep  3/15  loss=0.8046  swa_val=88.4%  34s
+2026-03-19 17:55:18,239 [INFO]   SWA Ep  4/15  loss=0.7932  swa_val=88.2%  34s
+2026-03-19 17:55:51,847 [INFO]   SWA Ep  5/15  loss=0.7841  swa_val=88.1%  34s
+2026-03-19 17:56:25,412 [INFO]   SWA Ep  6/15  loss=0.8051  swa_val=88.6%  34s
+2026-03-19 17:56:59,363 [INFO]   SWA Ep  7/15  loss=0.8287  swa_val=88.3%  34s
+2026-03-19 17:57:33,004 [INFO]   SWA Ep  8/15  loss=0.7839  swa_val=88.5%  34s
+2026-03-19 17:58:07,391 [INFO]   SWA Ep  9/15  loss=0.8117  swa_val=88.8%  34s
+2026-03-19 17:58:42,338 [INFO]   SWA Ep 10/15  loss=0.7955  swa_val=88.5%  35s
+2026-03-19 17:59:18,867 [INFO]   SWA Ep 11/15  loss=0.7863  swa_val=88.7%  37s
+2026-03-19 17:59:57,054 [INFO]   SWA Ep 12/15  loss=0.7805  swa_val=88.5%  38s
+2026-03-19 18:00:34,973 [INFO]   SWA Ep 13/15  loss=0.7951  swa_val=88.4%  38s
+2026-03-19 18:01:12,337 [INFO]   SWA Ep 14/15  loss=0.7844  swa_val=88.6%  37s
+2026-03-19 18:01:49,482 [INFO]   SWA Ep 15/15  loss=0.7987  swa_val=88.3%  37s
+2026-03-19 18:02:09,160 [INFO]   SWA final: 88.36% (regular best: 88.57%)
+2026-03-19 18:02:09,160 [INFO]   Fold 4 best: 88.57%
+2026-03-19 18:02:10,663 [INFO] ================================================================
+2026-03-19 18:02:10,663 [INFO] FOLD 5 / 5
+2026-03-19 18:02:10,663 [INFO] ================================================================
+2026-03-19 18:02:10,854 [INFO] Loading pretrained weights from Hugging Face hub (timm/tf_efficientnetv2_s.in21k_ft_in1k)
+2026-03-19 18:02:10,961 [INFO] HTTP Request: HEAD https://huggingface.co/timm/tf_efficientnetv2_s.in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-19 18:02:10,962 [INFO] [timm/tf_efficientnetv2_s.in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-19 18:02:10,991 [WARNING] Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+2026-03-19 18:02:11,156 [INFO]   Born-again from /data/slr/checkpoints_v12/best_fold4.pt (val 87.79%)
+2026-03-19 18:02:11,157 [INFO] ── Stage 1: head warmup (5 ep) ──
+2026-03-19 18:02:31,725 [INFO]   S1 Ep 1/5  loss=1.7479 acc=11.8%  val=14.8%  21s
+2026-03-19 18:02:31,927 [INFO]   ★ best 14.76%
+2026-03-19 18:02:50,795 [INFO]   S1 Ep 2/5  loss=1.7071 acc=13.1%  val=18.8%  19s
+2026-03-19 18:02:50,965 [INFO]   ★ best 18.79%
+2026-03-19 18:03:09,416 [INFO]   S1 Ep 3/5  loss=1.6633 acc=15.8%  val=21.3%  18s
+2026-03-19 18:03:09,565 [INFO]   ★ best 21.34%
+2026-03-19 18:03:29,503 [INFO]   S1 Ep 4/5  loss=1.6331 acc=17.3%  val=22.9%  20s
+2026-03-19 18:03:29,662 [INFO]   ★ best 22.90%
+2026-03-19 18:03:47,803 [INFO]   S1 Ep 5/5  loss=1.6167 acc=18.2%  val=23.1%  18s
+2026-03-19 18:03:47,951 [INFO]   ★ best 23.07%
+2026-03-19 18:03:47,951 [INFO] ── Stage 2: full fine-tune (80 ep) ──
+2026-03-19 18:03:47,954 [INFO] LLRD: 14 groups, LR [7.12e-06 … 4.00e-05]
+2026-03-19 18:04:26,191 [INFO]   S2 Ep   1/80  loss=1.7119 acc=14.5%  val=37.9%  lr=7.23e-06    38s
+2026-03-19 18:04:26,403 [INFO]   ★ best 37.89%
+2026-03-19 18:05:04,058 [INFO]   S2 Ep   2/80  loss=1.5071 acc=29.0%  val=69.4%  lr=2.08e-05    38s
+2026-03-19 18:05:04,207 [INFO]   ★ best 69.44%
+2026-03-19 18:05:45,482 [INFO]   S2 Ep   3/80  loss=1.2183 acc=46.7%  val=80.0%  lr=3.44e-05    41s
+2026-03-19 18:05:45,645 [INFO]   ★ best 79.99%
+2026-03-19 18:06:24,976 [INFO]   S2 Ep   4/80  loss=1.1004 acc=52.9%  val=82.9%  lr=4.00e-05    39s
+2026-03-19 18:06:25,131 [INFO]   ★ best 82.94%
+2026-03-19 18:07:02,985 [INFO]   S2 Ep   5/80  loss=1.0469 acc=56.6%  val=83.0%  lr=4.00e-05    38s
+2026-03-19 18:07:03,127 [INFO]   ★ best 83.04%
+2026-03-19 18:07:41,490 [INFO]   S2 Ep   6/80  loss=1.0186 acc=58.2%  val=83.4%  lr=3.99e-05    38s
+2026-03-19 18:07:41,629 [INFO]   ★ best 83.45%
+2026-03-19 18:08:19,223 [INFO]   S2 Ep   7/80  loss=0.9868 acc=60.0%  val=84.3%  lr=3.98e-05    38s
+2026-03-19 18:08:19,365 [INFO]   ★ best 84.26%
+2026-03-19 18:08:56,924 [INFO]   S2 Ep   8/80  loss=0.9497 acc=61.9%  val=84.6%  lr=3.97e-05    38s
+2026-03-19 18:08:57,069 [INFO]   ★ best 84.63%
+2026-03-19 18:09:34,085 [INFO]   S2 Ep   9/80  loss=0.9206 acc=63.9%  val=85.0%  lr=3.96e-05    37s
+2026-03-19 18:09:34,231 [INFO]   ★ best 85.01%
+2026-03-19 18:10:10,992 [INFO]   S2 Ep  10/80  loss=0.9049 acc=64.9%  val=85.7%  lr=3.94e-05    37s
+2026-03-19 18:10:11,137 [INFO]   ★ best 85.65%
+2026-03-19 18:10:49,133 [INFO]   S2 Ep  11/80  loss=0.9393 acc=62.9%  val=84.6%  lr=3.92e-05    38s
+2026-03-19 18:11:26,273 [INFO]   S2 Ep  12/80  loss=0.9129 acc=64.4%  val=85.7%  lr=3.89e-05    37s
+2026-03-19 18:11:26,410 [INFO]   ★ best 85.72%
+2026-03-19 18:12:05,108 [INFO]   S2 Ep  13/80  loss=0.8863 acc=65.9%  val=85.8%  lr=3.86e-05    39s
+2026-03-19 18:12:05,245 [INFO]   ★ best 85.79%
+2026-03-19 18:12:42,721 [INFO]   S2 Ep  14/80  loss=0.9112 acc=64.4%  val=85.8%  lr=3.83e-05    37s
+2026-03-19 18:13:21,496 [INFO]   S2 Ep  15/80  loss=0.8920 acc=65.9%  val=85.8%  lr=3.80e-05    39s
+2026-03-19 18:13:59,856 [INFO]   S2 Ep  16/80  loss=0.9142 acc=64.2%  val=86.2%  lr=3.76e-05    38s
+2026-03-19 18:13:59,992 [INFO]   ★ best 86.19%
+2026-03-19 18:14:37,778 [INFO]   S2 Ep  17/80  loss=0.8854 acc=65.9%  val=86.5%  lr=3.72e-05    38s
+2026-03-19 18:14:37,926 [INFO]   ★ best 86.47%
+2026-03-19 18:15:15,733 [INFO]   S2 Ep  18/80  loss=0.8909 acc=65.6%  val=86.7%  lr=3.67e-05    38s
+2026-03-19 18:15:15,865 [INFO]   ★ best 86.67%
+2026-03-19 18:15:51,836 [INFO]   S2 Ep  19/80  loss=0.8697 acc=66.6%  val=86.3%  lr=3.63e-05    36s
+2026-03-19 18:16:27,472 [INFO]   S2 Ep  20/80  loss=0.8544 acc=67.7%  val=85.6%  lr=3.58e-05    36s
+2026-03-19 18:17:03,678 [INFO]   S2 Ep  21/80  loss=0.8804 acc=66.6%  val=86.2%  lr=3.53e-05    36s
+2026-03-19 18:17:39,682 [INFO]   S2 Ep  22/80  loss=0.8499 acc=68.0%  val=86.2%  lr=3.47e-05    36s
+2026-03-19 18:18:15,367 [INFO]   S2 Ep  23/80  loss=0.8526 acc=67.7%  val=86.7%  lr=3.41e-05    36s
+2026-03-19 18:18:15,507 [INFO]   ★ best 86.74%
+2026-03-19 18:18:50,610 [INFO]   S2 Ep  24/80  loss=0.8383 acc=68.3%  val=86.7%  lr=3.35e-05    35s
+2026-03-19 18:19:25,980 [INFO]   S2 Ep  25/80  loss=0.8210 acc=69.9%  val=86.4%  lr=3.29e-05    35s
+2026-03-19 18:20:00,728 [INFO]   S2 Ep  26/80  loss=0.8419 acc=68.8%  val=86.7%  lr=3.23e-05    35s
+2026-03-19 18:20:36,258 [INFO]   S2 Ep  27/80  loss=0.8682 acc=67.3%  val=85.8%  lr=3.16e-05    36s
+2026-03-19 18:21:12,259 [INFO]   S2 Ep  28/80  loss=0.8584 acc=67.5%  val=86.4%  lr=3.09e-05    36s
+2026-03-19 18:21:47,763 [INFO]   S2 Ep  29/80  loss=0.8500 acc=67.9%  val=87.1%  lr=3.02e-05    36s
+2026-03-19 18:21:47,915 [INFO]   ★ best 87.11%
+2026-03-19 18:22:23,388 [INFO]   S2 Ep  30/80  loss=0.8339 acc=68.9%  val=86.9%  lr=2.95e-05    35s
+2026-03-19 18:22:58,354 [INFO]   S2 Ep  31/80  loss=0.8318 acc=69.1%  val=87.1%  lr=2.88e-05    35s
+2026-03-19 18:22:58,498 [INFO]   ★ best 87.14%
+2026-03-19 18:23:33,698 [INFO]   S2 Ep  32/80  loss=0.8198 acc=70.0%  val=87.3%  lr=2.80e-05    35s
+2026-03-19 18:23:33,835 [INFO]   ★ best 87.31%
+2026-03-19 18:24:09,128 [INFO]   S2 Ep  33/80  loss=0.8475 acc=68.3%  val=86.8%  lr=2.73e-05    35s
+2026-03-19 18:24:44,109 [INFO]   S2 Ep  34/80  loss=0.8612 acc=67.7%  val=86.4%  lr=2.65e-05    35s
+2026-03-19 18:25:18,983 [INFO]   S2 Ep  35/80  loss=0.8472 acc=68.4%  val=86.6%  lr=2.57e-05    35s
+2026-03-19 18:25:54,272 [INFO]   S2 Ep  36/80  loss=0.8259 acc=69.5%  val=87.2%  lr=2.49e-05    35s
+2026-03-19 18:26:29,414 [INFO]   S2 Ep  37/80  loss=0.8210 acc=69.8%  val=87.2%  lr=2.41e-05    35s
+2026-03-19 18:27:04,775 [INFO]   S2 Ep  38/80  loss=0.8112 acc=71.0%  val=86.9%  lr=2.33e-05    35s
+2026-03-19 18:27:39,987 [INFO]   S2 Ep  39/80  loss=0.8175 acc=69.7%  val=87.3%  lr=2.25e-05    35s
+2026-03-19 18:28:14,191 [INFO]   S2 Ep  40/80  loss=0.8103 acc=70.4%  val=87.1%  lr=2.17e-05    34s
+2026-03-19 18:28:47,986 [INFO]   S2 Ep  41/80  loss=0.8145 acc=70.1%  val=87.1%  lr=2.08e-05    34s
+2026-03-19 18:29:22,631 [INFO]   S2 Ep  42/80  loss=0.8186 acc=69.8%  val=87.6%  lr=2.00e-05    35s
+2026-03-19 18:29:22,772 [INFO]   ★ best 87.58%
+2026-03-19 18:29:56,935 [INFO]   S2 Ep  43/80  loss=0.8354 acc=69.2%  val=87.1%  lr=1.92e-05    34s
+2026-03-19 18:30:30,555 [INFO]   S2 Ep  44/80  loss=0.7747 acc=72.7%  val=87.5%  lr=1.83e-05    34s
+2026-03-19 18:31:04,812 [INFO]   S2 Ep  45/80  loss=0.7911 acc=71.7%  val=87.7%  lr=1.75e-05    34s
+2026-03-19 18:31:04,946 [INFO]   ★ best 87.69%
+2026-03-19 18:31:39,812 [INFO]   S2 Ep  46/80  loss=0.7901 acc=71.8%  val=87.6%  lr=1.67e-05    35s
+2026-03-19 18:32:13,728 [INFO]   S2 Ep  47/80  loss=0.8185 acc=70.0%  val=87.7%  lr=1.59e-05    34s
+2026-03-19 18:32:47,776 [INFO]   S2 Ep  48/80  loss=0.7685 acc=72.8%  val=87.2%  lr=1.51e-05    34s
+2026-03-19 18:33:21,762 [INFO]   S2 Ep  49/80  loss=0.7933 acc=71.4%  val=87.7%  lr=1.43e-05    34s
+2026-03-19 18:33:21,902 [INFO]   ★ best 87.72%
+2026-03-19 18:33:55,825 [INFO]   S2 Ep  50/80  loss=0.8157 acc=70.0%  val=87.7%  lr=1.35e-05    34s
+2026-03-19 18:34:29,594 [INFO]   S2 Ep  51/80  loss=0.8036 acc=70.8%  val=87.6%  lr=1.27e-05    34s
+2026-03-19 18:35:03,308 [INFO]   S2 Ep  52/80  loss=0.8171 acc=69.9%  val=87.8%  lr=1.20e-05    34s
+2026-03-19 18:35:03,444 [INFO]   ★ best 87.79%
+2026-03-19 18:35:37,559 [INFO]   S2 Ep  53/80  loss=0.8146 acc=69.9%  val=87.8%  lr=1.12e-05    34s
+2026-03-19 18:36:11,150 [INFO]   S2 Ep  54/80  loss=0.7939 acc=71.4%  val=87.5%  lr=1.05e-05    34s
+2026-03-19 18:36:44,850 [INFO]   S2 Ep  55/80  loss=0.8059 acc=70.8%  val=87.4%  lr=9.76e-06    34s
+2026-03-19 18:37:18,577 [INFO]   S2 Ep  56/80  loss=0.7823 acc=71.8%  val=87.7%  lr=9.06e-06    34s
+2026-03-19 18:37:52,278 [INFO]   S2 Ep  57/80  loss=0.7917 acc=71.3%  val=88.0%  lr=8.38e-06    34s
+2026-03-19 18:37:52,419 [INFO]   ★ best 88.03%
+2026-03-19 18:38:26,206 [INFO]   S2 Ep  58/80  loss=0.7965 acc=71.0%  val=87.9%  lr=7.72e-06    34s
+2026-03-19 18:39:00,136 [INFO]   S2 Ep  59/80  loss=0.8054 acc=70.3%  val=88.1%  lr=7.07e-06    34s
+2026-03-19 18:39:00,262 [INFO]   ★ best 88.06%
+2026-03-19 18:39:34,225 [INFO]   S2 Ep  60/80  loss=0.7868 acc=71.6%  val=88.2%  lr=6.45e-06    34s
+2026-03-19 18:39:34,372 [INFO]   ★ best 88.20%
+2026-03-19 18:40:08,991 [INFO]   S2 Ep  61/80  loss=0.7918 acc=71.5%  val=87.8%  lr=5.86e-06    35s
+2026-03-19 18:40:42,797 [INFO]   S2 Ep  62/80  loss=0.7884 acc=71.7%  val=88.1%  lr=5.29e-06    34s
+2026-03-19 18:41:16,786 [INFO]   S2 Ep  63/80  loss=0.7852 acc=72.0%  val=88.3%  lr=4.74e-06    34s
+2026-03-19 18:41:16,928 [INFO]   ★ best 88.33%
+2026-03-19 18:41:50,986 [INFO]   S2 Ep  64/80  loss=0.7916 acc=71.3%  val=88.3%  lr=4.22e-06    34s
+2026-03-19 18:42:24,793 [INFO]   S2 Ep  65/80  loss=0.8214 acc=69.7%  val=88.1%  lr=3.72e-06    34s
+2026-03-19 18:42:58,771 [INFO]   S2 Ep  66/80  loss=0.8190 acc=69.6%  val=88.0%  lr=3.26e-06    34s
+2026-03-19 18:43:33,833 [INFO]   S2 Ep  67/80  loss=0.7979 acc=71.4%  val=88.0%  lr=2.82e-06    35s
+2026-03-19 18:44:07,949 [INFO]   S2 Ep  68/80  loss=0.7845 acc=71.6%  val=87.9%  lr=2.41e-06    34s
+2026-03-19 18:44:41,782 [INFO]   S2 Ep  69/80  loss=0.8076 acc=70.3%  val=88.2%  lr=2.03e-06    34s
+2026-03-19 18:45:15,982 [INFO]   S2 Ep  70/80  loss=0.7956 acc=71.1%  val=88.1%  lr=1.69e-06    34s
+2026-03-19 18:45:51,017 [INFO]   S2 Ep  71/80  loss=0.7833 acc=71.7%  val=88.3%  lr=1.37e-06    35s
+2026-03-19 18:46:24,797 [INFO]   S2 Ep  72/80  loss=0.7955 acc=71.4%  val=88.3%  lr=1.08e-06    34s
+2026-03-19 18:46:58,876 [INFO]   S2 Ep  73/80  loss=0.7956 acc=71.4%  val=88.0%  lr=8.33e-07    34s
+2026-03-19 18:47:33,344 [INFO]   S2 Ep  74/80  loss=0.7818 acc=71.6%  val=88.1%  lr=6.13e-07    34s
+2026-03-19 18:48:07,114 [INFO]   S2 Ep  75/80  loss=0.7898 acc=71.5%  val=88.2%  lr=4.27e-07    34s
+2026-03-19 18:48:41,219 [INFO]   S2 Ep  76/80  loss=0.7997 acc=70.9%  val=88.1%  lr=2.74e-07    34s
+2026-03-19 18:49:15,703 [INFO]   S2 Ep  77/80  loss=0.8008 acc=70.8%  val=88.0%  lr=1.55e-07    34s
+2026-03-19 18:49:49,694 [INFO]   S2 Ep  78/80  loss=0.7907 acc=71.7%  val=88.2%  lr=6.98e-08    34s
+2026-03-19 18:50:23,451 [INFO]   S2 Ep  79/80  loss=0.7890 acc=71.4%  val=88.3%  lr=1.86e-08    34s
+2026-03-19 18:50:57,816 [INFO]   S2 Ep  80/80  loss=0.8004 acc=70.9%  val=88.4%  lr=1.60e-09    34s
+2026-03-19 18:50:57,949 [INFO]   ★ best 88.36%
+2026-03-19 18:50:57,951 [INFO] ── Stage 3: SWA (15 ep) ──
+2026-03-19 18:51:32,538 [INFO]   SWA Ep  1/15  loss=0.7870  swa_val=87.9%  34s
+2026-03-19 18:52:07,085 [INFO]   SWA Ep  2/15  loss=0.7956  swa_val=88.0%  35s
+2026-03-19 18:52:41,135 [INFO]   SWA Ep  3/15  loss=0.7723  swa_val=88.1%  34s
+2026-03-19 18:53:15,087 [INFO]   SWA Ep  4/15  loss=0.8189  swa_val=88.1%  34s
+2026-03-19 18:53:49,267 [INFO]   SWA Ep  5/15  loss=0.7879  swa_val=87.8%  34s
+2026-03-19 18:54:23,860 [INFO]   SWA Ep  6/15  loss=0.8043  swa_val=88.2%  35s
+2026-03-19 18:54:58,003 [INFO]   SWA Ep  7/15  loss=0.7904  swa_val=87.9%  34s
+2026-03-19 18:55:32,044 [INFO]   SWA Ep  8/15  loss=0.7920  swa_val=87.9%  34s
+2026-03-19 18:56:06,239 [INFO]   SWA Ep  9/15  loss=0.7859  swa_val=87.9%  34s
+2026-03-19 18:56:40,091 [INFO]   SWA Ep 10/15  loss=0.7854  swa_val=87.9%  34s
+2026-03-19 18:57:14,061 [INFO]   SWA Ep 11/15  loss=0.7967  swa_val=87.9%  34s
+2026-03-19 18:57:47,826 [INFO]   SWA Ep 12/15  loss=0.7967  swa_val=88.1%  34s
+2026-03-19 18:58:22,044 [INFO]   SWA Ep 13/15  loss=0.7886  swa_val=88.3%  34s
+2026-03-19 18:58:56,190 [INFO]   SWA Ep 14/15  loss=0.7847  swa_val=88.3%  34s
+2026-03-19 18:59:30,118 [INFO]   SWA Ep 15/15  loss=0.7914  swa_val=88.2%  34s
+2026-03-19 18:59:47,422 [INFO]   SWA final: 87.89% (regular best: 88.36%)
+2026-03-19 18:59:47,423 [INFO]   Fold 5 best: 88.36%
+2026-03-19 18:59:49,016 [INFO] ================================================================
+2026-03-19 18:59:49,016 [INFO] 5-FOLD CV
+2026-03-19 18:59:49,016 [INFO] ================================================================
+2026-03-19 18:59:49,016 [INFO]   Fold 1 : 88.03%
+2026-03-19 18:59:49,016 [INFO]   Fold 2 : 87.89%
+2026-03-19 18:59:49,017 [INFO]   Fold 3 : 89.28%
+2026-03-19 18:59:49,017 [INFO]   Fold 4 : 88.57%
+2026-03-19 18:59:49,017 [INFO]   Fold 5 : 88.36%
+2026-03-19 18:59:49,017 [INFO]   Mean: 88.43% ± 0.49%
+2026-03-19 19:05:20,418 [INFO] Done.

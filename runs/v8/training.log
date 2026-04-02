@@ -1,0 +1,455 @@
+2026-03-16 08:48:55,946 [INFO] GPU : NVIDIA H200
+2026-03-16 08:48:55,947 [INFO] Config : {
+  "data_dir": "/data/slr/track2_",
+  "output_dir": "/data/slr/checkpoints_v8",
+  "max_frames": 48,
+  "n_range_bins": 256,
+  "n_classes": 126,
+  "img_size": 224,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 32,
+  "num_workers": 4,
+  "stage1_epochs": 20,
+  "stage1_lr": 0.0005,
+  "stage2_epochs": 120,
+  "stage2_lr": 0.0001,
+  "weight_decay": 0.05,
+  "warmup_pct": 0.06,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 25,
+  "grad_clip_norm": 1.0,
+  "llrd_cnn_decay": 0.8,
+  "llrd_vit_decay": 0.8,
+  "kd_alpha": 0.8,
+  "kd_tau": 3.0,
+  "mixup_alpha": 0.4,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "random_erase_prob": 0.2,
+  "cnn_model_name": "convnext_tiny.fb_in22k_ft_in1k",
+  "cnn_drop_path": 0.1,
+  "vit_model_name": "swin_small_patch4_window7_224.ms_in22k_ft_in1k",
+  "vit_drop_path": 0.3,
+  "drop_rate": 0.3,
+  "ms_dropout_samples": 5,
+  "gem_p_init": 3.0,
+  "fusion_dim": 768,
+  "pretrained": true,
+  "seed": 42
+}
+2026-03-16 08:48:56,017 [INFO] Train: 14742  |  Test: 9828  |  Classes: 126
+2026-03-16 08:48:56,018 [INFO] Pre-loading training data …
+2026-03-16 08:48:58,548 [INFO] Pre-loading test data …
+2026-03-16 08:49:00,261 [INFO] Pre-computing teacher soft labels (v7 CNN + v5 ViT) …
+2026-03-16 08:49:05,858 [INFO]   Loaded 15 teacher models
+2026-03-16 08:50:58,891 [INFO]   Soft labels ready: 14742 samples from 15 teachers
+2026-03-16 08:50:58,897 [INFO] ================================================================
+2026-03-16 08:50:58,897 [INFO] FOLD 1 / 5
+2026-03-16 08:50:58,897 [INFO] ================================================================
+2026-03-16 08:50:59,109 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 08:50:59,232 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 08:50:59,233 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 08:50:59,658 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 08:50:59,696 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 08:50:59,697 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 08:50:59,840 [INFO]   CNN stream ← best_fold0.pt (val 87.18%)
+2026-03-16 08:50:59,957 [INFO]   ViT stream ← best_fold0.pt (val 84.30%)
+2026-03-16 08:50:59,959 [INFO] DualStream: 78.13M params total
+2026-03-16 08:50:59,959 [INFO] ── Stage 1: fusion-head-only + KD (20 epochs) ──
+2026-03-16 08:50:59,961 [INFO] Backbones frozen — 1280382 trainable params (fusion + head)
+2026-03-16 08:51:28,238 [INFO]   S1 Ep  1/20  train 2.3592 / 78.8%  val 1.2165 / 87.0%    28s
+2026-03-16 08:51:28,558 [INFO]   ★ best 86.98%
+2026-03-16 08:51:46,220 [INFO]   S1 Ep  2/20  train 0.7641 / 98.1%  val 1.2223 / 86.7%    18s
+2026-03-16 08:52:03,865 [INFO]   S1 Ep  3/20  train 0.7488 / 98.2%  val 1.2245 / 87.5%    18s
+2026-03-16 08:52:04,253 [INFO]   ★ best 87.49%
+2026-03-16 08:52:21,917 [INFO]   S1 Ep  4/20  train 0.7430 / 98.3%  val 1.2358 / 87.5%    18s
+2026-03-16 08:52:39,578 [INFO]   S1 Ep  5/20  train 0.7387 / 98.3%  val 1.2377 / 87.1%    18s
+2026-03-16 08:52:57,201 [INFO]   S1 Ep  6/20  train 0.7404 / 98.4%  val 1.2387 / 86.8%    18s
+2026-03-16 08:53:14,858 [INFO]   S1 Ep  7/20  train 0.7416 / 98.2%  val 1.2321 / 87.2%    18s
+2026-03-16 08:53:32,495 [INFO]   S1 Ep  8/20  train 0.7339 / 98.3%  val 1.2286 / 87.4%    18s
+2026-03-16 08:53:50,130 [INFO]   S1 Ep  9/20  train 0.7333 / 98.2%  val 1.2175 / 87.2%    18s
+2026-03-16 08:54:07,783 [INFO]   S1 Ep 10/20  train 0.7243 / 98.6%  val 1.2218 / 87.4%    18s
+2026-03-16 08:54:25,450 [INFO]   S1 Ep 11/20  train 0.7266 / 98.4%  val 1.2256 / 87.1%    18s
+2026-03-16 08:54:43,103 [INFO]   S1 Ep 12/20  train 0.7166 / 98.7%  val 1.2066 / 87.5%    18s
+2026-03-16 08:55:00,780 [INFO]   S1 Ep 13/20  train 0.7146 / 98.8%  val 1.2116 / 86.9%    18s
+2026-03-16 08:55:18,445 [INFO]   S1 Ep 14/20  train 0.7163 / 98.6%  val 1.2043 / 87.1%    18s
+2026-03-16 08:55:36,106 [INFO]   S1 Ep 15/20  train 0.7144 / 98.5%  val 1.2010 / 87.2%    18s
+2026-03-16 08:55:53,751 [INFO]   S1 Ep 16/20  train 0.7149 / 98.4%  val 1.1947 / 87.5%    18s
+2026-03-16 08:56:11,399 [INFO]   S1 Ep 17/20  train 0.7128 / 98.4%  val 1.1944 / 87.2%    18s
+2026-03-16 08:56:29,061 [INFO]   S1 Ep 18/20  train 0.7094 / 98.6%  val 1.1930 / 87.5%    18s
+2026-03-16 08:56:46,719 [INFO]   S1 Ep 19/20  train 0.7077 / 98.6%  val 1.1929 / 87.4%    18s
+2026-03-16 08:57:04,384 [INFO]   S1 Ep 20/20  train 0.7056 / 98.6%  val 1.1927 / 87.4%    18s
+2026-03-16 08:57:04,384 [INFO] Stage 1 done — best val: 87.49%
+2026-03-16 08:57:04,384 [INFO] ── Stage 2: full fine-tuning + KD (120 epochs, patience 25) ──
+2026-03-16 08:57:04,386 [INFO] All unfrozen — 78.13M trainable params
+2026-03-16 08:57:04,387 [INFO] Dual-LLRD: 12 groups, LR [3.28e-05 … 1.00e-04]
+2026-03-16 08:57:57,540 [INFO]   S2 Ep   1/120  train 1.5516 / 74.1%  val 1.2018 / 87.1%  lr 8.50e-06    53s
+2026-03-16 08:58:46,673 [INFO]   S2 Ep   2/120  train 1.5484 / 72.9%  val 1.2070 / 86.9%  lr 2.12e-05    49s
+2026-03-16 08:59:35,822 [INFO]   S2 Ep   3/120  train 1.5526 / 72.7%  val 1.2255 / 86.5%  lr 3.96e-05    49s
+2026-03-16 09:00:24,987 [INFO]   S2 Ep   4/120  train 1.5101 / 73.5%  val 1.2628 / 85.9%  lr 6.04e-05    49s
+2026-03-16 09:01:14,231 [INFO]   S2 Ep   5/120  train 1.5086 / 73.6%  val 1.2919 / 84.7%  lr 7.96e-05    49s
+2026-03-16 09:02:03,390 [INFO]   S2 Ep   6/120  train 1.5833 / 71.4%  val 1.2899 / 84.3%  lr 9.36e-05    49s
+2026-03-16 09:02:52,541 [INFO]   S2 Ep   7/120  train 1.5844 / 71.4%  val 1.2883 / 85.2%  lr 9.98e-05    49s
+2026-03-16 09:03:41,680 [INFO]   S2 Ep   8/120  train 1.6189 / 70.2%  val 1.2732 / 84.7%  lr 1.00e-04    49s
+2026-03-16 09:04:30,873 [INFO]   S2 Ep   9/120  train 1.5777 / 72.3%  val 1.3081 / 84.4%  lr 9.99e-05    49s
+2026-03-16 09:05:19,747 [INFO]   S2 Ep  10/120  train 1.5859 / 71.7%  val 1.2819 / 85.4%  lr 9.98e-05    49s
+2026-03-16 09:06:08,637 [INFO]   S2 Ep  11/120  train 1.6378 / 69.8%  val 1.3032 / 84.2%  lr 9.97e-05    49s
+2026-03-16 09:06:57,527 [INFO]   S2 Ep  12/120  train 1.5653 / 71.6%  val 1.3231 / 84.1%  lr 9.96e-05    49s
+2026-03-16 09:07:46,499 [INFO]   S2 Ep  13/120  train 1.5849 / 71.0%  val 1.2867 / 84.8%  lr 9.93e-05    49s
+2026-03-16 09:08:35,408 [INFO]   S2 Ep  14/120  train 1.5987 / 71.0%  val 1.3241 / 84.4%  lr 9.91e-05    49s
+2026-03-16 09:09:24,310 [INFO]   S2 Ep  15/120  train 1.5630 / 72.3%  val 1.2870 / 84.5%  lr 9.88e-05    49s
+2026-03-16 09:10:13,226 [INFO]   S2 Ep  16/120  train 1.5795 / 71.1%  val 1.2985 / 84.3%  lr 9.85e-05    49s
+2026-03-16 09:11:02,232 [INFO]   S2 Ep  17/120  train 1.5610 / 72.8%  val 1.2838 / 84.8%  lr 9.81e-05    49s
+2026-03-16 09:11:51,167 [INFO]   S2 Ep  18/120  train 1.5423 / 72.5%  val 1.2907 / 84.7%  lr 9.78e-05    49s
+2026-03-16 09:12:40,081 [INFO]   S2 Ep  19/120  train 1.5778 / 70.9%  val 1.2832 / 84.9%  lr 9.73e-05    49s
+2026-03-16 09:13:29,009 [INFO]   S2 Ep  20/120  train 1.5421 / 72.4%  val 1.2896 / 84.9%  lr 9.69e-05    49s
+2026-03-16 09:14:18,008 [INFO]   S2 Ep  21/120  train 1.5521 / 72.2%  val 1.2922 / 84.6%  lr 9.64e-05    49s
+2026-03-16 09:15:06,904 [INFO]   S2 Ep  22/120  train 1.5682 / 71.4%  val 1.2870 / 84.6%  lr 9.58e-05    49s
+2026-03-16 09:15:55,816 [INFO]   S2 Ep  23/120  train 1.6014 / 70.6%  val 1.3053 / 84.3%  lr 9.52e-05    49s
+2026-03-16 09:16:44,701 [INFO]   S2 Ep  24/120  train 1.5466 / 72.2%  val 1.2865 / 85.0%  lr 9.46e-05    49s
+2026-03-16 09:17:33,661 [INFO]   S2 Ep  25/120  train 1.5429 / 72.8%  val 1.2855 / 84.6%  lr 9.40e-05    49s
+2026-03-16 09:17:33,661 [INFO]   Early stopping at S2 epoch 25
+2026-03-16 09:17:33,661 [INFO]   Fold 1 best val acc: 87.49%
+2026-03-16 09:17:33,922 [INFO] ================================================================
+2026-03-16 09:17:33,927 [INFO] FOLD 2 / 5
+2026-03-16 09:17:33,927 [INFO] ================================================================
+2026-03-16 09:17:34,133 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 09:17:39,276 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 09:17:39,277 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-16 09:17:39,278 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 09:17:39,712 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 09:17:39,752 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 09:17:39,753 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 09:17:39,901 [INFO]   CNN stream ← best_fold1.pt (val 86.40%)
+2026-03-16 09:17:40,027 [INFO]   ViT stream ← best_fold1.pt (val 83.69%)
+2026-03-16 09:17:40,029 [INFO] DualStream: 78.13M params total
+2026-03-16 09:17:40,029 [INFO] ── Stage 1: fusion-head-only + KD (20 epochs) ──
+2026-03-16 09:17:40,030 [INFO] Backbones frozen — 1280382 trainable params (fusion + head)
+2026-03-16 09:17:58,164 [INFO]   S1 Ep  1/20  train 2.3527 / 78.9%  val 1.2604 / 86.2%    18s
+2026-03-16 09:17:58,494 [INFO]   ★ best 86.23%
+2026-03-16 09:18:16,202 [INFO]   S1 Ep  2/20  train 0.7654 / 98.0%  val 1.2715 / 86.3%    18s
+2026-03-16 09:18:16,596 [INFO]   ★ best 86.27%
+2026-03-16 09:18:34,343 [INFO]   S1 Ep  3/20  train 0.7489 / 98.4%  val 1.2787 / 86.2%    18s
+2026-03-16 09:18:52,035 [INFO]   S1 Ep  4/20  train 0.7510 / 98.1%  val 1.2769 / 86.2%    18s
+2026-03-16 09:19:09,684 [INFO]   S1 Ep  5/20  train 0.7417 / 98.3%  val 1.2785 / 86.3%    18s
+2026-03-16 09:19:27,317 [INFO]   S1 Ep  6/20  train 0.7395 / 98.3%  val 1.2850 / 85.9%    18s
+2026-03-16 09:19:44,952 [INFO]   S1 Ep  7/20  train 0.7385 / 98.4%  val 1.2924 / 86.1%    18s
+2026-03-16 09:20:02,599 [INFO]   S1 Ep  8/20  train 0.7377 / 98.1%  val 1.2664 / 86.2%    18s
+2026-03-16 09:20:20,229 [INFO]   S1 Ep  9/20  train 0.7319 / 98.4%  val 1.2633 / 86.2%    18s
+2026-03-16 09:20:37,852 [INFO]   S1 Ep 10/20  train 0.7281 / 98.4%  val 1.2672 / 86.3%    18s
+2026-03-16 09:20:55,496 [INFO]   S1 Ep 11/20  train 0.7257 / 98.4%  val 1.2529 / 86.5%    18s
+2026-03-16 09:20:55,892 [INFO]   ★ best 86.54%
+2026-03-16 09:21:13,516 [INFO]   S1 Ep 12/20  train 0.7250 / 98.4%  val 1.2568 / 86.6%    18s
+2026-03-16 09:21:13,895 [INFO]   ★ best 86.61%
+2026-03-16 09:21:31,522 [INFO]   S1 Ep 13/20  train 0.7218 / 98.5%  val 1.2508 / 86.7%    18s
+2026-03-16 09:21:31,882 [INFO]   ★ best 86.67%
+2026-03-16 09:21:49,504 [INFO]   S1 Ep 14/20  train 0.7171 / 98.5%  val 1.2466 / 86.6%    18s
+2026-03-16 09:22:07,110 [INFO]   S1 Ep 15/20  train 0.7103 / 98.7%  val 1.2456 / 86.8%    18s
+2026-03-16 09:22:07,485 [INFO]   ★ best 86.84%
+2026-03-16 09:22:25,142 [INFO]   S1 Ep 16/20  train 0.7123 / 98.6%  val 1.2417 / 86.6%    18s
+2026-03-16 09:22:42,794 [INFO]   S1 Ep 17/20  train 0.7106 / 98.6%  val 1.2421 / 86.6%    18s
+2026-03-16 09:23:00,425 [INFO]   S1 Ep 18/20  train 0.7089 / 98.7%  val 1.2396 / 86.5%    18s
+2026-03-16 09:23:18,102 [INFO]   S1 Ep 19/20  train 0.7070 / 98.6%  val 1.2383 / 86.6%    18s
+2026-03-16 09:23:35,775 [INFO]   S1 Ep 20/20  train 0.7036 / 98.8%  val 1.2381 / 86.6%    18s
+2026-03-16 09:23:35,775 [INFO] Stage 1 done — best val: 86.84%
+2026-03-16 09:23:35,775 [INFO] ── Stage 2: full fine-tuning + KD (120 epochs, patience 25) ──
+2026-03-16 09:23:35,777 [INFO] All unfrozen — 78.13M trainable params
+2026-03-16 09:23:35,778 [INFO] Dual-LLRD: 12 groups, LR [3.28e-05 … 1.00e-04]
+2026-03-16 09:24:24,724 [INFO]   S2 Ep   1/120  train 1.4876 / 76.0%  val 1.2398 / 86.5%  lr 8.50e-06    49s
+2026-03-16 09:25:13,599 [INFO]   S2 Ep   2/120  train 1.5359 / 73.6%  val 1.2446 / 86.7%  lr 2.12e-05    49s
+2026-03-16 09:26:02,625 [INFO]   S2 Ep   3/120  train 1.5049 / 73.5%  val 1.2640 / 86.1%  lr 3.96e-05    49s
+2026-03-16 09:26:51,488 [INFO]   S2 Ep   4/120  train 1.5185 / 73.3%  val 1.2681 / 86.3%  lr 6.04e-05    49s
+2026-03-16 09:27:40,384 [INFO]   S2 Ep   5/120  train 1.5667 / 72.1%  val 1.3113 / 85.0%  lr 7.96e-05    49s
+2026-03-16 09:28:29,295 [INFO]   S2 Ep   6/120  train 1.5215 / 73.8%  val 1.3067 / 85.1%  lr 9.36e-05    49s
+2026-03-16 09:29:18,289 [INFO]   S2 Ep   7/120  train 1.5753 / 71.8%  val 1.3211 / 84.6%  lr 9.98e-05    49s
+2026-03-16 09:30:07,166 [INFO]   S2 Ep   8/120  train 1.6319 / 69.4%  val 1.3343 / 84.4%  lr 1.00e-04    49s
+2026-03-16 09:30:56,065 [INFO]   S2 Ep   9/120  train 1.5348 / 73.9%  val 1.3178 / 84.5%  lr 9.99e-05    49s
+2026-03-16 09:31:44,974 [INFO]   S2 Ep  10/120  train 1.5800 / 71.6%  val 1.3267 / 84.1%  lr 9.98e-05    49s
+2026-03-16 09:32:33,967 [INFO]   S2 Ep  11/120  train 1.6154 / 70.5%  val 1.3119 / 85.0%  lr 9.97e-05    49s
+2026-03-16 09:33:22,890 [INFO]   S2 Ep  12/120  train 1.5463 / 72.8%  val 1.3246 / 84.2%  lr 9.96e-05    49s
+2026-03-16 09:34:11,800 [INFO]   S2 Ep  13/120  train 1.5325 / 73.5%  val 1.3240 / 84.3%  lr 9.93e-05    49s
+2026-03-16 09:35:00,674 [INFO]   S2 Ep  14/120  train 1.5595 / 72.4%  val 1.3228 / 84.5%  lr 9.91e-05    49s
+2026-03-16 09:35:49,634 [INFO]   S2 Ep  15/120  train 1.5712 / 71.9%  val 1.3386 / 84.1%  lr 9.88e-05    49s
+2026-03-16 09:36:38,499 [INFO]   S2 Ep  16/120  train 1.5722 / 72.3%  val 1.3295 / 84.8%  lr 9.85e-05    49s
+2026-03-16 09:37:27,367 [INFO]   S2 Ep  17/120  train 1.5751 / 71.4%  val 1.3025 / 84.8%  lr 9.81e-05    49s
+2026-03-16 09:38:16,233 [INFO]   S2 Ep  18/120  train 1.5414 / 73.1%  val 1.3385 / 84.2%  lr 9.78e-05    49s
+2026-03-16 09:39:05,216 [INFO]   S2 Ep  19/120  train 1.5472 / 72.7%  val 1.3178 / 84.8%  lr 9.73e-05    49s
+2026-03-16 09:39:54,109 [INFO]   S2 Ep  20/120  train 1.5843 / 70.5%  val 1.3404 / 83.7%  lr 9.69e-05    49s
+2026-03-16 09:40:42,962 [INFO]   S2 Ep  21/120  train 1.5310 / 72.9%  val 1.3215 / 84.3%  lr 9.64e-05    49s
+2026-03-16 09:41:31,861 [INFO]   S2 Ep  22/120  train 1.5606 / 71.9%  val 1.3249 / 84.5%  lr 9.58e-05    49s
+2026-03-16 09:42:20,786 [INFO]   S2 Ep  23/120  train 1.5411 / 72.6%  val 1.3289 / 84.1%  lr 9.52e-05    49s
+2026-03-16 09:43:09,658 [INFO]   S2 Ep  24/120  train 1.5400 / 73.1%  val 1.3206 / 84.7%  lr 9.46e-05    49s
+2026-03-16 09:43:58,554 [INFO]   S2 Ep  25/120  train 1.5277 / 72.6%  val 1.3214 / 84.7%  lr 9.40e-05    49s
+2026-03-16 09:43:58,554 [INFO]   Early stopping at S2 epoch 25
+2026-03-16 09:43:58,554 [INFO]   Fold 2 best val acc: 86.84%
+2026-03-16 09:43:58,827 [INFO] ================================================================
+2026-03-16 09:43:58,827 [INFO] FOLD 3 / 5
+2026-03-16 09:43:58,827 [INFO] ================================================================
+2026-03-16 09:43:59,028 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 09:43:59,196 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 09:43:59,198 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 09:43:59,605 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 09:43:59,693 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 09:43:59,694 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 09:43:59,867 [INFO]   CNN stream ← best_fold2.pt (val 88.43%)
+2026-03-16 09:43:59,996 [INFO]   ViT stream ← best_fold2.pt (val 85.48%)
+2026-03-16 09:43:59,998 [INFO] DualStream: 78.13M params total
+2026-03-16 09:43:59,998 [INFO] ── Stage 1: fusion-head-only + KD (20 epochs) ──
+2026-03-16 09:43:59,999 [INFO] Backbones frozen — 1280382 trainable params (fusion + head)
+2026-03-16 09:44:23,061 [INFO]   S1 Ep  1/20  train 2.3500 / 78.9%  val 1.1772 / 88.6%    23s
+2026-03-16 09:44:23,364 [INFO]   ★ best 88.60%
+2026-03-16 09:44:41,092 [INFO]   S1 Ep  2/20  train 0.7646 / 98.1%  val 1.1809 / 88.6%    18s
+2026-03-16 09:44:58,802 [INFO]   S1 Ep  3/20  train 0.7506 / 98.1%  val 1.2020 / 88.1%    18s
+2026-03-16 09:45:16,526 [INFO]   S1 Ep  4/20  train 0.7464 / 98.1%  val 1.1926 / 87.9%    18s
+2026-03-16 09:45:34,248 [INFO]   S1 Ep  5/20  train 0.7489 / 98.0%  val 1.1988 / 88.3%    18s
+2026-03-16 09:45:51,958 [INFO]   S1 Ep  6/20  train 0.7385 / 98.4%  val 1.1914 / 88.3%    18s
+2026-03-16 09:46:09,686 [INFO]   S1 Ep  7/20  train 0.7332 / 98.4%  val 1.2055 / 88.6%    18s
+2026-03-16 09:46:10,092 [INFO]   ★ best 88.64%
+2026-03-16 09:46:27,861 [INFO]   S1 Ep  8/20  train 0.7353 / 98.3%  val 1.1910 / 88.3%    18s
+2026-03-16 09:46:45,596 [INFO]   S1 Ep  9/20  train 0.7335 / 98.4%  val 1.1765 / 88.4%    18s
+2026-03-16 09:47:03,346 [INFO]   S1 Ep 10/20  train 0.7287 / 98.3%  val 1.1787 / 88.3%    18s
+2026-03-16 09:47:21,076 [INFO]   S1 Ep 11/20  train 0.7192 / 98.6%  val 1.1756 / 88.5%    18s
+2026-03-16 09:47:38,823 [INFO]   S1 Ep 12/20  train 0.7215 / 98.5%  val 1.1769 / 88.5%    18s
+2026-03-16 09:47:56,551 [INFO]   S1 Ep 13/20  train 0.7151 / 98.6%  val 1.1735 / 88.5%    18s
+2026-03-16 09:48:14,298 [INFO]   S1 Ep 14/20  train 0.7141 / 98.7%  val 1.1682 / 88.6%    18s
+2026-03-16 09:48:32,035 [INFO]   S1 Ep 15/20  train 0.7150 / 98.5%  val 1.1638 / 88.7%    18s
+2026-03-16 09:48:32,405 [INFO]   ★ best 88.67%
+2026-03-16 09:48:50,136 [INFO]   S1 Ep 16/20  train 0.7098 / 98.5%  val 1.1600 / 88.9%    18s
+2026-03-16 09:48:50,493 [INFO]   ★ best 88.94%
+2026-03-16 09:49:08,247 [INFO]   S1 Ep 17/20  train 0.7090 / 98.6%  val 1.1630 / 88.8%    18s
+2026-03-16 09:49:25,995 [INFO]   S1 Ep 18/20  train 0.7072 / 98.6%  val 1.1613 / 88.9%    18s
+2026-03-16 09:49:43,751 [INFO]   S1 Ep 19/20  train 0.7056 / 98.8%  val 1.1613 / 88.8%    18s
+2026-03-16 09:50:01,489 [INFO]   S1 Ep 20/20  train 0.7045 / 98.7%  val 1.1612 / 88.8%    18s
+2026-03-16 09:50:01,489 [INFO] Stage 1 done — best val: 88.94%
+2026-03-16 09:50:01,489 [INFO] ── Stage 2: full fine-tuning + KD (120 epochs, patience 25) ──
+2026-03-16 09:50:01,491 [INFO] All unfrozen — 78.13M trainable params
+2026-03-16 09:50:01,492 [INFO] Dual-LLRD: 12 groups, LR [3.28e-05 … 1.00e-04]
+2026-03-16 09:50:50,770 [INFO]   S2 Ep   1/120  train 1.5301 / 74.3%  val 1.1640 / 88.5%  lr 8.50e-06    49s
+2026-03-16 09:51:39,880 [INFO]   S2 Ep   2/120  train 1.5248 / 73.3%  val 1.1726 / 88.2%  lr 2.12e-05    49s
+2026-03-16 09:52:29,022 [INFO]   S2 Ep   3/120  train 1.5056 / 73.9%  val 1.1931 / 87.6%  lr 3.96e-05    49s
+2026-03-16 09:53:18,173 [INFO]   S2 Ep   4/120  train 1.5346 / 73.3%  val 1.1962 / 87.9%  lr 6.04e-05    49s
+2026-03-16 09:54:07,398 [INFO]   S2 Ep   5/120  train 1.5515 / 72.3%  val 1.2400 / 86.8%  lr 7.96e-05    49s
+2026-03-16 09:54:56,557 [INFO]   S2 Ep   6/120  train 1.5800 / 71.5%  val 1.2536 / 86.3%  lr 9.36e-05    49s
+2026-03-16 09:55:45,705 [INFO]   S2 Ep   7/120  train 1.5548 / 72.7%  val 1.2489 / 86.5%  lr 9.98e-05    49s
+2026-03-16 09:56:34,850 [INFO]   S2 Ep   8/120  train 1.6071 / 70.4%  val 1.2509 / 86.6%  lr 1.00e-04    49s
+2026-03-16 09:57:24,110 [INFO]   S2 Ep   9/120  train 1.6051 / 71.0%  val 1.2351 / 86.9%  lr 9.99e-05    49s
+2026-03-16 09:58:13,266 [INFO]   S2 Ep  10/120  train 1.5843 / 71.4%  val 1.2396 / 86.7%  lr 9.98e-05    49s
+2026-03-16 09:59:02,423 [INFO]   S2 Ep  11/120  train 1.6019 / 70.9%  val 1.2781 / 85.9%  lr 9.97e-05    49s
+2026-03-16 09:59:51,561 [INFO]   S2 Ep  12/120  train 1.5792 / 71.8%  val 1.2737 / 85.8%  lr 9.96e-05    49s
+2026-03-16 10:00:40,767 [INFO]   S2 Ep  13/120  train 1.6118 / 70.5%  val 1.2591 / 86.1%  lr 9.93e-05    49s
+2026-03-16 10:01:29,906 [INFO]   S2 Ep  14/120  train 1.5549 / 72.3%  val 1.2604 / 86.3%  lr 9.91e-05    49s
+2026-03-16 10:02:19,070 [INFO]   S2 Ep  15/120  train 1.6085 / 69.8%  val 1.3183 / 85.1%  lr 9.88e-05    49s
+2026-03-16 10:03:08,229 [INFO]   S2 Ep  16/120  train 1.5930 / 70.6%  val 1.2696 / 86.0%  lr 9.85e-05    49s
+2026-03-16 10:03:57,438 [INFO]   S2 Ep  17/120  train 1.5461 / 72.7%  val 1.2690 / 86.3%  lr 9.81e-05    49s
+2026-03-16 10:04:46,549 [INFO]   S2 Ep  18/120  train 1.5456 / 71.8%  val 1.2906 / 85.9%  lr 9.78e-05    49s
+2026-03-16 10:05:35,711 [INFO]   S2 Ep  19/120  train 1.5311 / 73.8%  val 1.2521 / 86.6%  lr 9.73e-05    49s
+2026-03-16 10:06:24,873 [INFO]   S2 Ep  20/120  train 1.5472 / 72.6%  val 1.2554 / 86.3%  lr 9.69e-05    49s
+2026-03-16 10:07:14,114 [INFO]   S2 Ep  21/120  train 1.5066 / 73.6%  val 1.2852 / 85.6%  lr 9.64e-05    49s
+2026-03-16 10:08:03,247 [INFO]   S2 Ep  22/120  train 1.5191 / 73.5%  val 1.2482 / 86.6%  lr 9.58e-05    49s
+2026-03-16 10:08:52,387 [INFO]   S2 Ep  23/120  train 1.5213 / 72.6%  val 1.2423 / 86.9%  lr 9.52e-05    49s
+2026-03-16 10:09:41,528 [INFO]   S2 Ep  24/120  train 1.4819 / 74.1%  val 1.2577 / 86.5%  lr 9.46e-05    49s
+2026-03-16 10:10:30,731 [INFO]   S2 Ep  25/120  train 1.5520 / 72.0%  val 1.2728 / 85.7%  lr 9.40e-05    49s
+2026-03-16 10:10:30,731 [INFO]   Early stopping at S2 epoch 25
+2026-03-16 10:10:30,731 [INFO]   Fold 3 best val acc: 88.94%
+2026-03-16 10:10:31,042 [INFO] ================================================================
+2026-03-16 10:10:31,043 [INFO] FOLD 4 / 5
+2026-03-16 10:10:31,043 [INFO] ================================================================
+2026-03-16 10:10:31,249 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 10:10:31,307 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 10:10:31,308 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 10:10:31,707 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 10:10:31,749 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 10:10:31,750 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 10:10:31,896 [INFO]   CNN stream ← best_fold3.pt (val 87.65%)
+2026-03-16 10:10:32,023 [INFO]   ViT stream ← best_fold3.pt (val 85.58%)
+2026-03-16 10:10:32,024 [INFO] DualStream: 78.13M params total
+2026-03-16 10:10:32,025 [INFO] ── Stage 1: fusion-head-only + KD (20 epochs) ──
+2026-03-16 10:10:32,026 [INFO] Backbones frozen — 1280382 trainable params (fusion + head)
+2026-03-16 10:10:50,224 [INFO]   S1 Ep  1/20  train 2.3468 / 79.1%  val 1.2069 / 87.9%    18s
+2026-03-16 10:10:50,530 [INFO]   ★ best 87.92%
+2026-03-16 10:11:08,268 [INFO]   S1 Ep  2/20  train 0.7638 / 98.1%  val 1.2169 / 87.5%    18s
+2026-03-16 10:11:25,997 [INFO]   S1 Ep  3/20  train 0.7497 / 98.1%  val 1.2254 / 87.9%    18s
+2026-03-16 10:11:43,753 [INFO]   S1 Ep  4/20  train 0.7485 / 98.0%  val 1.2208 / 87.7%    18s
+2026-03-16 10:12:01,512 [INFO]   S1 Ep  5/20  train 0.7446 / 98.1%  val 1.2417 / 87.4%    18s
+2026-03-16 10:12:19,282 [INFO]   S1 Ep  6/20  train 0.7396 / 98.2%  val 1.2280 / 87.7%    18s
+2026-03-16 10:12:37,043 [INFO]   S1 Ep  7/20  train 0.7378 / 98.4%  val 1.2111 / 87.9%    18s
+2026-03-16 10:12:54,774 [INFO]   S1 Ep  8/20  train 0.7339 / 98.3%  val 1.2181 / 88.2%    18s
+2026-03-16 10:12:55,160 [INFO]   ★ best 88.20%
+2026-03-16 10:13:12,893 [INFO]   S1 Ep  9/20  train 0.7320 / 98.3%  val 1.2201 / 88.1%    18s
+2026-03-16 10:13:30,627 [INFO]   S1 Ep 10/20  train 0.7269 / 98.4%  val 1.2090 / 87.8%    18s
+2026-03-16 10:13:48,358 [INFO]   S1 Ep 11/20  train 0.7236 / 98.5%  val 1.2079 / 88.3%    18s
+2026-03-16 10:13:48,733 [INFO]   ★ best 88.26%
+2026-03-16 10:14:06,477 [INFO]   S1 Ep 12/20  train 0.7244 / 98.4%  val 1.1986 / 88.2%    18s
+2026-03-16 10:14:24,238 [INFO]   S1 Ep 13/20  train 0.7213 / 98.3%  val 1.1987 / 88.2%    18s
+2026-03-16 10:14:41,973 [INFO]   S1 Ep 14/20  train 0.7160 / 98.5%  val 1.1972 / 88.0%    18s
+2026-03-16 10:14:59,693 [INFO]   S1 Ep 15/20  train 0.7123 / 98.5%  val 1.1936 / 88.3%    18s
+2026-03-16 10:15:17,463 [INFO]   S1 Ep 16/20  train 0.7078 / 98.7%  val 1.1938 / 88.2%    18s
+2026-03-16 10:15:35,206 [INFO]   S1 Ep 17/20  train 0.7061 / 98.8%  val 1.1926 / 88.0%    18s
+2026-03-16 10:15:52,944 [INFO]   S1 Ep 18/20  train 0.7062 / 98.7%  val 1.1917 / 88.1%    18s
+2026-03-16 10:16:10,689 [INFO]   S1 Ep 19/20  train 0.7117 / 98.5%  val 1.1908 / 88.1%    18s
+2026-03-16 10:16:28,460 [INFO]   S1 Ep 20/20  train 0.7060 / 98.7%  val 1.1904 / 88.1%    18s
+2026-03-16 10:16:28,463 [INFO] Stage 1 done — best val: 88.26%
+2026-03-16 10:16:28,464 [INFO] ── Stage 2: full fine-tuning + KD (120 epochs, patience 25) ──
+2026-03-16 10:16:28,465 [INFO] All unfrozen — 78.13M trainable params
+2026-03-16 10:16:28,466 [INFO] Dual-LLRD: 12 groups, LR [3.28e-05 … 1.00e-04]
+2026-03-16 10:17:17,668 [INFO]   S2 Ep   1/120  train 1.5723 / 73.0%  val 1.1945 / 88.0%  lr 8.50e-06    49s
+2026-03-16 10:18:06,806 [INFO]   S2 Ep   2/120  train 1.5113 / 74.4%  val 1.2059 / 87.8%  lr 2.12e-05    49s
+2026-03-16 10:18:55,931 [INFO]   S2 Ep   3/120  train 1.5271 / 73.0%  val 1.2157 / 87.4%  lr 3.96e-05    49s
+2026-03-16 10:19:45,190 [INFO]   S2 Ep   4/120  train 1.5583 / 71.6%  val 1.2328 / 87.1%  lr 6.04e-05    49s
+2026-03-16 10:20:34,299 [INFO]   S2 Ep   5/120  train 1.5933 / 70.4%  val 1.2454 / 86.3%  lr 7.96e-05    49s
+2026-03-16 10:21:23,419 [INFO]   S2 Ep   6/120  train 1.5706 / 71.8%  val 1.2920 / 85.2%  lr 9.36e-05    49s
+2026-03-16 10:22:12,532 [INFO]   S2 Ep   7/120  train 1.5799 / 71.8%  val 1.2664 / 85.3%  lr 9.98e-05    49s
+2026-03-16 10:23:01,756 [INFO]   S2 Ep   8/120  train 1.5647 / 72.6%  val 1.2867 / 84.8%  lr 1.00e-04    49s
+2026-03-16 10:23:50,897 [INFO]   S2 Ep   9/120  train 1.5735 / 72.2%  val 1.2803 / 85.1%  lr 9.99e-05    49s
+2026-03-16 10:24:40,026 [INFO]   S2 Ep  10/120  train 1.5572 / 71.8%  val 1.2930 / 84.9%  lr 9.98e-05    49s
+2026-03-16 10:25:29,285 [INFO]   S2 Ep  11/120  train 1.5685 / 72.2%  val 1.3056 / 84.5%  lr 9.97e-05    49s
+2026-03-16 10:26:18,406 [INFO]   S2 Ep  12/120  train 1.5579 / 72.0%  val 1.2925 / 85.4%  lr 9.96e-05    49s
+2026-03-16 10:27:07,517 [INFO]   S2 Ep  13/120  train 1.6075 / 70.8%  val 1.2836 / 84.8%  lr 9.93e-05    49s
+2026-03-16 10:27:56,655 [INFO]   S2 Ep  14/120  train 1.5822 / 71.4%  val 1.3126 / 84.4%  lr 9.91e-05    49s
+2026-03-16 10:28:45,898 [INFO]   S2 Ep  15/120  train 1.6006 / 70.9%  val 1.2870 / 85.5%  lr 9.88e-05    49s
+2026-03-16 10:29:35,046 [INFO]   S2 Ep  16/120  train 1.5554 / 71.7%  val 1.2858 / 85.2%  lr 9.85e-05    49s
+2026-03-16 10:30:24,514 [INFO]   S2 Ep  17/120  train 1.5363 / 72.7%  val 1.3155 / 85.0%  lr 9.81e-05    49s
+2026-03-16 10:31:14,424 [INFO]   S2 Ep  18/120  train 1.5249 / 73.2%  val 1.3035 / 85.2%  lr 9.78e-05    50s
+2026-03-16 10:32:04,379 [INFO]   S2 Ep  19/120  train 1.6217 / 70.2%  val 1.2847 / 85.6%  lr 9.73e-05    50s
+2026-03-16 10:32:54,114 [INFO]   S2 Ep  20/120  train 1.5681 / 71.3%  val 1.2981 / 84.7%  lr 9.69e-05    50s
+2026-03-16 10:33:43,067 [INFO]   S2 Ep  21/120  train 1.5867 / 70.3%  val 1.2943 / 85.0%  lr 9.64e-05    49s
+2026-03-16 10:34:32,105 [INFO]   S2 Ep  22/120  train 1.5379 / 73.0%  val 1.2998 / 85.0%  lr 9.58e-05    49s
+2026-03-16 10:35:21,181 [INFO]   S2 Ep  23/120  train 1.5760 / 71.5%  val 1.3033 / 85.0%  lr 9.52e-05    49s
+2026-03-16 10:36:10,204 [INFO]   S2 Ep  24/120  train 1.4894 / 74.4%  val 1.3099 / 85.1%  lr 9.46e-05    49s
+2026-03-16 10:36:59,759 [INFO]   S2 Ep  25/120  train 1.5107 / 74.0%  val 1.3319 / 84.1%  lr 9.40e-05    50s
+2026-03-16 10:36:59,759 [INFO]   Early stopping at S2 epoch 25
+2026-03-16 10:36:59,759 [INFO]   Fold 4 best val acc: 88.26%
+2026-03-16 10:37:00,505 [INFO] ================================================================
+2026-03-16 10:37:00,506 [INFO] FOLD 5 / 5
+2026-03-16 10:37:00,506 [INFO] ================================================================
+2026-03-16 10:37:00,718 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 10:37:00,996 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 10:37:00,998 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 10:37:01,404 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 10:37:01,493 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 10:37:01,494 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 10:37:01,639 [INFO]   CNN stream ← best_fold4.pt (val 87.28%)
+2026-03-16 10:37:01,765 [INFO]   ViT stream ← best_fold4.pt (val 84.09%)
+2026-03-16 10:37:01,767 [INFO] DualStream: 78.13M params total
+2026-03-16 10:37:01,767 [INFO] ── Stage 1: fusion-head-only + KD (20 epochs) ──
+2026-03-16 10:37:01,769 [INFO] Backbones frozen — 1280382 trainable params (fusion + head)
+2026-03-16 10:37:20,223 [INFO]   S1 Ep  1/20  train 2.3545 / 77.8%  val 1.2207 / 87.2%    18s
+2026-03-16 10:37:20,586 [INFO]   ★ best 87.18%
+2026-03-16 10:37:38,232 [INFO]   S1 Ep  2/20  train 0.7643 / 98.2%  val 1.2348 / 87.0%    18s
+2026-03-16 10:37:55,903 [INFO]   S1 Ep  3/20  train 0.7515 / 98.0%  val 1.2574 / 86.7%    18s
+2026-03-16 10:38:13,546 [INFO]   S1 Ep  4/20  train 0.7443 / 98.3%  val 1.2418 / 87.3%    18s
+2026-03-16 10:38:13,980 [INFO]   ★ best 87.28%
+2026-03-16 10:38:31,642 [INFO]   S1 Ep  5/20  train 0.7426 / 98.2%  val 1.2505 / 86.9%    18s
+2026-03-16 10:38:49,319 [INFO]   S1 Ep  6/20  train 0.7352 / 98.4%  val 1.2509 / 86.5%    18s
+2026-03-16 10:39:06,962 [INFO]   S1 Ep  7/20  train 0.7402 / 98.1%  val 1.2511 / 86.8%    18s
+2026-03-16 10:39:24,629 [INFO]   S1 Ep  8/20  train 0.7341 / 98.3%  val 1.2412 / 87.1%    18s
+2026-03-16 10:39:42,253 [INFO]   S1 Ep  9/20  train 0.7304 / 98.5%  val 1.2281 / 87.0%    18s
+2026-03-16 10:39:59,883 [INFO]   S1 Ep 10/20  train 0.7224 / 98.6%  val 1.2313 / 87.0%    18s
+2026-03-16 10:40:17,522 [INFO]   S1 Ep 11/20  train 0.7247 / 98.4%  val 1.2246 / 87.2%    18s
+2026-03-16 10:40:35,156 [INFO]   S1 Ep 12/20  train 0.7176 / 98.5%  val 1.2240 / 87.6%    18s
+2026-03-16 10:40:35,579 [INFO]   ★ best 87.62%
+2026-03-16 10:40:53,233 [INFO]   S1 Ep 13/20  train 0.7164 / 98.6%  val 1.2228 / 87.3%    18s
+2026-03-16 10:41:10,870 [INFO]   S1 Ep 14/20  train 0.7188 / 98.3%  val 1.2176 / 87.4%    18s
+2026-03-16 10:41:28,516 [INFO]   S1 Ep 15/20  train 0.7116 / 98.6%  val 1.2175 / 87.4%    18s
+2026-03-16 10:41:46,168 [INFO]   S1 Ep 16/20  train 0.7069 / 98.8%  val 1.2109 / 87.5%    18s
+2026-03-16 10:42:03,816 [INFO]   S1 Ep 17/20  train 0.7104 / 98.6%  val 1.2102 / 87.2%    18s
+2026-03-16 10:42:21,455 [INFO]   S1 Ep 18/20  train 0.7086 / 98.5%  val 1.2076 / 87.1%    18s
+2026-03-16 10:42:39,124 [INFO]   S1 Ep 19/20  train 0.7054 / 98.7%  val 1.2068 / 87.3%    18s
+2026-03-16 10:42:56,758 [INFO]   S1 Ep 20/20  train 0.7053 / 98.6%  val 1.2067 / 87.3%    18s
+2026-03-16 10:42:56,758 [INFO] Stage 1 done — best val: 87.62%
+2026-03-16 10:42:56,758 [INFO] ── Stage 2: full fine-tuning + KD (120 epochs, patience 25) ──
+2026-03-16 10:42:56,760 [INFO] All unfrozen — 78.13M trainable params
+2026-03-16 10:42:56,761 [INFO] Dual-LLRD: 12 groups, LR [3.28e-05 … 1.00e-04]
+2026-03-16 10:43:45,569 [INFO]   S2 Ep   1/120  train 1.5465 / 73.8%  val 1.2069 / 87.0%  lr 8.50e-06    49s
+2026-03-16 10:44:34,449 [INFO]   S2 Ep   2/120  train 1.5754 / 71.9%  val 1.2163 / 87.0%  lr 2.12e-05    49s
+2026-03-16 10:45:23,226 [INFO]   S2 Ep   3/120  train 1.5407 / 72.6%  val 1.2298 / 86.6%  lr 3.96e-05    49s
+2026-03-16 10:46:12,025 [INFO]   S2 Ep   4/120  train 1.5289 / 73.2%  val 1.2632 / 86.2%  lr 6.04e-05    49s
+2026-03-16 10:47:01,117 [INFO]   S2 Ep   5/120  train 1.5855 / 71.8%  val 1.2707 / 85.8%  lr 7.96e-05    49s
+2026-03-16 10:47:50,625 [INFO]   S2 Ep   6/120  train 1.5610 / 72.5%  val 1.2809 / 85.0%  lr 9.36e-05    50s
+2026-03-16 10:48:39,416 [INFO]   S2 Ep   7/120  train 1.5832 / 71.5%  val 1.2919 / 85.0%  lr 9.98e-05    49s
+2026-03-16 10:49:28,212 [INFO]   S2 Ep   8/120  train 1.5522 / 73.2%  val 1.2972 / 84.8%  lr 1.00e-04    49s
+2026-03-16 10:50:17,016 [INFO]   S2 Ep   9/120  train 1.5509 / 72.7%  val 1.3064 / 85.0%  lr 9.99e-05    49s
+2026-03-16 10:51:05,923 [INFO]   S2 Ep  10/120  train 1.5610 / 71.9%  val 1.3006 / 84.5%  lr 9.98e-05    49s
+2026-03-16 10:51:54,721 [INFO]   S2 Ep  11/120  train 1.5569 / 72.3%  val 1.3138 / 84.4%  lr 9.97e-05    49s
+2026-03-16 10:52:43,496 [INFO]   S2 Ep  12/120  train 1.5749 / 71.4%  val 1.2952 / 85.5%  lr 9.96e-05    49s
+2026-03-16 10:53:32,272 [INFO]   S2 Ep  13/120  train 1.5779 / 71.6%  val 1.2787 / 85.3%  lr 9.93e-05    49s
+2026-03-16 10:54:21,150 [INFO]   S2 Ep  14/120  train 1.5568 / 72.6%  val 1.2891 / 85.0%  lr 9.91e-05    49s
+2026-03-16 10:55:09,948 [INFO]   S2 Ep  15/120  train 1.5797 / 71.8%  val 1.2754 / 84.9%  lr 9.88e-05    49s
+2026-03-16 10:55:58,759 [INFO]   S2 Ep  16/120  train 1.5649 / 72.4%  val 1.2916 / 85.0%  lr 9.85e-05    49s
+2026-03-16 10:56:47,526 [INFO]   S2 Ep  17/120  train 1.5222 / 73.3%  val 1.2959 / 84.4%  lr 9.81e-05    49s
+2026-03-16 10:57:36,404 [INFO]   S2 Ep  18/120  train 1.5918 / 71.2%  val 1.3131 / 84.4%  lr 9.78e-05    49s
+2026-03-16 10:58:25,157 [INFO]   S2 Ep  19/120  train 1.5518 / 72.7%  val 1.3344 / 84.0%  lr 9.73e-05    49s
+2026-03-16 10:59:13,955 [INFO]   S2 Ep  20/120  train 1.6059 / 70.0%  val 1.3004 / 84.3%  lr 9.69e-05    49s
+2026-03-16 11:00:02,852 [INFO]   S2 Ep  21/120  train 1.5862 / 70.7%  val 1.2945 / 84.9%  lr 9.64e-05    49s
+2026-03-16 11:00:51,647 [INFO]   S2 Ep  22/120  train 1.5555 / 72.4%  val 1.3245 / 84.5%  lr 9.58e-05    49s
+2026-03-16 11:01:40,442 [INFO]   S2 Ep  23/120  train 1.5731 / 71.1%  val 1.2732 / 85.5%  lr 9.52e-05    49s
+2026-03-16 11:02:29,236 [INFO]   S2 Ep  24/120  train 1.5512 / 71.8%  val 1.2908 / 84.9%  lr 9.46e-05    49s
+2026-03-16 11:03:18,118 [INFO]   S2 Ep  25/120  train 1.5798 / 70.5%  val 1.3117 / 84.3%  lr 9.40e-05    49s
+2026-03-16 11:03:18,118 [INFO]   Early stopping at S2 epoch 25
+2026-03-16 11:03:18,118 [INFO]   Fold 5 best val acc: 87.62%
+2026-03-16 11:03:18,377 [INFO] ================================================================
+2026-03-16 11:03:18,377 [INFO] 5-FOLD CV RESULTS
+2026-03-16 11:03:18,377 [INFO] ================================================================
+2026-03-16 11:03:18,377 [INFO]   Fold 1 : 87.49%
+2026-03-16 11:03:18,377 [INFO]   Fold 2 : 86.84%
+2026-03-16 11:03:18,377 [INFO]   Fold 3 : 88.94%
+2026-03-16 11:03:18,377 [INFO]   Fold 4 : 88.26%
+2026-03-16 11:03:18,377 [INFO]   Fold 5 : 87.62%
+2026-03-16 11:03:18,377 [INFO]   Mean  : 87.83% ± 0.72%
+2026-03-16 11:03:18,379 [INFO] Loading v8 dual-stream checkpoints …
+2026-03-16 11:03:18,580 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 11:03:18,739 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:18,740 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:19,125 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 11:03:19,165 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:19,166 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:19,611 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 11:03:19,652 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:19,654 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:20,041 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 11:03:20,087 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:20,088 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:20,541 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 11:03:20,585 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:20,586 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:20,978 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 11:03:21,016 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:21,017 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:21,454 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 11:03:21,489 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:21,490 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:21,864 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 11:03:21,903 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:21,904 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:22,392 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnext_tiny.fb_in22k_ft_in1k)
+2026-03-16 11:03:22,431 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnext_tiny.fb_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:22,432 [INFO] [timm/convnext_tiny.fb_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:03:22,801 [INFO] Loading pretrained weights from Hugging Face hub (timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k)
+2026-03-16 11:03:22,842 [INFO] HTTP Request: HEAD https://huggingface.co/timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-16 11:03:22,843 [INFO] [timm/swin_small_patch4_window7_224.ms_in22k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-16 11:04:19,313 [INFO] Submission (no TTA) → /data/slr/checkpoints_v8/submission_no_tta.csv
+2026-03-16 11:04:19,313 [INFO] Running 10-way TTA × 5 folds …
+2026-03-16 11:13:35,199 [INFO] Submission (TTA) → /data/slr/checkpoints_v8/submission_tta.csv
+2026-03-16 11:13:35,199 [INFO] TTA changed 180 / 9828 (1.8%)
+2026-03-16 11:13:35,214 [INFO] Loading v7 checkpoints for mega-ensemble …
+2026-03-16 11:16:40,966 [INFO] Loading vit_v5 checkpoints for mega-ensemble …
+2026-03-16 11:22:55,535 [INFO] Mega-ensemble (v8+v7+vit_v5): differs from v8-only in 169 predictions
+2026-03-16 11:22:55,535 [INFO] Done.

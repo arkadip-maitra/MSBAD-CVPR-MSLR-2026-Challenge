@@ -1,0 +1,1023 @@
+2026-03-11 07:15:24,913 [INFO] Loading pretrained weights from Hugging Face hub (timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k)
+2026-03-11 07:15:25,076 [INFO] HTTP Request: HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-11 07:15:25,078 [INFO] [timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-11 07:15:25,082 [INFO] Resized position embedding: (14, 14) to (4, 16).
+2026-03-11 07:15:25,086 [INFO] Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-11 07:15:25,728 [INFO] LLRD: 28 param groups, LR range [7.39e-07 … 2.00e-04]
+2026-03-11 10:18:38,644 [INFO] GPU : NVIDIA H200
+2026-03-11 10:18:38,645 [INFO] Config : {
+  "data_dir": "/data/slr/track-2",
+  "output_dir": "/data/slr/checkpoints_vit",
+  "max_frames": 64,
+  "n_range_bins": 256,
+  "n_classes": 126,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 64,
+  "num_workers": 4,
+  "epochs": 120,
+  "lr": 0.0002,
+  "weight_decay": 0.05,
+  "warmup_pct": 0.1,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 25,
+  "grad_clip_norm": 1.0,
+  "llrd_decay": 0.65,
+  "mixup_alpha": 0.8,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "random_erase_prob": 0.25,
+  "model_name": "vit_tiny_patch16_224.augreg_in21k_ft_in1k",
+  "img_size": [
+    64,
+    256
+  ],
+  "drop_rate": 0.1,
+  "drop_path_rate": 0.1,
+  "pretrained": true,
+  "seed": 42
+}
+2026-03-11 10:18:38,698 [INFO] Train: 14742  |  Test: 4914  |  Classes: 126
+2026-03-11 10:18:38,698 [INFO] Pre-loading training data …
+2026-03-11 10:18:41,236 [INFO] Pre-loading test data …
+2026-03-11 10:18:42,084 [INFO] ================================================================
+2026-03-11 10:18:42,084 [INFO] FOLD 1 / 5
+2026-03-11 10:18:42,084 [INFO] ================================================================
+2026-03-11 10:18:42,139 [INFO] Loading pretrained weights from Hugging Face hub (timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k)
+2026-03-11 10:18:42,288 [INFO] HTTP Request: HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-11 10:18:42,289 [INFO] [timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-11 10:18:42,292 [INFO] Resized position embedding: (14, 14) to (4, 16).
+2026-03-11 10:18:42,296 [INFO] Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-11 10:18:42,467 [INFO] Model: vit_tiny_patch16_224.augreg_in21k_ft_in1k  |  5.52M params
+2026-03-11 10:18:42,467 [INFO] LLRD: 28 param groups, LR range [7.39e-07 … 2.00e-04]
+2026-03-11 10:18:47,328 [INFO]   Ep   1/120  train 5.3535 / 0.8%  val 4.9906 / 0.9%  lr 1.13e-05     5s
+2026-03-11 10:18:47,363 [INFO]   ★ best 0.88% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:18:51,505 [INFO]   Ep   2/120  train 5.1313 / 0.9%  val 4.8781 / 0.9%  lr 2.09e-05     4s
+2026-03-11 10:18:55,648 [INFO]   Ep   3/120  train 4.9883 / 0.8%  val 4.8428 / 0.9%  lr 3.61e-05     4s
+2026-03-11 10:18:55,683 [INFO]   ★ best 0.92% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:18:59,946 [INFO]   Ep   4/120  train 4.9116 / 0.8%  val 4.8329 / 1.3%  lr 5.60e-05     4s
+2026-03-11 10:18:59,987 [INFO]   ★ best 1.29% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:04,105 [INFO]   Ep   5/120  train 4.8795 / 0.7%  val 4.8279 / 1.4%  lr 7.92e-05     4s
+2026-03-11 10:19:04,145 [INFO]   ★ best 1.36% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:08,308 [INFO]   Ep   6/120  train 4.8572 / 1.1%  val 4.8111 / 1.3%  lr 1.04e-04     4s
+2026-03-11 10:19:12,383 [INFO]   Ep   7/120  train 4.8348 / 0.9%  val 4.7507 / 1.5%  lr 1.29e-04     4s
+2026-03-11 10:19:12,420 [INFO]   ★ best 1.46% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:16,559 [INFO]   Ep   8/120  train 4.7939 / 1.3%  val 4.6588 / 1.5%  lr 1.52e-04     4s
+2026-03-11 10:19:16,595 [INFO]   ★ best 1.49% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:20,844 [INFO]   Ep   9/120  train 4.7604 / 1.3%  val 4.5758 / 2.2%  lr 1.72e-04     4s
+2026-03-11 10:19:20,878 [INFO]   ★ best 2.20% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:25,005 [INFO]   Ep  10/120  train 4.7413 / 1.4%  val 4.5449 / 2.2%  lr 1.87e-04     4s
+2026-03-11 10:19:25,042 [INFO]   ★ best 2.24% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:29,080 [INFO]   Ep  11/120  train 4.7279 / 1.4%  val 4.5245 / 2.3%  lr 1.97e-04     4s
+2026-03-11 10:19:29,113 [INFO]   ★ best 2.34% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:33,216 [INFO]   Ep  12/120  train 4.7041 / 1.4%  val 4.5004 / 1.9%  lr 2.00e-04     4s
+2026-03-11 10:19:37,445 [INFO]   Ep  13/120  train 4.7010 / 1.4%  val 4.4912 / 2.6%  lr 2.00e-04     4s
+2026-03-11 10:19:37,482 [INFO]   ★ best 2.64% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:41,597 [INFO]   Ep  14/120  train 4.6917 / 1.5%  val 4.4654 / 2.7%  lr 2.00e-04     4s
+2026-03-11 10:19:41,633 [INFO]   ★ best 2.68% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:45,739 [INFO]   Ep  15/120  train 4.6826 / 1.5%  val 4.4484 / 2.7%  lr 2.00e-04     4s
+2026-03-11 10:19:45,785 [INFO]   ★ best 2.75% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:49,940 [INFO]   Ep  16/120  train 4.6750 / 1.7%  val 4.4274 / 3.5%  lr 1.99e-04     4s
+2026-03-11 10:19:49,979 [INFO]   ★ best 3.49% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:19:54,137 [INFO]   Ep  17/120  train 4.6510 / 1.8%  val 4.4077 / 3.0%  lr 1.99e-04     4s
+2026-03-11 10:19:58,182 [INFO]   Ep  18/120  train 4.6511 / 1.9%  val 4.3690 / 4.0%  lr 1.98e-04     4s
+2026-03-11 10:19:58,218 [INFO]   ★ best 3.97% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:02,126 [INFO]   Ep  19/120  train 4.6322 / 2.1%  val 4.3784 / 3.0%  lr 1.98e-04     4s
+2026-03-11 10:20:06,296 [INFO]   Ep  20/120  train 4.6293 / 2.1%  val 4.3200 / 4.2%  lr 1.97e-04     4s
+2026-03-11 10:20:06,331 [INFO]   ★ best 4.17% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:10,463 [INFO]   Ep  21/120  train 4.6073 / 2.5%  val 4.2964 / 5.4%  lr 1.97e-04     4s
+2026-03-11 10:20:10,498 [INFO]   ★ best 5.39% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:14,569 [INFO]   Ep  22/120  train 4.6008 / 2.8%  val 4.2564 / 5.2%  lr 1.96e-04     4s
+2026-03-11 10:20:18,562 [INFO]   Ep  23/120  train 4.5802 / 3.1%  val 4.2438 / 5.8%  lr 1.95e-04     4s
+2026-03-11 10:20:18,595 [INFO]   ★ best 5.83% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:22,750 [INFO]   Ep  24/120  train 4.5607 / 3.0%  val 4.1744 / 7.1%  lr 1.94e-04     4s
+2026-03-11 10:20:22,784 [INFO]   ★ best 7.05% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:26,814 [INFO]   Ep  25/120  train 4.5666 / 3.4%  val 4.1671 / 6.7%  lr 1.93e-04     4s
+2026-03-11 10:20:30,902 [INFO]   Ep  26/120  train 4.5610 / 3.2%  val 4.1367 / 7.5%  lr 1.92e-04     4s
+2026-03-11 10:20:30,938 [INFO]   ★ best 7.53% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:34,981 [INFO]   Ep  27/120  train 4.5341 / 3.7%  val 4.1070 / 8.0%  lr 1.91e-04     4s
+2026-03-11 10:20:35,017 [INFO]   ★ best 8.04% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:39,084 [INFO]   Ep  28/120  train 4.5449 / 3.5%  val 4.0892 / 8.1%  lr 1.89e-04     4s
+2026-03-11 10:20:39,119 [INFO]   ★ best 8.07% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:43,191 [INFO]   Ep  29/120  train 4.5096 / 4.0%  val 4.0264 / 9.2%  lr 1.88e-04     4s
+2026-03-11 10:20:43,225 [INFO]   ★ best 9.19% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:47,481 [INFO]   Ep  30/120  train 4.5228 / 3.9%  val 4.0575 / 8.3%  lr 1.87e-04     4s
+2026-03-11 10:20:51,581 [INFO]   Ep  31/120  train 4.5089 / 4.1%  val 4.0104 / 9.3%  lr 1.85e-04     4s
+2026-03-11 10:20:51,618 [INFO]   ★ best 9.33% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:55,621 [INFO]   Ep  32/120  train 4.4822 / 4.7%  val 3.9798 / 9.8%  lr 1.84e-04     4s
+2026-03-11 10:20:55,655 [INFO]   ★ best 9.83% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:20:59,760 [INFO]   Ep  33/120  train 4.4829 / 4.4%  val 3.9578 / 9.5%  lr 1.82e-04     4s
+2026-03-11 10:21:03,811 [INFO]   Ep  34/120  train 4.4621 / 4.5%  val 3.9175 / 10.3%  lr 1.80e-04     4s
+2026-03-11 10:21:03,850 [INFO]   ★ best 10.27% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:07,933 [INFO]   Ep  35/120  train 4.4505 / 5.2%  val 3.8665 / 11.9%  lr 1.78e-04     4s
+2026-03-11 10:21:07,967 [INFO]   ★ best 11.87% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:12,065 [INFO]   Ep  36/120  train 4.4407 / 5.1%  val 3.8094 / 12.6%  lr 1.77e-04     4s
+2026-03-11 10:21:12,106 [INFO]   ★ best 12.58% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:16,180 [INFO]   Ep  37/120  train 4.4147 / 5.7%  val 3.7908 / 13.2%  lr 1.75e-04     4s
+2026-03-11 10:21:16,220 [INFO]   ★ best 13.19% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:20,354 [INFO]   Ep  38/120  train 4.4154 / 5.7%  val 3.7705 / 12.6%  lr 1.73e-04     4s
+2026-03-11 10:21:24,551 [INFO]   Ep  39/120  train 4.3863 / 5.9%  val 3.7563 / 13.5%  lr 1.71e-04     4s
+2026-03-11 10:21:24,590 [INFO]   ★ best 13.50% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:28,819 [INFO]   Ep  40/120  train 4.4093 / 5.7%  val 3.7130 / 14.0%  lr 1.69e-04     4s
+2026-03-11 10:21:28,861 [INFO]   ★ best 13.97% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:33,022 [INFO]   Ep  41/120  train 4.3918 / 6.1%  val 3.7013 / 14.3%  lr 1.66e-04     4s
+2026-03-11 10:21:33,057 [INFO]   ★ best 14.34% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:37,217 [INFO]   Ep  42/120  train 4.3617 / 6.6%  val 3.6369 / 15.0%  lr 1.64e-04     4s
+2026-03-11 10:21:37,251 [INFO]   ★ best 14.95% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:41,311 [INFO]   Ep  43/120  train 4.3946 / 6.4%  val 3.6416 / 14.5%  lr 1.62e-04     4s
+2026-03-11 10:21:45,605 [INFO]   Ep  44/120  train 4.3864 / 6.5%  val 3.6502 / 15.1%  lr 1.60e-04     4s
+2026-03-11 10:21:45,647 [INFO]   ★ best 15.09% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:49,979 [INFO]   Ep  45/120  train 4.3253 / 7.2%  val 3.5797 / 16.6%  lr 1.57e-04     4s
+2026-03-11 10:21:50,023 [INFO]   ★ best 16.62% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:21:54,160 [INFO]   Ep  46/120  train 4.3383 / 7.3%  val 3.5665 / 16.1%  lr 1.55e-04     4s
+2026-03-11 10:21:58,253 [INFO]   Ep  47/120  train 4.3445 / 7.2%  val 3.5738 / 17.8%  lr 1.52e-04     4s
+2026-03-11 10:21:58,288 [INFO]   ★ best 17.80% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:22:02,388 [INFO]   Ep  48/120  train 4.3296 / 7.3%  val 3.5507 / 16.8%  lr 1.50e-04     4s
+2026-03-11 10:22:06,571 [INFO]   Ep  49/120  train 4.3087 / 7.7%  val 3.5011 / 18.7%  lr 1.47e-04     4s
+2026-03-11 10:22:06,605 [INFO]   ★ best 18.65% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:22:10,665 [INFO]   Ep  50/120  train 4.3224 / 7.7%  val 3.5026 / 20.0%  lr 1.45e-04     4s
+2026-03-11 10:22:10,700 [INFO]   ★ best 19.97% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:22:14,803 [INFO]   Ep  51/120  train 4.2887 / 8.3%  val 3.4721 / 18.8%  lr 1.42e-04     4s
+2026-03-11 10:22:18,909 [INFO]   Ep  52/120  train 4.3085 / 7.8%  val 3.4567 / 20.3%  lr 1.40e-04     4s
+2026-03-11 10:22:18,945 [INFO]   ★ best 20.28% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:22:23,061 [INFO]   Ep  53/120  train 4.2646 / 8.5%  val 3.4465 / 20.0%  lr 1.37e-04     4s
+2026-03-11 10:22:27,209 [INFO]   Ep  54/120  train 4.2641 / 8.6%  val 3.4227 / 19.9%  lr 1.34e-04     4s
+2026-03-11 10:22:31,325 [INFO]   Ep  55/120  train 4.2406 / 8.9%  val 3.3981 / 19.7%  lr 1.31e-04     4s
+2026-03-11 10:22:35,334 [INFO]   Ep  56/120  train 4.2832 / 8.7%  val 3.3889 / 20.1%  lr 1.29e-04     4s
+2026-03-11 10:22:39,349 [INFO]   Ep  57/120  train 4.2340 / 9.6%  val 3.3925 / 21.7%  lr 1.26e-04     4s
+2026-03-11 10:22:39,389 [INFO]   ★ best 21.70% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:22:43,413 [INFO]   Ep  58/120  train 4.2492 / 9.3%  val 3.3562 / 22.6%  lr 1.23e-04     4s
+2026-03-11 10:22:43,451 [INFO]   ★ best 22.55% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:22:47,461 [INFO]   Ep  59/120  train 4.2344 / 9.7%  val 3.3670 / 21.3%  lr 1.20e-04     4s
+2026-03-11 10:22:51,438 [INFO]   Ep  60/120  train 4.2178 / 10.1%  val 3.3455 / 21.6%  lr 1.17e-04     4s
+2026-03-11 10:22:55,442 [INFO]   Ep  61/120  train 4.2144 / 10.2%  val 3.3140 / 23.2%  lr 1.14e-04     4s
+2026-03-11 10:22:55,486 [INFO]   ★ best 23.23% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:22:59,470 [INFO]   Ep  62/120  train 4.2305 / 9.7%  val 3.3207 / 23.8%  lr 1.12e-04     4s
+2026-03-11 10:22:59,504 [INFO]   ★ best 23.84% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:03,546 [INFO]   Ep  63/120  train 4.1912 / 10.5%  val 3.3059 / 23.1%  lr 1.09e-04     4s
+2026-03-11 10:23:07,519 [INFO]   Ep  64/120  train 4.2283 / 10.0%  val 3.2890 / 23.7%  lr 1.06e-04     4s
+2026-03-11 10:23:11,548 [INFO]   Ep  65/120  train 4.2261 / 9.9%  val 3.2738 / 23.8%  lr 1.03e-04     4s
+2026-03-11 10:23:15,667 [INFO]   Ep  66/120  train 4.1807 / 11.0%  val 3.2366 / 24.2%  lr 1.00e-04     4s
+2026-03-11 10:23:15,712 [INFO]   ★ best 24.25% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:19,769 [INFO]   Ep  67/120  train 4.1595 / 11.2%  val 3.2493 / 24.6%  lr 9.71e-05     4s
+2026-03-11 10:23:19,806 [INFO]   ★ best 24.58% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:23,754 [INFO]   Ep  68/120  train 4.1799 / 10.4%  val 3.2287 / 24.7%  lr 9.42e-05     4s
+2026-03-11 10:23:23,789 [INFO]   ★ best 24.65% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:27,827 [INFO]   Ep  69/120  train 4.1534 / 11.3%  val 3.2309 / 24.6%  lr 9.13e-05     4s
+2026-03-11 10:23:31,823 [INFO]   Ep  70/120  train 4.1625 / 11.0%  val 3.2199 / 25.1%  lr 8.84e-05     4s
+2026-03-11 10:23:31,868 [INFO]   ★ best 25.09% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:35,897 [INFO]   Ep  71/120  train 4.2004 / 10.6%  val 3.2515 / 25.3%  lr 8.55e-05     4s
+2026-03-11 10:23:35,932 [INFO]   ★ best 25.33% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:39,898 [INFO]   Ep  72/120  train 4.1790 / 11.2%  val 3.1860 / 25.7%  lr 8.26e-05     4s
+2026-03-11 10:23:39,932 [INFO]   ★ best 25.74% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:43,905 [INFO]   Ep  73/120  train 4.1601 / 11.2%  val 3.2195 / 25.3%  lr 7.98e-05     4s
+2026-03-11 10:23:47,952 [INFO]   Ep  74/120  train 4.1376 / 11.6%  val 3.1871 / 26.1%  lr 7.69e-05     4s
+2026-03-11 10:23:47,990 [INFO]   ★ best 26.08% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:23:51,968 [INFO]   Ep  75/120  train 4.1587 / 11.7%  val 3.2160 / 25.3%  lr 7.41e-05     4s
+2026-03-11 10:23:55,962 [INFO]   Ep  76/120  train 4.1802 / 11.3%  val 3.1780 / 26.0%  lr 7.13e-05     4s
+2026-03-11 10:23:59,978 [INFO]   Ep  77/120  train 4.1424 / 11.8%  val 3.1731 / 25.4%  lr 6.85e-05     4s
+2026-03-11 10:24:03,965 [INFO]   Ep  78/120  train 4.1345 / 11.7%  val 3.1461 / 26.9%  lr 6.58e-05     4s
+2026-03-11 10:24:03,998 [INFO]   ★ best 26.89% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:24:08,065 [INFO]   Ep  79/120  train 4.0753 / 13.0%  val 3.1484 / 26.3%  lr 6.31e-05     4s
+2026-03-11 10:24:12,093 [INFO]   Ep  80/120  train 4.1298 / 11.7%  val 3.1299 / 27.6%  lr 6.04e-05     4s
+2026-03-11 10:24:12,130 [INFO]   ★ best 27.60% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:24:16,120 [INFO]   Ep  81/120  train 4.1024 / 12.5%  val 3.1310 / 26.8%  lr 5.77e-05     4s
+2026-03-11 10:24:20,147 [INFO]   Ep  82/120  train 4.1287 / 11.7%  val 3.1489 / 26.3%  lr 5.51e-05     4s
+2026-03-11 10:24:24,116 [INFO]   Ep  83/120  train 4.1586 / 11.9%  val 3.1413 / 27.7%  lr 5.25e-05     4s
+2026-03-11 10:24:24,160 [INFO]   ★ best 27.74% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:24:28,105 [INFO]   Ep  84/120  train 4.1282 / 12.5%  val 3.1376 / 27.3%  lr 5.00e-05     4s
+2026-03-11 10:24:32,165 [INFO]   Ep  85/120  train 4.1204 / 12.2%  val 3.1126 / 26.7%  lr 4.75e-05     4s
+2026-03-11 10:24:36,293 [INFO]   Ep  86/120  train 4.1200 / 12.4%  val 3.1134 / 27.6%  lr 4.50e-05     4s
+2026-03-11 10:24:40,319 [INFO]   Ep  87/120  train 4.1402 / 11.8%  val 3.1157 / 27.1%  lr 4.26e-05     4s
+2026-03-11 10:24:44,300 [INFO]   Ep  88/120  train 4.1360 / 12.2%  val 3.1130 / 27.6%  lr 4.03e-05     4s
+2026-03-11 10:24:48,276 [INFO]   Ep  89/120  train 4.0893 / 12.9%  val 3.1025 / 27.9%  lr 3.80e-05     4s
+2026-03-11 10:24:48,315 [INFO]   ★ best 27.87% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:24:52,338 [INFO]   Ep  90/120  train 4.0814 / 13.1%  val 3.0932 / 27.9%  lr 3.57e-05     4s
+2026-03-11 10:24:52,374 [INFO]   ★ best 27.94% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:24:56,355 [INFO]   Ep  91/120  train 4.0983 / 12.9%  val 3.1144 / 27.8%  lr 3.35e-05     4s
+2026-03-11 10:25:00,335 [INFO]   Ep  92/120  train 4.0860 / 13.1%  val 3.0990 / 28.0%  lr 3.14e-05     4s
+2026-03-11 10:25:00,370 [INFO]   ★ best 27.98% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:25:04,389 [INFO]   Ep  93/120  train 4.1009 / 13.3%  val 3.0978 / 27.6%  lr 2.93e-05     4s
+2026-03-11 10:25:08,385 [INFO]   Ep  94/120  train 4.0895 / 13.0%  val 3.0945 / 27.9%  lr 2.73e-05     4s
+2026-03-11 10:25:12,316 [INFO]   Ep  95/120  train 4.0585 / 13.6%  val 3.0773 / 28.4%  lr 2.53e-05     4s
+2026-03-11 10:25:12,354 [INFO]   ★ best 28.38% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:25:16,350 [INFO]   Ep  96/120  train 4.0605 / 13.4%  val 3.0792 / 28.3%  lr 2.34e-05     4s
+2026-03-11 10:25:20,341 [INFO]   Ep  97/120  train 4.0980 / 13.3%  val 3.0865 / 28.5%  lr 2.16e-05     4s
+2026-03-11 10:25:20,378 [INFO]   ★ best 28.45% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:25:24,420 [INFO]   Ep  98/120  train 4.0531 / 14.0%  val 3.0717 / 28.8%  lr 1.98e-05     4s
+2026-03-11 10:25:24,455 [INFO]   ★ best 28.76% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:25:28,367 [INFO]   Ep  99/120  train 4.0936 / 13.2%  val 3.0726 / 28.5%  lr 1.81e-05     4s
+2026-03-11 10:25:32,302 [INFO]   Ep 100/120  train 4.0928 / 13.3%  val 3.0792 / 28.9%  lr 1.64e-05     4s
+2026-03-11 10:25:32,337 [INFO]   ★ best 28.89% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:25:36,366 [INFO]   Ep 101/120  train 4.0141 / 13.9%  val 3.0591 / 29.0%  lr 1.49e-05     4s
+2026-03-11 10:25:36,406 [INFO]   ★ best 29.03% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:25:40,422 [INFO]   Ep 102/120  train 4.0595 / 13.8%  val 3.0571 / 29.0%  lr 1.34e-05     4s
+2026-03-11 10:25:44,367 [INFO]   Ep 103/120  train 4.0672 / 13.8%  val 3.0617 / 28.7%  lr 1.20e-05     4s
+2026-03-11 10:25:48,414 [INFO]   Ep 104/120  train 4.0507 / 13.3%  val 3.0613 / 28.9%  lr 1.06e-05     4s
+2026-03-11 10:25:52,416 [INFO]   Ep 105/120  train 4.0931 / 13.0%  val 3.0607 / 28.8%  lr 9.37e-06     4s
+2026-03-11 10:25:56,373 [INFO]   Ep 106/120  train 4.0762 / 13.8%  val 3.0615 / 29.1%  lr 8.18e-06     4s
+2026-03-11 10:25:56,411 [INFO]   ★ best 29.09% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:26:00,446 [INFO]   Ep 107/120  train 4.0811 / 13.3%  val 3.0656 / 28.7%  lr 7.07e-06     4s
+2026-03-11 10:26:04,480 [INFO]   Ep 108/120  train 4.0360 / 14.2%  val 3.0568 / 29.1%  lr 6.03e-06     4s
+2026-03-11 10:26:04,515 [INFO]   ★ best 29.13% → /data/slr/checkpoints_vit/best_fold0.pt
+2026-03-11 10:26:08,462 [INFO]   Ep 109/120  train 4.0613 / 13.6%  val 3.0596 / 28.7%  lr 5.08e-06     4s
+2026-03-11 10:26:12,433 [INFO]   Ep 110/120  train 4.0542 / 13.6%  val 3.0546 / 29.1%  lr 4.20e-06     4s
+2026-03-11 10:26:16,615 [INFO]   Ep 111/120  train 4.1284 / 12.5%  val 3.0590 / 29.0%  lr 3.41e-06     4s
+2026-03-11 10:26:20,789 [INFO]   Ep 112/120  train 4.0304 / 14.1%  val 3.0556 / 29.0%  lr 2.70e-06     4s
+2026-03-11 10:26:24,953 [INFO]   Ep 113/120  train 4.1269 / 12.7%  val 3.0566 / 29.0%  lr 2.07e-06     4s
+2026-03-11 10:26:29,192 [INFO]   Ep 114/120  train 4.0671 / 13.6%  val 3.0565 / 28.9%  lr 1.52e-06     4s
+2026-03-11 10:26:33,347 [INFO]   Ep 115/120  train 4.0782 / 13.5%  val 3.0580 / 28.8%  lr 1.06e-06     4s
+2026-03-11 10:26:37,321 [INFO]   Ep 116/120  train 4.0484 / 13.8%  val 3.0574 / 28.8%  lr 6.82e-07     4s
+2026-03-11 10:26:41,350 [INFO]   Ep 117/120  train 4.0841 / 13.2%  val 3.0580 / 28.9%  lr 3.87e-07     4s
+2026-03-11 10:26:45,379 [INFO]   Ep 118/120  train 4.0894 / 13.1%  val 3.0583 / 28.9%  lr 1.76e-07     4s
+2026-03-11 10:26:49,408 [INFO]   Ep 119/120  train 4.0576 / 13.7%  val 3.0583 / 28.9%  lr 4.98e-08     4s
+2026-03-11 10:26:53,421 [INFO]   Ep 120/120  train 4.0763 / 13.5%  val 3.0583 / 28.9%  lr 8.00e-09     4s
+2026-03-11 10:26:53,421 [INFO]   Fold 1 best val acc: 29.13%
+2026-03-11 10:26:53,720 [INFO] ================================================================
+2026-03-11 10:26:53,721 [INFO] FOLD 2 / 5
+2026-03-11 10:26:53,721 [INFO] ================================================================
+2026-03-11 10:26:53,779 [INFO] Loading pretrained weights from Hugging Face hub (timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k)
+2026-03-11 10:26:53,952 [INFO] HTTP Request: HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-11 10:26:53,954 [INFO] [timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-11 10:26:53,957 [INFO] Resized position embedding: (14, 14) to (4, 16).
+2026-03-11 10:26:53,962 [INFO] Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-11 10:26:53,972 [INFO] Model: vit_tiny_patch16_224.augreg_in21k_ft_in1k  |  5.52M params
+2026-03-11 10:26:53,972 [INFO] LLRD: 28 param groups, LR range [7.39e-07 … 2.00e-04]
+2026-03-11 10:26:58,761 [INFO]   Ep   1/120  train 5.3292 / 0.8%  val 4.9952 / 0.7%  lr 1.13e-05     5s
+2026-03-11 10:26:58,795 [INFO]   ★ best 0.71% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:27:02,984 [INFO]   Ep   2/120  train 5.1322 / 0.8%  val 4.8907 / 1.0%  lr 2.09e-05     4s
+2026-03-11 10:27:03,021 [INFO]   ★ best 0.98% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:27:07,311 [INFO]   Ep   3/120  train 4.9935 / 0.8%  val 4.8512 / 0.9%  lr 3.61e-05     4s
+2026-03-11 10:27:11,442 [INFO]   Ep   4/120  train 4.9130 / 0.7%  val 4.8367 / 0.8%  lr 5.60e-05     4s
+2026-03-11 10:27:15,596 [INFO]   Ep   5/120  train 4.8773 / 0.8%  val 4.8309 / 1.1%  lr 7.92e-05     4s
+2026-03-11 10:27:15,638 [INFO]   ★ best 1.12% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:27:19,814 [INFO]   Ep   6/120  train 4.8559 / 1.0%  val 4.8151 / 1.1%  lr 1.04e-04     4s
+2026-03-11 10:27:24,046 [INFO]   Ep   7/120  train 4.8359 / 1.0%  val 4.7443 / 1.8%  lr 1.29e-04     4s
+2026-03-11 10:27:24,081 [INFO]   ★ best 1.83% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:27:28,260 [INFO]   Ep   8/120  train 4.8007 / 1.1%  val 4.6463 / 1.9%  lr 1.52e-04     4s
+2026-03-11 10:27:28,297 [INFO]   ★ best 1.93% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:27:32,447 [INFO]   Ep   9/120  train 4.7685 / 1.3%  val 4.5803 / 1.8%  lr 1.72e-04     4s
+2026-03-11 10:27:36,582 [INFO]   Ep  10/120  train 4.7298 / 1.5%  val 4.5703 / 1.8%  lr 1.87e-04     4s
+2026-03-11 10:27:40,633 [INFO]   Ep  11/120  train 4.7269 / 1.4%  val 4.5539 / 1.7%  lr 1.97e-04     4s
+2026-03-11 10:27:44,883 [INFO]   Ep  12/120  train 4.7120 / 1.4%  val 4.5216 / 2.0%  lr 2.00e-04     4s
+2026-03-11 10:27:44,919 [INFO]   ★ best 2.00% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:27:48,994 [INFO]   Ep  13/120  train 4.6929 / 1.8%  val 4.5030 / 2.5%  lr 2.00e-04     4s
+2026-03-11 10:27:49,028 [INFO]   ★ best 2.48% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:27:53,104 [INFO]   Ep  14/120  train 4.6767 / 1.7%  val 4.4585 / 2.1%  lr 2.00e-04     4s
+2026-03-11 10:27:57,152 [INFO]   Ep  15/120  train 4.6571 / 1.7%  val 4.4319 / 2.5%  lr 2.00e-04     4s
+2026-03-11 10:27:57,187 [INFO]   ★ best 2.51% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:01,262 [INFO]   Ep  16/120  train 4.6572 / 1.9%  val 4.4135 / 2.9%  lr 1.99e-04     4s
+2026-03-11 10:28:01,296 [INFO]   ★ best 2.88% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:05,316 [INFO]   Ep  17/120  train 4.6505 / 2.1%  val 4.4218 / 3.7%  lr 1.99e-04     4s
+2026-03-11 10:28:05,351 [INFO]   ★ best 3.73% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:09,470 [INFO]   Ep  18/120  train 4.6391 / 2.0%  val 4.3640 / 3.8%  lr 1.98e-04     4s
+2026-03-11 10:28:09,504 [INFO]   ★ best 3.80% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:13,564 [INFO]   Ep  19/120  train 4.6262 / 2.4%  val 4.3291 / 3.8%  lr 1.98e-04     4s
+2026-03-11 10:28:13,598 [INFO]   ★ best 3.83% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:17,578 [INFO]   Ep  20/120  train 4.6036 / 2.6%  val 4.2707 / 5.0%  lr 1.97e-04     4s
+2026-03-11 10:28:17,612 [INFO]   ★ best 5.02% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:21,744 [INFO]   Ep  21/120  train 4.6032 / 2.6%  val 4.2458 / 5.6%  lr 1.97e-04     4s
+2026-03-11 10:28:21,781 [INFO]   ★ best 5.56% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:25,855 [INFO]   Ep  22/120  train 4.5732 / 3.1%  val 4.2188 / 6.6%  lr 1.96e-04     4s
+2026-03-11 10:28:25,889 [INFO]   ★ best 6.65% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:29,942 [INFO]   Ep  23/120  train 4.5717 / 3.3%  val 4.1557 / 7.2%  lr 1.95e-04     4s
+2026-03-11 10:28:29,978 [INFO]   ★ best 7.22% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:34,059 [INFO]   Ep  24/120  train 4.5584 / 3.4%  val 4.1408 / 7.7%  lr 1.94e-04     4s
+2026-03-11 10:28:34,097 [INFO]   ★ best 7.70% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:38,129 [INFO]   Ep  25/120  train 4.5741 / 3.2%  val 4.1268 / 7.1%  lr 1.93e-04     4s
+2026-03-11 10:28:42,210 [INFO]   Ep  26/120  train 4.5412 / 3.7%  val 4.0745 / 7.9%  lr 1.92e-04     4s
+2026-03-11 10:28:42,243 [INFO]   ★ best 7.87% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:46,301 [INFO]   Ep  27/120  train 4.5285 / 4.0%  val 4.0868 / 7.4%  lr 1.91e-04     4s
+2026-03-11 10:28:50,369 [INFO]   Ep  28/120  train 4.5104 / 4.2%  val 4.0384 / 8.0%  lr 1.89e-04     4s
+2026-03-11 10:28:50,404 [INFO]   ★ best 7.97% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:54,628 [INFO]   Ep  29/120  train 4.5174 / 4.0%  val 3.9934 / 9.4%  lr 1.88e-04     4s
+2026-03-11 10:28:54,662 [INFO]   ★ best 9.39% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:28:58,805 [INFO]   Ep  30/120  train 4.5065 / 4.7%  val 3.9781 / 9.1%  lr 1.87e-04     4s
+2026-03-11 10:29:02,966 [INFO]   Ep  31/120  train 4.4911 / 4.7%  val 3.9089 / 9.9%  lr 1.85e-04     4s
+2026-03-11 10:29:03,001 [INFO]   ★ best 9.87% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:07,209 [INFO]   Ep  32/120  train 4.4714 / 4.7%  val 3.8861 / 10.4%  lr 1.84e-04     4s
+2026-03-11 10:29:07,243 [INFO]   ★ best 10.38% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:11,345 [INFO]   Ep  33/120  train 4.4238 / 5.5%  val 3.8457 / 12.4%  lr 1.82e-04     4s
+2026-03-11 10:29:11,383 [INFO]   ★ best 12.44% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:15,448 [INFO]   Ep  34/120  train 4.4469 / 5.2%  val 3.8764 / 12.3%  lr 1.80e-04     4s
+2026-03-11 10:29:19,593 [INFO]   Ep  35/120  train 4.4314 / 5.5%  val 3.7979 / 12.3%  lr 1.78e-04     4s
+2026-03-11 10:29:23,710 [INFO]   Ep  36/120  train 4.4149 / 5.8%  val 3.7880 / 13.0%  lr 1.77e-04     4s
+2026-03-11 10:29:23,747 [INFO]   ★ best 12.99% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:27,904 [INFO]   Ep  37/120  train 4.4481 / 5.3%  val 3.7451 / 14.2%  lr 1.75e-04     4s
+2026-03-11 10:29:27,937 [INFO]   ★ best 14.24% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:31,908 [INFO]   Ep  38/120  train 4.3785 / 6.2%  val 3.7215 / 13.2%  lr 1.73e-04     4s
+2026-03-11 10:29:35,937 [INFO]   Ep  39/120  train 4.3755 / 6.6%  val 3.6746 / 14.5%  lr 1.71e-04     4s
+2026-03-11 10:29:35,971 [INFO]   ★ best 14.51% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:39,960 [INFO]   Ep  40/120  train 4.3871 / 6.6%  val 3.6607 / 15.4%  lr 1.69e-04     4s
+2026-03-11 10:29:39,992 [INFO]   ★ best 15.36% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:44,150 [INFO]   Ep  41/120  train 4.3649 / 6.7%  val 3.6532 / 15.9%  lr 1.66e-04     4s
+2026-03-11 10:29:44,184 [INFO]   ★ best 15.94% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:48,178 [INFO]   Ep  42/120  train 4.3606 / 6.9%  val 3.6284 / 16.0%  lr 1.64e-04     4s
+2026-03-11 10:29:48,210 [INFO]   ★ best 16.01% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:52,276 [INFO]   Ep  43/120  train 4.3504 / 7.3%  val 3.5806 / 16.1%  lr 1.62e-04     4s
+2026-03-11 10:29:52,308 [INFO]   ★ best 16.11% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:29:56,385 [INFO]   Ep  44/120  train 4.3035 / 7.4%  val 3.5922 / 17.5%  lr 1.60e-04     4s
+2026-03-11 10:29:56,418 [INFO]   ★ best 17.50% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:00,496 [INFO]   Ep  45/120  train 4.3115 / 7.8%  val 3.5190 / 18.2%  lr 1.57e-04     4s
+2026-03-11 10:30:00,529 [INFO]   ★ best 18.18% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:04,656 [INFO]   Ep  46/120  train 4.3082 / 7.8%  val 3.4947 / 18.0%  lr 1.55e-04     4s
+2026-03-11 10:30:08,773 [INFO]   Ep  47/120  train 4.3074 / 7.9%  val 3.4874 / 17.9%  lr 1.52e-04     4s
+2026-03-11 10:30:12,879 [INFO]   Ep  48/120  train 4.2761 / 8.5%  val 3.4655 / 18.0%  lr 1.50e-04     4s
+2026-03-11 10:30:16,998 [INFO]   Ep  49/120  train 4.2914 / 8.5%  val 3.4818 / 18.6%  lr 1.47e-04     4s
+2026-03-11 10:30:17,033 [INFO]   ★ best 18.58% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:21,093 [INFO]   Ep  50/120  train 4.2788 / 8.6%  val 3.4569 / 19.0%  lr 1.45e-04     4s
+2026-03-11 10:30:21,129 [INFO]   ★ best 19.02% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:25,160 [INFO]   Ep  51/120  train 4.2588 / 9.0%  val 3.4308 / 19.4%  lr 1.42e-04     4s
+2026-03-11 10:30:25,194 [INFO]   ★ best 19.43% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:29,255 [INFO]   Ep  52/120  train 4.2810 / 9.1%  val 3.3946 / 20.4%  lr 1.40e-04     4s
+2026-03-11 10:30:29,290 [INFO]   ★ best 20.41% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:33,393 [INFO]   Ep  53/120  train 4.2309 / 9.5%  val 3.3944 / 20.9%  lr 1.37e-04     4s
+2026-03-11 10:30:33,429 [INFO]   ★ best 20.85% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:37,459 [INFO]   Ep  54/120  train 4.2428 / 9.4%  val 3.3636 / 21.1%  lr 1.34e-04     4s
+2026-03-11 10:30:37,494 [INFO]   ★ best 21.06% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:41,530 [INFO]   Ep  55/120  train 4.2005 / 10.2%  val 3.3307 / 21.4%  lr 1.31e-04     4s
+2026-03-11 10:30:41,566 [INFO]   ★ best 21.36% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:45,705 [INFO]   Ep  56/120  train 4.2306 / 9.7%  val 3.3198 / 21.7%  lr 1.29e-04     4s
+2026-03-11 10:30:45,740 [INFO]   ★ best 21.74% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:30:49,699 [INFO]   Ep  57/120  train 4.2374 / 9.8%  val 3.3406 / 21.4%  lr 1.26e-04     4s
+2026-03-11 10:30:53,794 [INFO]   Ep  58/120  train 4.2430 / 9.8%  val 3.3299 / 21.0%  lr 1.23e-04     4s
+2026-03-11 10:30:57,775 [INFO]   Ep  59/120  train 4.1981 / 10.1%  val 3.3048 / 22.4%  lr 1.20e-04     4s
+2026-03-11 10:30:57,813 [INFO]   ★ best 22.38% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:01,769 [INFO]   Ep  60/120  train 4.2236 / 9.8%  val 3.3139 / 22.4%  lr 1.17e-04     4s
+2026-03-11 10:31:01,806 [INFO]   ★ best 22.45% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:05,867 [INFO]   Ep  61/120  train 4.2073 / 10.2%  val 3.3011 / 22.8%  lr 1.14e-04     4s
+2026-03-11 10:31:05,900 [INFO]   ★ best 22.79% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:09,933 [INFO]   Ep  62/120  train 4.1546 / 11.3%  val 3.2679 / 22.9%  lr 1.12e-04     4s
+2026-03-11 10:31:09,968 [INFO]   ★ best 22.86% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:13,931 [INFO]   Ep  63/120  train 4.1575 / 11.1%  val 3.2617 / 23.8%  lr 1.09e-04     4s
+2026-03-11 10:31:13,968 [INFO]   ★ best 23.77% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:18,024 [INFO]   Ep  64/120  train 4.1915 / 10.7%  val 3.2416 / 23.3%  lr 1.06e-04     4s
+2026-03-11 10:31:21,998 [INFO]   Ep  65/120  train 4.1734 / 11.1%  val 3.2366 / 23.9%  lr 1.03e-04     4s
+2026-03-11 10:31:22,039 [INFO]   ★ best 23.87% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:26,036 [INFO]   Ep  66/120  train 4.1633 / 11.7%  val 3.2286 / 23.6%  lr 1.00e-04     4s
+2026-03-11 10:31:30,069 [INFO]   Ep  67/120  train 4.1505 / 11.6%  val 3.2017 / 24.3%  lr 9.71e-05     4s
+2026-03-11 10:31:30,103 [INFO]   ★ best 24.31% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:34,211 [INFO]   Ep  68/120  train 4.1740 / 11.4%  val 3.1948 / 24.6%  lr 9.42e-05     4s
+2026-03-11 10:31:34,248 [INFO]   ★ best 24.55% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:38,288 [INFO]   Ep  69/120  train 4.1227 / 11.8%  val 3.1739 / 25.0%  lr 9.13e-05     4s
+2026-03-11 10:31:38,326 [INFO]   ★ best 24.99% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:42,400 [INFO]   Ep  70/120  train 4.1465 / 11.7%  val 3.1987 / 24.8%  lr 8.84e-05     4s
+2026-03-11 10:31:46,406 [INFO]   Ep  71/120  train 4.1467 / 11.9%  val 3.1813 / 25.3%  lr 8.55e-05     4s
+2026-03-11 10:31:46,442 [INFO]   ★ best 25.30% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:31:50,346 [INFO]   Ep  72/120  train 4.1446 / 11.9%  val 3.1869 / 25.3%  lr 8.26e-05     4s
+2026-03-11 10:31:54,351 [INFO]   Ep  73/120  train 4.1077 / 12.4%  val 3.1528 / 25.2%  lr 7.98e-05     4s
+2026-03-11 10:31:58,389 [INFO]   Ep  74/120  train 4.1099 / 12.4%  val 3.1428 / 25.7%  lr 7.69e-05     4s
+2026-03-11 10:31:58,427 [INFO]   ★ best 25.67% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:02,440 [INFO]   Ep  75/120  train 4.1158 / 12.7%  val 3.1293 / 26.8%  lr 7.41e-05     4s
+2026-03-11 10:32:02,477 [INFO]   ★ best 26.79% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:06,444 [INFO]   Ep  76/120  train 4.0974 / 12.5%  val 3.1348 / 26.0%  lr 7.13e-05     4s
+2026-03-11 10:32:10,534 [INFO]   Ep  77/120  train 4.0967 / 12.9%  val 3.1440 / 25.6%  lr 6.85e-05     4s
+2026-03-11 10:32:14,492 [INFO]   Ep  78/120  train 4.1119 / 12.9%  val 3.1018 / 27.3%  lr 6.58e-05     4s
+2026-03-11 10:32:14,526 [INFO]   ★ best 27.33% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:18,560 [INFO]   Ep  79/120  train 4.1016 / 12.9%  val 3.1147 / 27.0%  lr 6.31e-05     4s
+2026-03-11 10:32:22,481 [INFO]   Ep  80/120  train 4.1050 / 12.7%  val 3.1071 / 27.5%  lr 6.04e-05     4s
+2026-03-11 10:32:22,517 [INFO]   ★ best 27.53% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:26,555 [INFO]   Ep  81/120  train 4.0560 / 13.5%  val 3.1128 / 27.3%  lr 5.77e-05     4s
+2026-03-11 10:32:30,563 [INFO]   Ep  82/120  train 4.0809 / 12.8%  val 3.0905 / 27.7%  lr 5.51e-05     4s
+2026-03-11 10:32:30,601 [INFO]   ★ best 27.70% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:34,737 [INFO]   Ep  83/120  train 4.1055 / 12.9%  val 3.1032 / 27.8%  lr 5.25e-05     4s
+2026-03-11 10:32:34,771 [INFO]   ★ best 27.81% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:38,912 [INFO]   Ep  84/120  train 4.0618 / 13.4%  val 3.0816 / 27.5%  lr 5.00e-05     4s
+2026-03-11 10:32:42,890 [INFO]   Ep  85/120  train 4.0504 / 13.6%  val 3.0842 / 27.5%  lr 4.75e-05     4s
+2026-03-11 10:32:46,903 [INFO]   Ep  86/120  train 4.0710 / 13.8%  val 3.0655 / 27.9%  lr 4.50e-05     4s
+2026-03-11 10:32:46,942 [INFO]   ★ best 27.87% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:50,995 [INFO]   Ep  87/120  train 4.0544 / 14.1%  val 3.0674 / 28.0%  lr 4.26e-05     4s
+2026-03-11 10:32:51,035 [INFO]   ★ best 28.01% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:32:55,138 [INFO]   Ep  88/120  train 4.0868 / 13.2%  val 3.0775 / 27.9%  lr 4.03e-05     4s
+2026-03-11 10:32:59,150 [INFO]   Ep  89/120  train 4.0852 / 13.6%  val 3.0664 / 28.1%  lr 3.80e-05     4s
+2026-03-11 10:32:59,185 [INFO]   ★ best 28.15% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:33:03,231 [INFO]   Ep  90/120  train 4.0780 / 13.3%  val 3.0531 / 28.7%  lr 3.57e-05     4s
+2026-03-11 10:33:03,269 [INFO]   ★ best 28.72% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:33:07,214 [INFO]   Ep  91/120  train 4.1085 / 12.8%  val 3.0662 / 28.6%  lr 3.35e-05     4s
+2026-03-11 10:33:11,350 [INFO]   Ep  92/120  train 4.0723 / 14.1%  val 3.0548 / 29.0%  lr 3.14e-05     4s
+2026-03-11 10:33:11,388 [INFO]   ★ best 28.99% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:33:15,553 [INFO]   Ep  93/120  train 4.0230 / 14.4%  val 3.0569 / 29.0%  lr 2.93e-05     4s
+2026-03-11 10:33:19,616 [INFO]   Ep  94/120  train 4.0508 / 14.1%  val 3.0504 / 29.1%  lr 2.73e-05     4s
+2026-03-11 10:33:19,651 [INFO]   ★ best 29.09% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:33:23,713 [INFO]   Ep  95/120  train 4.0332 / 14.4%  val 3.0424 / 29.5%  lr 2.53e-05     4s
+2026-03-11 10:33:23,748 [INFO]   ★ best 29.54% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:33:27,662 [INFO]   Ep  96/120  train 4.0873 / 13.2%  val 3.0579 / 28.6%  lr 2.34e-05     4s
+2026-03-11 10:33:31,702 [INFO]   Ep  97/120  train 4.0406 / 13.9%  val 3.0467 / 29.4%  lr 2.16e-05     4s
+2026-03-11 10:33:35,658 [INFO]   Ep  98/120  train 4.0875 / 13.7%  val 3.0447 / 29.2%  lr 1.98e-05     4s
+2026-03-11 10:33:39,705 [INFO]   Ep  99/120  train 4.0431 / 14.1%  val 3.0276 / 29.6%  lr 1.81e-05     4s
+2026-03-11 10:33:39,744 [INFO]   ★ best 29.60% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:33:43,800 [INFO]   Ep 100/120  train 4.0055 / 14.7%  val 3.0285 / 29.6%  lr 1.64e-05     4s
+2026-03-11 10:33:47,806 [INFO]   Ep 101/120  train 4.0421 / 13.9%  val 3.0309 / 29.9%  lr 1.49e-05     4s
+2026-03-11 10:33:47,841 [INFO]   ★ best 29.87% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:33:51,920 [INFO]   Ep 102/120  train 4.0938 / 13.3%  val 3.0423 / 29.2%  lr 1.34e-05     4s
+2026-03-11 10:33:56,059 [INFO]   Ep 103/120  train 4.0175 / 14.8%  val 3.0297 / 29.8%  lr 1.20e-05     4s
+2026-03-11 10:34:00,161 [INFO]   Ep 104/120  train 4.0608 / 13.6%  val 3.0248 / 29.7%  lr 1.06e-05     4s
+2026-03-11 10:34:04,361 [INFO]   Ep 105/120  train 4.0433 / 14.6%  val 3.0288 / 29.6%  lr 9.37e-06     4s
+2026-03-11 10:34:08,521 [INFO]   Ep 106/120  train 4.0351 / 14.3%  val 3.0247 / 29.6%  lr 8.18e-06     4s
+2026-03-11 10:34:12,571 [INFO]   Ep 107/120  train 4.0872 / 13.8%  val 3.0297 / 30.0%  lr 7.07e-06     4s
+2026-03-11 10:34:12,613 [INFO]   ★ best 30.01% → /data/slr/checkpoints_vit/best_fold1.pt
+2026-03-11 10:34:16,875 [INFO]   Ep 108/120  train 4.0603 / 13.8%  val 3.0331 / 29.5%  lr 6.03e-06     4s
+2026-03-11 10:34:21,012 [INFO]   Ep 109/120  train 4.0295 / 14.7%  val 3.0228 / 29.5%  lr 5.08e-06     4s
+2026-03-11 10:34:25,144 [INFO]   Ep 110/120  train 3.9983 / 15.2%  val 3.0224 / 29.6%  lr 4.20e-06     4s
+2026-03-11 10:34:29,286 [INFO]   Ep 111/120  train 4.0359 / 14.6%  val 3.0235 / 29.6%  lr 3.41e-06     4s
+2026-03-11 10:34:33,368 [INFO]   Ep 112/120  train 4.0486 / 14.4%  val 3.0225 / 29.7%  lr 2.70e-06     4s
+2026-03-11 10:34:37,378 [INFO]   Ep 113/120  train 3.9953 / 14.8%  val 3.0221 / 29.5%  lr 2.07e-06     4s
+2026-03-11 10:34:41,430 [INFO]   Ep 114/120  train 4.0493 / 13.8%  val 3.0218 / 29.6%  lr 1.52e-06     4s
+2026-03-11 10:34:45,630 [INFO]   Ep 115/120  train 4.0291 / 14.4%  val 3.0208 / 29.5%  lr 1.06e-06     4s
+2026-03-11 10:34:49,562 [INFO]   Ep 116/120  train 4.0350 / 14.5%  val 3.0215 / 29.5%  lr 6.82e-07     4s
+2026-03-11 10:34:53,615 [INFO]   Ep 117/120  train 4.0169 / 14.7%  val 3.0209 / 29.6%  lr 3.87e-07     4s
+2026-03-11 10:34:57,721 [INFO]   Ep 118/120  train 4.0519 / 13.8%  val 3.0211 / 29.5%  lr 1.76e-07     4s
+2026-03-11 10:35:01,854 [INFO]   Ep 119/120  train 4.0265 / 14.7%  val 3.0212 / 29.5%  lr 4.98e-08     4s
+2026-03-11 10:35:05,968 [INFO]   Ep 120/120  train 4.0375 / 14.5%  val 3.0211 / 29.6%  lr 8.00e-09     4s
+2026-03-11 10:35:05,968 [INFO]   Fold 2 best val acc: 30.01%
+2026-03-11 10:35:06,310 [INFO] ================================================================
+2026-03-11 10:35:06,310 [INFO] FOLD 3 / 5
+2026-03-11 10:35:06,310 [INFO] ================================================================
+2026-03-11 10:35:06,364 [INFO] Loading pretrained weights from Hugging Face hub (timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k)
+2026-03-11 10:35:06,508 [INFO] HTTP Request: HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-11 10:35:06,510 [INFO] [timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-11 10:35:06,513 [INFO] Resized position embedding: (14, 14) to (4, 16).
+2026-03-11 10:35:06,518 [INFO] Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-11 10:35:06,527 [INFO] Model: vit_tiny_patch16_224.augreg_in21k_ft_in1k  |  5.52M params
+2026-03-11 10:35:06,528 [INFO] LLRD: 28 param groups, LR range [7.39e-07 … 2.00e-04]
+2026-03-11 10:35:10,981 [INFO]   Ep   1/120  train 5.3590 / 0.8%  val 5.0346 / 0.6%  lr 1.13e-05     4s
+2026-03-11 10:35:11,011 [INFO]   ★ best 0.61% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:35:15,224 [INFO]   Ep   2/120  train 5.1378 / 0.8%  val 4.8961 / 0.9%  lr 2.09e-05     4s
+2026-03-11 10:35:15,262 [INFO]   ★ best 0.92% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:35:19,552 [INFO]   Ep   3/120  train 4.9923 / 0.8%  val 4.8479 / 0.9%  lr 3.61e-05     4s
+2026-03-11 10:35:23,763 [INFO]   Ep   4/120  train 4.9092 / 0.9%  val 4.8329 / 1.1%  lr 5.60e-05     4s
+2026-03-11 10:35:23,797 [INFO]   ★ best 1.09% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:35:27,958 [INFO]   Ep   5/120  train 4.8756 / 0.9%  val 4.8238 / 0.9%  lr 7.92e-05     4s
+2026-03-11 10:35:32,095 [INFO]   Ep   6/120  train 4.8586 / 0.8%  val 4.7994 / 1.6%  lr 1.04e-04     4s
+2026-03-11 10:35:32,127 [INFO]   ★ best 1.59% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:35:36,317 [INFO]   Ep   7/120  train 4.8287 / 1.0%  val 4.7433 / 1.3%  lr 1.29e-04     4s
+2026-03-11 10:35:40,456 [INFO]   Ep   8/120  train 4.7929 / 1.2%  val 4.6249 / 1.5%  lr 1.52e-04     4s
+2026-03-11 10:35:44,607 [INFO]   Ep   9/120  train 4.7586 / 1.3%  val 4.5987 / 1.7%  lr 1.72e-04     4s
+2026-03-11 10:35:44,641 [INFO]   ★ best 1.70% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:35:48,762 [INFO]   Ep  10/120  train 4.7374 / 1.4%  val 4.5529 / 1.8%  lr 1.87e-04     4s
+2026-03-11 10:35:48,796 [INFO]   ★ best 1.80% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:35:52,866 [INFO]   Ep  11/120  train 4.7231 / 1.4%  val 4.5243 / 1.9%  lr 1.97e-04     4s
+2026-03-11 10:35:52,899 [INFO]   ★ best 1.90% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:35:56,994 [INFO]   Ep  12/120  train 4.7084 / 1.5%  val 4.4820 / 1.8%  lr 2.00e-04     4s
+2026-03-11 10:36:01,106 [INFO]   Ep  13/120  train 4.6957 / 1.8%  val 4.4697 / 2.3%  lr 2.00e-04     4s
+2026-03-11 10:36:01,143 [INFO]   ★ best 2.27% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:05,263 [INFO]   Ep  14/120  train 4.6821 / 1.7%  val 4.4368 / 2.7%  lr 2.00e-04     4s
+2026-03-11 10:36:05,297 [INFO]   ★ best 2.68% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:09,281 [INFO]   Ep  15/120  train 4.6559 / 1.9%  val 4.4126 / 3.2%  lr 2.00e-04     4s
+2026-03-11 10:36:09,314 [INFO]   ★ best 3.15% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:13,461 [INFO]   Ep  16/120  train 4.6418 / 1.8%  val 4.3636 / 3.5%  lr 1.99e-04     4s
+2026-03-11 10:36:13,495 [INFO]   ★ best 3.53% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:17,730 [INFO]   Ep  17/120  train 4.6399 / 2.2%  val 4.3344 / 4.5%  lr 1.99e-04     4s
+2026-03-11 10:36:17,764 [INFO]   ★ best 4.51% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:21,836 [INFO]   Ep  18/120  train 4.6320 / 2.4%  val 4.3129 / 5.5%  lr 1.98e-04     4s
+2026-03-11 10:36:21,870 [INFO]   ★ best 5.46% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:25,951 [INFO]   Ep  19/120  train 4.6165 / 2.3%  val 4.2920 / 5.2%  lr 1.98e-04     4s
+2026-03-11 10:36:29,974 [INFO]   Ep  20/120  train 4.5852 / 2.8%  val 4.2348 / 6.1%  lr 1.97e-04     4s
+2026-03-11 10:36:30,011 [INFO]   ★ best 6.07% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:34,036 [INFO]   Ep  21/120  train 4.5924 / 2.9%  val 4.2212 / 5.7%  lr 1.97e-04     4s
+2026-03-11 10:36:38,151 [INFO]   Ep  22/120  train 4.5919 / 2.9%  val 4.1830 / 5.9%  lr 1.96e-04     4s
+2026-03-11 10:36:42,276 [INFO]   Ep  23/120  train 4.5749 / 2.9%  val 4.1250 / 7.0%  lr 1.95e-04     4s
+2026-03-11 10:36:42,308 [INFO]   ★ best 6.95% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:46,418 [INFO]   Ep  24/120  train 4.5535 / 3.5%  val 4.1036 / 7.7%  lr 1.94e-04     4s
+2026-03-11 10:36:46,453 [INFO]   ★ best 7.67% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:50,391 [INFO]   Ep  25/120  train 4.5350 / 3.8%  val 4.0568 / 8.6%  lr 1.93e-04     4s
+2026-03-11 10:36:50,424 [INFO]   ★ best 8.58% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:36:54,484 [INFO]   Ep  26/120  train 4.5384 / 3.8%  val 4.0783 / 7.7%  lr 1.92e-04     4s
+2026-03-11 10:36:58,601 [INFO]   Ep  27/120  train 4.5220 / 4.0%  val 4.0012 / 9.4%  lr 1.91e-04     4s
+2026-03-11 10:36:58,633 [INFO]   ★ best 9.40% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:02,768 [INFO]   Ep  28/120  train 4.5107 / 4.2%  val 4.0032 / 9.0%  lr 1.89e-04     4s
+2026-03-11 10:37:06,878 [INFO]   Ep  29/120  train 4.5189 / 4.0%  val 3.9305 / 10.3%  lr 1.88e-04     4s
+2026-03-11 10:37:06,911 [INFO]   ★ best 10.31% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:10,854 [INFO]   Ep  30/120  train 4.4980 / 4.2%  val 3.9139 / 10.3%  lr 1.87e-04     4s
+2026-03-11 10:37:10,892 [INFO]   ★ best 10.35% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:15,026 [INFO]   Ep  31/120  train 4.4684 / 4.9%  val 3.8637 / 11.3%  lr 1.85e-04     4s
+2026-03-11 10:37:15,058 [INFO]   ★ best 11.33% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:19,131 [INFO]   Ep  32/120  train 4.4666 / 5.0%  val 3.8635 / 11.1%  lr 1.84e-04     4s
+2026-03-11 10:37:23,175 [INFO]   Ep  33/120  train 4.4466 / 5.4%  val 3.7843 / 13.0%  lr 1.82e-04     4s
+2026-03-11 10:37:23,211 [INFO]   ★ best 13.03% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:27,296 [INFO]   Ep  34/120  train 4.4482 / 5.3%  val 3.7933 / 12.8%  lr 1.80e-04     4s
+2026-03-11 10:37:31,389 [INFO]   Ep  35/120  train 4.4137 / 5.7%  val 3.7543 / 13.6%  lr 1.78e-04     4s
+2026-03-11 10:37:31,428 [INFO]   ★ best 13.57% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:35,649 [INFO]   Ep  36/120  train 4.4148 / 5.9%  val 3.7215 / 13.9%  lr 1.77e-04     4s
+2026-03-11 10:37:35,685 [INFO]   ★ best 13.94% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:39,608 [INFO]   Ep  37/120  train 4.4023 / 6.0%  val 3.7041 / 13.7%  lr 1.75e-04     4s
+2026-03-11 10:37:43,562 [INFO]   Ep  38/120  train 4.3747 / 6.1%  val 3.6325 / 16.0%  lr 1.73e-04     4s
+2026-03-11 10:37:43,596 [INFO]   ★ best 15.98% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:47,674 [INFO]   Ep  39/120  train 4.3552 / 7.0%  val 3.6086 / 15.6%  lr 1.71e-04     4s
+2026-03-11 10:37:51,840 [INFO]   Ep  40/120  train 4.3618 / 7.0%  val 3.6390 / 16.4%  lr 1.69e-04     4s
+2026-03-11 10:37:51,878 [INFO]   ★ best 16.42% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:37:56,060 [INFO]   Ep  41/120  train 4.3311 / 7.3%  val 3.5749 / 18.1%  lr 1.66e-04     4s
+2026-03-11 10:37:56,096 [INFO]   ★ best 18.08% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:00,274 [INFO]   Ep  42/120  train 4.3384 / 7.1%  val 3.5847 / 18.5%  lr 1.64e-04     4s
+2026-03-11 10:38:00,310 [INFO]   ★ best 18.49% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:04,386 [INFO]   Ep  43/120  train 4.3204 / 7.6%  val 3.5452 / 17.8%  lr 1.62e-04     4s
+2026-03-11 10:38:08,513 [INFO]   Ep  44/120  train 4.2871 / 8.3%  val 3.4949 / 17.8%  lr 1.60e-04     4s
+2026-03-11 10:38:12,618 [INFO]   Ep  45/120  train 4.3038 / 8.0%  val 3.4849 / 19.4%  lr 1.57e-04     4s
+2026-03-11 10:38:12,654 [INFO]   ★ best 19.44% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:16,733 [INFO]   Ep  46/120  train 4.3022 / 8.4%  val 3.4895 / 19.3%  lr 1.55e-04     4s
+2026-03-11 10:38:20,915 [INFO]   Ep  47/120  train 4.2938 / 7.8%  val 3.4310 / 19.7%  lr 1.52e-04     4s
+2026-03-11 10:38:20,953 [INFO]   ★ best 19.71% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:25,014 [INFO]   Ep  48/120  train 4.2886 / 8.3%  val 3.4315 / 20.6%  lr 1.50e-04     4s
+2026-03-11 10:38:25,053 [INFO]   ★ best 20.59% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:29,111 [INFO]   Ep  49/120  train 4.2925 / 8.2%  val 3.4260 / 21.5%  lr 1.47e-04     4s
+2026-03-11 10:38:29,148 [INFO]   ★ best 21.54% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:33,216 [INFO]   Ep  50/120  train 4.2355 / 9.1%  val 3.3737 / 22.5%  lr 1.45e-04     4s
+2026-03-11 10:38:33,255 [INFO]   ★ best 22.52% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:37,290 [INFO]   Ep  51/120  train 4.2591 / 8.9%  val 3.3877 / 21.8%  lr 1.42e-04     4s
+2026-03-11 10:38:41,533 [INFO]   Ep  52/120  train 4.2522 / 8.9%  val 3.3571 / 21.6%  lr 1.40e-04     4s
+2026-03-11 10:38:45,706 [INFO]   Ep  53/120  train 4.2264 / 9.9%  val 3.3364 / 22.5%  lr 1.37e-04     4s
+2026-03-11 10:38:49,789 [INFO]   Ep  54/120  train 4.2530 / 9.3%  val 3.3506 / 22.6%  lr 1.34e-04     4s
+2026-03-11 10:38:49,827 [INFO]   ★ best 22.63% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:53,904 [INFO]   Ep  55/120  train 4.2098 / 9.8%  val 3.3121 / 24.2%  lr 1.31e-04     4s
+2026-03-11 10:38:53,940 [INFO]   ★ best 24.22% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:38:58,028 [INFO]   Ep  56/120  train 4.2328 / 9.5%  val 3.3268 / 22.9%  lr 1.29e-04     4s
+2026-03-11 10:39:02,041 [INFO]   Ep  57/120  train 4.2175 / 10.2%  val 3.2975 / 23.5%  lr 1.26e-04     4s
+2026-03-11 10:39:06,136 [INFO]   Ep  58/120  train 4.1906 / 10.4%  val 3.2746 / 24.2%  lr 1.23e-04     4s
+2026-03-11 10:39:10,226 [INFO]   Ep  59/120  train 4.2042 / 10.4%  val 3.2530 / 24.6%  lr 1.20e-04     4s
+2026-03-11 10:39:10,261 [INFO]   ★ best 24.63% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:39:14,292 [INFO]   Ep  60/120  train 4.2093 / 10.2%  val 3.2451 / 25.0%  lr 1.17e-04     4s
+2026-03-11 10:39:14,324 [INFO]   ★ best 25.00% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:39:18,389 [INFO]   Ep  61/120  train 4.2119 / 10.2%  val 3.2638 / 24.8%  lr 1.14e-04     4s
+2026-03-11 10:39:22,586 [INFO]   Ep  62/120  train 4.1789 / 10.8%  val 3.2345 / 26.0%  lr 1.12e-04     4s
+2026-03-11 10:39:22,620 [INFO]   ★ best 26.02% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:39:26,671 [INFO]   Ep  63/120  train 4.1534 / 11.3%  val 3.2172 / 25.9%  lr 1.09e-04     4s
+2026-03-11 10:39:30,768 [INFO]   Ep  64/120  train 4.1684 / 11.2%  val 3.2367 / 25.3%  lr 1.06e-04     4s
+2026-03-11 10:39:34,931 [INFO]   Ep  65/120  train 4.1647 / 11.3%  val 3.1895 / 25.4%  lr 1.03e-04     4s
+2026-03-11 10:39:39,104 [INFO]   Ep  66/120  train 4.1561 / 11.2%  val 3.1701 / 26.6%  lr 1.00e-04     4s
+2026-03-11 10:39:39,136 [INFO]   ★ best 26.63% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:39:43,227 [INFO]   Ep  67/120  train 4.1189 / 11.9%  val 3.1351 / 26.8%  lr 9.71e-05     4s
+2026-03-11 10:39:43,259 [INFO]   ★ best 26.80% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:39:47,447 [INFO]   Ep  68/120  train 4.1842 / 10.8%  val 3.1788 / 26.5%  lr 9.42e-05     4s
+2026-03-11 10:39:51,419 [INFO]   Ep  69/120  train 4.1478 / 11.5%  val 3.1447 / 27.3%  lr 9.13e-05     4s
+2026-03-11 10:39:51,454 [INFO]   ★ best 27.31% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:39:55,654 [INFO]   Ep  70/120  train 4.1468 / 11.7%  val 3.1691 / 27.2%  lr 8.84e-05     4s
+2026-03-11 10:39:59,710 [INFO]   Ep  71/120  train 4.1319 / 12.1%  val 3.1183 / 28.0%  lr 8.55e-05     4s
+2026-03-11 10:39:59,748 [INFO]   ★ best 27.99% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:40:03,853 [INFO]   Ep  72/120  train 4.1448 / 11.7%  val 3.1211 / 28.4%  lr 8.26e-05     4s
+2026-03-11 10:40:03,887 [INFO]   ★ best 28.43% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:40:07,909 [INFO]   Ep  73/120  train 4.0848 / 12.7%  val 3.1084 / 28.9%  lr 7.98e-05     4s
+2026-03-11 10:40:07,944 [INFO]   ★ best 28.93% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:40:12,178 [INFO]   Ep  74/120  train 4.1098 / 12.8%  val 3.1149 / 28.3%  lr 7.69e-05     4s
+2026-03-11 10:40:16,256 [INFO]   Ep  75/120  train 4.0856 / 12.4%  val 3.0961 / 29.0%  lr 7.41e-05     4s
+2026-03-11 10:40:16,292 [INFO]   ★ best 29.04% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:40:20,428 [INFO]   Ep  76/120  train 4.1442 / 11.7%  val 3.1246 / 28.9%  lr 7.13e-05     4s
+2026-03-11 10:40:24,633 [INFO]   Ep  77/120  train 4.0736 / 13.0%  val 3.0632 / 28.7%  lr 6.85e-05     4s
+2026-03-11 10:40:28,767 [INFO]   Ep  78/120  train 4.0874 / 13.1%  val 3.0747 / 29.6%  lr 6.58e-05     4s
+2026-03-11 10:40:28,803 [INFO]   ★ best 29.58% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:40:32,986 [INFO]   Ep  79/120  train 4.1042 / 12.8%  val 3.0740 / 29.7%  lr 6.31e-05     4s
+2026-03-11 10:40:33,022 [INFO]   ★ best 29.72% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:40:37,080 [INFO]   Ep  80/120  train 4.0954 / 12.8%  val 3.0730 / 30.1%  lr 6.04e-05     4s
+2026-03-11 10:40:37,117 [INFO]   ★ best 30.09% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:40:41,248 [INFO]   Ep  81/120  train 4.0956 / 12.9%  val 3.0540 / 29.9%  lr 5.77e-05     4s
+2026-03-11 10:40:45,223 [INFO]   Ep  82/120  train 4.1045 / 12.6%  val 3.0710 / 29.1%  lr 5.51e-05     4s
+2026-03-11 10:40:49,422 [INFO]   Ep  83/120  train 4.0799 / 12.8%  val 3.0659 / 29.5%  lr 5.25e-05     4s
+2026-03-11 10:40:53,545 [INFO]   Ep  84/120  train 4.0765 / 12.9%  val 3.0468 / 29.9%  lr 5.00e-05     4s
+2026-03-11 10:40:57,644 [INFO]   Ep  85/120  train 4.1046 / 12.9%  val 3.0390 / 30.0%  lr 4.75e-05     4s
+2026-03-11 10:41:01,745 [INFO]   Ep  86/120  train 4.0967 / 12.7%  val 3.0381 / 30.4%  lr 4.50e-05     4s
+2026-03-11 10:41:01,782 [INFO]   ★ best 30.36% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:41:05,987 [INFO]   Ep  87/120  train 4.0587 / 13.5%  val 3.0359 / 30.3%  lr 4.26e-05     4s
+2026-03-11 10:41:10,109 [INFO]   Ep  88/120  train 4.0821 / 13.4%  val 3.0376 / 30.8%  lr 4.03e-05     4s
+2026-03-11 10:41:10,141 [INFO]   ★ best 30.83% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:41:14,240 [INFO]   Ep  89/120  train 4.0692 / 13.7%  val 3.0111 / 31.3%  lr 3.80e-05     4s
+2026-03-11 10:41:14,272 [INFO]   ★ best 31.34% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:41:18,398 [INFO]   Ep  90/120  train 4.0813 / 13.1%  val 3.0153 / 30.7%  lr 3.57e-05     4s
+2026-03-11 10:41:22,527 [INFO]   Ep  91/120  train 4.0753 / 13.0%  val 3.0313 / 31.0%  lr 3.35e-05     4s
+2026-03-11 10:41:26,689 [INFO]   Ep  92/120  train 4.0524 / 13.7%  val 3.0038 / 31.4%  lr 3.14e-05     4s
+2026-03-11 10:41:26,727 [INFO]   ★ best 31.41% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:41:30,844 [INFO]   Ep  93/120  train 4.0762 / 13.2%  val 3.0154 / 31.3%  lr 2.93e-05     4s
+2026-03-11 10:41:34,876 [INFO]   Ep  94/120  train 4.1329 / 12.7%  val 3.0235 / 30.6%  lr 2.73e-05     4s
+2026-03-11 10:41:38,820 [INFO]   Ep  95/120  train 4.0137 / 14.3%  val 3.0103 / 30.4%  lr 2.53e-05     4s
+2026-03-11 10:41:42,860 [INFO]   Ep  96/120  train 4.0605 / 13.9%  val 3.0097 / 30.9%  lr 2.34e-05     4s
+2026-03-11 10:41:47,010 [INFO]   Ep  97/120  train 4.0370 / 14.3%  val 2.9936 / 31.4%  lr 2.16e-05     4s
+2026-03-11 10:41:47,044 [INFO]   ★ best 31.45% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:41:51,197 [INFO]   Ep  98/120  train 4.0746 / 13.8%  val 3.0140 / 30.9%  lr 1.98e-05     4s
+2026-03-11 10:41:55,289 [INFO]   Ep  99/120  train 4.0522 / 13.9%  val 3.0003 / 31.3%  lr 1.81e-05     4s
+2026-03-11 10:41:59,434 [INFO]   Ep 100/120  train 4.1063 / 13.4%  val 3.0100 / 31.4%  lr 1.64e-05     4s
+2026-03-11 10:42:03,661 [INFO]   Ep 101/120  train 4.0278 / 14.4%  val 2.9868 / 31.8%  lr 1.49e-05     4s
+2026-03-11 10:42:03,697 [INFO]   ★ best 31.75% → /data/slr/checkpoints_vit/best_fold2.pt
+2026-03-11 10:42:07,865 [INFO]   Ep 102/120  train 4.0711 / 13.6%  val 2.9984 / 31.4%  lr 1.34e-05     4s
+2026-03-11 10:42:11,969 [INFO]   Ep 103/120  train 4.0296 / 14.7%  val 2.9928 / 31.2%  lr 1.20e-05     4s
+2026-03-11 10:42:16,167 [INFO]   Ep 104/120  train 4.0551 / 14.2%  val 2.9841 / 31.2%  lr 1.06e-05     4s
+2026-03-11 10:42:20,241 [INFO]   Ep 105/120  train 4.0179 / 14.5%  val 2.9907 / 31.1%  lr 9.37e-06     4s
+2026-03-11 10:42:24,314 [INFO]   Ep 106/120  train 4.0607 / 13.8%  val 2.9904 / 31.3%  lr 8.18e-06     4s
+2026-03-11 10:42:28,396 [INFO]   Ep 107/120  train 4.0664 / 13.5%  val 2.9938 / 31.3%  lr 7.07e-06     4s
+2026-03-11 10:42:32,517 [INFO]   Ep 108/120  train 4.0350 / 14.5%  val 2.9859 / 31.3%  lr 6.03e-06     4s
+2026-03-11 10:42:36,658 [INFO]   Ep 109/120  train 4.0368 / 14.6%  val 2.9903 / 31.0%  lr 5.08e-06     4s
+2026-03-11 10:42:40,789 [INFO]   Ep 110/120  train 4.0047 / 14.4%  val 2.9840 / 31.5%  lr 4.20e-06     4s
+2026-03-11 10:42:44,953 [INFO]   Ep 111/120  train 4.0581 / 14.0%  val 2.9900 / 31.2%  lr 3.41e-06     4s
+2026-03-11 10:42:49,185 [INFO]   Ep 112/120  train 3.9997 / 14.8%  val 2.9871 / 31.5%  lr 2.70e-06     4s
+2026-03-11 10:42:53,229 [INFO]   Ep 113/120  train 4.0690 / 13.8%  val 2.9897 / 31.4%  lr 2.07e-06     4s
+2026-03-11 10:42:57,285 [INFO]   Ep 114/120  train 4.0172 / 14.3%  val 2.9878 / 31.4%  lr 1.52e-06     4s
+2026-03-11 10:43:01,368 [INFO]   Ep 115/120  train 4.0213 / 14.3%  val 2.9875 / 31.5%  lr 1.06e-06     4s
+2026-03-11 10:43:05,518 [INFO]   Ep 116/120  train 4.0313 / 14.5%  val 2.9873 / 31.5%  lr 6.82e-07     4s
+2026-03-11 10:43:09,706 [INFO]   Ep 117/120  train 4.0216 / 14.6%  val 2.9869 / 31.5%  lr 3.87e-07     4s
+2026-03-11 10:43:13,976 [INFO]   Ep 118/120  train 4.0157 / 14.6%  val 2.9871 / 31.5%  lr 1.76e-07     4s
+2026-03-11 10:43:18,325 [INFO]   Ep 119/120  train 4.0445 / 13.9%  val 2.9870 / 31.5%  lr 4.98e-08     4s
+2026-03-11 10:43:22,464 [INFO]   Ep 120/120  train 4.0449 / 13.8%  val 2.9870 / 31.5%  lr 8.00e-09     4s
+2026-03-11 10:43:22,464 [INFO]   Fold 3 best val acc: 31.75%
+2026-03-11 10:43:22,805 [INFO] ================================================================
+2026-03-11 10:43:22,806 [INFO] FOLD 4 / 5
+2026-03-11 10:43:22,806 [INFO] ================================================================
+2026-03-11 10:43:22,864 [INFO] Loading pretrained weights from Hugging Face hub (timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k)
+2026-03-11 10:43:23,123 [INFO] HTTP Request: HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-11 10:43:23,124 [INFO] [timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-11 10:43:23,128 [INFO] Resized position embedding: (14, 14) to (4, 16).
+2026-03-11 10:43:23,132 [INFO] Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-11 10:43:23,142 [INFO] Model: vit_tiny_patch16_224.augreg_in21k_ft_in1k  |  5.52M params
+2026-03-11 10:43:23,143 [INFO] LLRD: 28 param groups, LR range [7.39e-07 … 2.00e-04]
+2026-03-11 10:43:28,081 [INFO]   Ep   1/120  train 5.3773 / 0.8%  val 5.0072 / 0.8%  lr 1.13e-05     5s
+2026-03-11 10:43:28,110 [INFO]   ★ best 0.78% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:43:32,245 [INFO]   Ep   2/120  train 5.1518 / 0.8%  val 4.8870 / 0.8%  lr 2.09e-05     4s
+2026-03-11 10:43:32,281 [INFO]   ★ best 0.85% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:43:36,479 [INFO]   Ep   3/120  train 4.9857 / 0.9%  val 4.8474 / 0.9%  lr 3.61e-05     4s
+2026-03-11 10:43:36,514 [INFO]   ★ best 0.95% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:43:40,647 [INFO]   Ep   4/120  train 4.9115 / 0.9%  val 4.8359 / 0.9%  lr 5.60e-05     4s
+2026-03-11 10:43:44,805 [INFO]   Ep   5/120  train 4.8769 / 0.8%  val 4.8308 / 0.9%  lr 7.92e-05     4s
+2026-03-11 10:43:48,941 [INFO]   Ep   6/120  train 4.8575 / 0.9%  val 4.8222 / 1.0%  lr 1.04e-04     4s
+2026-03-11 10:43:48,974 [INFO]   ★ best 0.98% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:43:53,165 [INFO]   Ep   7/120  train 4.8453 / 0.8%  val 4.7693 / 1.6%  lr 1.29e-04     4s
+2026-03-11 10:43:53,201 [INFO]   ★ best 1.56% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:43:57,341 [INFO]   Ep   8/120  train 4.8069 / 1.1%  val 4.6637 / 1.9%  lr 1.52e-04     4s
+2026-03-11 10:43:57,376 [INFO]   ★ best 1.87% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:01,647 [INFO]   Ep   9/120  train 4.7681 / 1.4%  val 4.6195 / 1.9%  lr 1.72e-04     4s
+2026-03-11 10:44:01,682 [INFO]   ★ best 1.90% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:05,948 [INFO]   Ep  10/120  train 4.7484 / 1.2%  val 4.5520 / 1.6%  lr 1.87e-04     4s
+2026-03-11 10:44:09,976 [INFO]   Ep  11/120  train 4.7259 / 1.5%  val 4.5327 / 1.9%  lr 1.97e-04     4s
+2026-03-11 10:44:14,161 [INFO]   Ep  12/120  train 4.7091 / 1.5%  val 4.5002 / 2.1%  lr 2.00e-04     4s
+2026-03-11 10:44:14,197 [INFO]   ★ best 2.14% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:18,307 [INFO]   Ep  13/120  train 4.7002 / 1.5%  val 4.4934 / 2.2%  lr 2.00e-04     4s
+2026-03-11 10:44:18,341 [INFO]   ★ best 2.24% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:22,566 [INFO]   Ep  14/120  train 4.6833 / 1.6%  val 4.4479 / 2.5%  lr 2.00e-04     4s
+2026-03-11 10:44:22,602 [INFO]   ★ best 2.54% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:26,759 [INFO]   Ep  15/120  train 4.6731 / 1.8%  val 4.4453 / 2.7%  lr 2.00e-04     4s
+2026-03-11 10:44:26,794 [INFO]   ★ best 2.75% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:30,930 [INFO]   Ep  16/120  train 4.6597 / 2.0%  val 4.4291 / 2.8%  lr 1.99e-04     4s
+2026-03-11 10:44:30,967 [INFO]   ★ best 2.78% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:35,010 [INFO]   Ep  17/120  train 4.6553 / 2.0%  val 4.3821 / 4.0%  lr 1.99e-04     4s
+2026-03-11 10:44:35,047 [INFO]   ★ best 3.97% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:39,260 [INFO]   Ep  18/120  train 4.6435 / 2.1%  val 4.3781 / 4.1%  lr 1.98e-04     4s
+2026-03-11 10:44:39,297 [INFO]   ★ best 4.07% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:43,402 [INFO]   Ep  19/120  train 4.6172 / 2.4%  val 4.3307 / 4.1%  lr 1.98e-04     4s
+2026-03-11 10:44:43,439 [INFO]   ★ best 4.10% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:47,590 [INFO]   Ep  20/120  train 4.6083 / 2.6%  val 4.3029 / 4.7%  lr 1.97e-04     4s
+2026-03-11 10:44:47,621 [INFO]   ★ best 4.72% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:51,837 [INFO]   Ep  21/120  train 4.6088 / 2.7%  val 4.2723 / 5.2%  lr 1.97e-04     4s
+2026-03-11 10:44:51,874 [INFO]   ★ best 5.19% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:44:56,161 [INFO]   Ep  22/120  train 4.5930 / 3.1%  val 4.2312 / 6.0%  lr 1.96e-04     4s
+2026-03-11 10:44:56,196 [INFO]   ★ best 6.00% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:00,369 [INFO]   Ep  23/120  train 4.5952 / 2.9%  val 4.2259 / 6.4%  lr 1.95e-04     4s
+2026-03-11 10:45:00,407 [INFO]   ★ best 6.38% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:04,463 [INFO]   Ep  24/120  train 4.5707 / 3.2%  val 4.1773 / 6.8%  lr 1.94e-04     4s
+2026-03-11 10:45:04,502 [INFO]   ★ best 6.82% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:08,504 [INFO]   Ep  25/120  train 4.5680 / 3.4%  val 4.1416 / 6.6%  lr 1.93e-04     4s
+2026-03-11 10:45:12,629 [INFO]   Ep  26/120  train 4.5473 / 3.5%  val 4.1358 / 7.1%  lr 1.92e-04     4s
+2026-03-11 10:45:12,664 [INFO]   ★ best 7.06% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:16,825 [INFO]   Ep  27/120  train 4.5409 / 3.5%  val 4.0984 / 8.6%  lr 1.91e-04     4s
+2026-03-11 10:45:16,858 [INFO]   ★ best 8.62% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:20,972 [INFO]   Ep  28/120  train 4.5343 / 4.1%  val 4.0590 / 7.9%  lr 1.89e-04     4s
+2026-03-11 10:45:24,970 [INFO]   Ep  29/120  train 4.5183 / 4.1%  val 4.0597 / 8.8%  lr 1.88e-04     4s
+2026-03-11 10:45:25,005 [INFO]   ★ best 8.79% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:29,066 [INFO]   Ep  30/120  train 4.5000 / 4.1%  val 3.9988 / 9.1%  lr 1.87e-04     4s
+2026-03-11 10:45:29,101 [INFO]   ★ best 9.06% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:33,234 [INFO]   Ep  31/120  train 4.4866 / 4.5%  val 3.9453 / 10.3%  lr 1.85e-04     4s
+2026-03-11 10:45:33,271 [INFO]   ★ best 10.35% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:37,465 [INFO]   Ep  32/120  train 4.4795 / 4.7%  val 3.9044 / 11.5%  lr 1.84e-04     4s
+2026-03-11 10:45:37,499 [INFO]   ★ best 11.47% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:41,690 [INFO]   Ep  33/120  train 4.4738 / 4.7%  val 3.8728 / 11.6%  lr 1.82e-04     4s
+2026-03-11 10:45:41,727 [INFO]   ★ best 11.57% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:45,837 [INFO]   Ep  34/120  train 4.4635 / 5.0%  val 3.8484 / 12.0%  lr 1.80e-04     4s
+2026-03-11 10:45:45,874 [INFO]   ★ best 11.97% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:50,090 [INFO]   Ep  35/120  train 4.4501 / 5.3%  val 3.8260 / 12.1%  lr 1.78e-04     4s
+2026-03-11 10:45:50,123 [INFO]   ★ best 12.14% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:54,363 [INFO]   Ep  36/120  train 4.4157 / 5.8%  val 3.7552 / 13.7%  lr 1.77e-04     4s
+2026-03-11 10:45:54,400 [INFO]   ★ best 13.67% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:45:58,570 [INFO]   Ep  37/120  train 4.4181 / 6.0%  val 3.7774 / 13.1%  lr 1.75e-04     4s
+2026-03-11 10:46:02,713 [INFO]   Ep  38/120  train 4.4014 / 5.7%  val 3.6909 / 14.3%  lr 1.73e-04     4s
+2026-03-11 10:46:02,748 [INFO]   ★ best 14.31% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:06,858 [INFO]   Ep  39/120  train 4.4257 / 5.8%  val 3.7464 / 14.7%  lr 1.71e-04     4s
+2026-03-11 10:46:06,891 [INFO]   ★ best 14.69% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:10,977 [INFO]   Ep  40/120  train 4.3993 / 6.3%  val 3.6678 / 15.2%  lr 1.69e-04     4s
+2026-03-11 10:46:11,012 [INFO]   ★ best 15.20% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:15,134 [INFO]   Ep  41/120  train 4.3853 / 6.7%  val 3.6245 / 16.7%  lr 1.66e-04     4s
+2026-03-11 10:46:15,169 [INFO]   ★ best 16.66% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:19,232 [INFO]   Ep  42/120  train 4.3675 / 6.8%  val 3.5940 / 16.7%  lr 1.64e-04     4s
+2026-03-11 10:46:19,267 [INFO]   ★ best 16.69% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:23,438 [INFO]   Ep  43/120  train 4.3367 / 6.8%  val 3.6140 / 16.3%  lr 1.62e-04     4s
+2026-03-11 10:46:27,698 [INFO]   Ep  44/120  train 4.3481 / 7.1%  val 3.5564 / 18.3%  lr 1.60e-04     4s
+2026-03-11 10:46:27,733 [INFO]   ★ best 18.28% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:31,834 [INFO]   Ep  45/120  train 4.3135 / 7.6%  val 3.5667 / 18.1%  lr 1.57e-04     4s
+2026-03-11 10:46:35,957 [INFO]   Ep  46/120  train 4.3524 / 7.3%  val 3.5564 / 18.1%  lr 1.55e-04     4s
+2026-03-11 10:46:39,983 [INFO]   Ep  47/120  train 4.3260 / 7.5%  val 3.5396 / 18.5%  lr 1.52e-04     4s
+2026-03-11 10:46:40,017 [INFO]   ★ best 18.45% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:44,202 [INFO]   Ep  48/120  train 4.3100 / 7.8%  val 3.5287 / 17.9%  lr 1.50e-04     4s
+2026-03-11 10:46:48,320 [INFO]   Ep  49/120  train 4.3149 / 7.6%  val 3.4998 / 19.6%  lr 1.47e-04     4s
+2026-03-11 10:46:48,352 [INFO]   ★ best 19.61% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:46:52,603 [INFO]   Ep  50/120  train 4.2919 / 8.6%  val 3.5024 / 19.0%  lr 1.45e-04     4s
+2026-03-11 10:46:56,758 [INFO]   Ep  51/120  train 4.3040 / 8.0%  val 3.4528 / 20.5%  lr 1.42e-04     4s
+2026-03-11 10:46:56,792 [INFO]   ★ best 20.49% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:00,919 [INFO]   Ep  52/120  train 4.2773 / 8.7%  val 3.4274 / 20.7%  lr 1.40e-04     4s
+2026-03-11 10:47:00,954 [INFO]   ★ best 20.66% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:05,074 [INFO]   Ep  53/120  train 4.2280 / 9.5%  val 3.3986 / 20.9%  lr 1.37e-04     4s
+2026-03-11 10:47:05,107 [INFO]   ★ best 20.93% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:09,252 [INFO]   Ep  54/120  train 4.2419 / 9.1%  val 3.3949 / 20.7%  lr 1.34e-04     4s
+2026-03-11 10:47:13,483 [INFO]   Ep  55/120  train 4.2321 / 9.2%  val 3.3630 / 22.2%  lr 1.31e-04     4s
+2026-03-11 10:47:13,516 [INFO]   ★ best 22.15% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:17,847 [INFO]   Ep  56/120  train 4.2359 / 9.6%  val 3.3387 / 21.7%  lr 1.29e-04     4s
+2026-03-11 10:47:22,058 [INFO]   Ep  57/120  train 4.2492 / 9.3%  val 3.3483 / 23.2%  lr 1.26e-04     4s
+2026-03-11 10:47:22,094 [INFO]   ★ best 23.20% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:26,181 [INFO]   Ep  58/120  train 4.2162 / 9.9%  val 3.3053 / 23.2%  lr 1.23e-04     4s
+2026-03-11 10:47:30,338 [INFO]   Ep  59/120  train 4.2186 / 9.9%  val 3.3219 / 23.2%  lr 1.20e-04     4s
+2026-03-11 10:47:34,538 [INFO]   Ep  60/120  train 4.2160 / 10.0%  val 3.2887 / 23.0%  lr 1.17e-04     4s
+2026-03-11 10:47:38,764 [INFO]   Ep  61/120  train 4.2083 / 10.3%  val 3.2857 / 23.4%  lr 1.14e-04     4s
+2026-03-11 10:47:38,803 [INFO]   ★ best 23.44% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:43,085 [INFO]   Ep  62/120  train 4.2166 / 10.0%  val 3.2836 / 23.0%  lr 1.12e-04     4s
+2026-03-11 10:47:47,288 [INFO]   Ep  63/120  train 4.2074 / 10.1%  val 3.2477 / 24.6%  lr 1.09e-04     4s
+2026-03-11 10:47:47,328 [INFO]   ★ best 24.59% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:51,537 [INFO]   Ep  64/120  train 4.1707 / 10.5%  val 3.2334 / 24.6%  lr 1.06e-04     4s
+2026-03-11 10:47:55,652 [INFO]   Ep  65/120  train 4.1830 / 10.7%  val 3.2771 / 24.7%  lr 1.03e-04     4s
+2026-03-11 10:47:55,684 [INFO]   ★ best 24.73% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:47:59,709 [INFO]   Ep  66/120  train 4.1458 / 11.4%  val 3.2390 / 23.7%  lr 1.00e-04     4s
+2026-03-11 10:48:03,914 [INFO]   Ep  67/120  train 4.1285 / 11.5%  val 3.1962 / 25.7%  lr 9.71e-05     4s
+2026-03-11 10:48:03,953 [INFO]   ★ best 25.75% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:48:08,260 [INFO]   Ep  68/120  train 4.1880 / 10.5%  val 3.2289 / 25.2%  lr 9.42e-05     4s
+2026-03-11 10:48:12,555 [INFO]   Ep  69/120  train 4.1691 / 11.0%  val 3.2021 / 25.6%  lr 9.13e-05     4s
+2026-03-11 10:48:16,745 [INFO]   Ep  70/120  train 4.1682 / 11.3%  val 3.1834 / 26.2%  lr 8.84e-05     4s
+2026-03-11 10:48:16,786 [INFO]   ★ best 26.15% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:48:21,076 [INFO]   Ep  71/120  train 4.1282 / 11.7%  val 3.1832 / 25.8%  lr 8.55e-05     4s
+2026-03-11 10:48:25,306 [INFO]   Ep  72/120  train 4.1253 / 11.7%  val 3.1665 / 26.1%  lr 8.26e-05     4s
+2026-03-11 10:48:29,430 [INFO]   Ep  73/120  train 4.1251 / 11.8%  val 3.1459 / 26.1%  lr 7.98e-05     4s
+2026-03-11 10:48:33,633 [INFO]   Ep  74/120  train 4.1561 / 11.7%  val 3.1718 / 26.1%  lr 7.69e-05     4s
+2026-03-11 10:48:37,859 [INFO]   Ep  75/120  train 4.1353 / 11.9%  val 3.1483 / 26.8%  lr 7.41e-05     4s
+2026-03-11 10:48:37,892 [INFO]   ★ best 26.76% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:48:42,092 [INFO]   Ep  76/120  train 4.1334 / 11.6%  val 3.1555 / 26.2%  lr 7.13e-05     4s
+2026-03-11 10:48:46,345 [INFO]   Ep  77/120  train 4.1460 / 11.7%  val 3.1424 / 26.6%  lr 6.85e-05     4s
+2026-03-11 10:48:50,533 [INFO]   Ep  78/120  train 4.1022 / 12.7%  val 3.1289 / 27.5%  lr 6.58e-05     4s
+2026-03-11 10:48:50,569 [INFO]   ★ best 27.51% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:48:54,748 [INFO]   Ep  79/120  train 4.0860 / 12.8%  val 3.1108 / 28.3%  lr 6.31e-05     4s
+2026-03-11 10:48:54,783 [INFO]   ★ best 28.29% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:48:58,971 [INFO]   Ep  80/120  train 4.0987 / 12.5%  val 3.1105 / 27.9%  lr 6.04e-05     4s
+2026-03-11 10:49:03,198 [INFO]   Ep  81/120  train 4.1052 / 12.7%  val 3.1220 / 27.7%  lr 5.77e-05     4s
+2026-03-11 10:49:07,394 [INFO]   Ep  82/120  train 4.1971 / 11.2%  val 3.1071 / 28.7%  lr 5.51e-05     4s
+2026-03-11 10:49:07,428 [INFO]   ★ best 28.70% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:49:11,556 [INFO]   Ep  83/120  train 4.0928 / 12.7%  val 3.0853 / 28.1%  lr 5.25e-05     4s
+2026-03-11 10:49:15,689 [INFO]   Ep  84/120  train 4.0927 / 12.8%  val 3.0896 / 28.6%  lr 5.00e-05     4s
+2026-03-11 10:49:19,857 [INFO]   Ep  85/120  train 4.1405 / 12.5%  val 3.0933 / 28.8%  lr 4.75e-05     4s
+2026-03-11 10:49:19,891 [INFO]   ★ best 28.77% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:49:24,028 [INFO]   Ep  86/120  train 4.1252 / 12.3%  val 3.1116 / 28.8%  lr 4.50e-05     4s
+2026-03-11 10:49:24,062 [INFO]   ★ best 28.80% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:49:28,361 [INFO]   Ep  87/120  train 4.0821 / 13.4%  val 3.1077 / 28.6%  lr 4.26e-05     4s
+2026-03-11 10:49:32,455 [INFO]   Ep  88/120  train 4.0984 / 13.1%  val 3.0959 / 28.8%  lr 4.03e-05     4s
+2026-03-11 10:49:36,535 [INFO]   Ep  89/120  train 4.0835 / 13.1%  val 3.0755 / 29.4%  lr 3.80e-05     4s
+2026-03-11 10:49:36,570 [INFO]   ★ best 29.38% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:49:40,652 [INFO]   Ep  90/120  train 4.0575 / 13.8%  val 3.0688 / 29.0%  lr 3.57e-05     4s
+2026-03-11 10:49:44,872 [INFO]   Ep  91/120  train 4.0592 / 13.7%  val 3.0785 / 29.1%  lr 3.35e-05     4s
+2026-03-11 10:49:48,944 [INFO]   Ep  92/120  train 4.0589 / 13.5%  val 3.0554 / 28.8%  lr 3.14e-05     4s
+2026-03-11 10:49:53,049 [INFO]   Ep  93/120  train 4.1021 / 13.1%  val 3.0618 / 29.2%  lr 2.93e-05     4s
+2026-03-11 10:49:57,033 [INFO]   Ep  94/120  train 4.0931 / 13.3%  val 3.0555 / 29.1%  lr 2.73e-05     4s
+2026-03-11 10:50:01,207 [INFO]   Ep  95/120  train 4.1128 / 12.8%  val 3.0652 / 29.1%  lr 2.53e-05     4s
+2026-03-11 10:50:05,277 [INFO]   Ep  96/120  train 4.0809 / 13.2%  val 3.0574 / 28.8%  lr 2.34e-05     4s
+2026-03-11 10:50:09,439 [INFO]   Ep  97/120  train 4.0141 / 14.7%  val 3.0443 / 29.2%  lr 2.16e-05     4s
+2026-03-11 10:50:13,558 [INFO]   Ep  98/120  train 4.0864 / 12.9%  val 3.0457 / 29.2%  lr 1.98e-05     4s
+2026-03-11 10:50:17,713 [INFO]   Ep  99/120  train 4.0611 / 13.6%  val 3.0398 / 29.3%  lr 1.81e-05     4s
+2026-03-11 10:50:21,931 [INFO]   Ep 100/120  train 4.0877 / 13.0%  val 3.0473 / 29.3%  lr 1.64e-05     4s
+2026-03-11 10:50:26,081 [INFO]   Ep 101/120  train 4.0582 / 13.8%  val 3.0443 / 29.3%  lr 1.49e-05     4s
+2026-03-11 10:50:30,304 [INFO]   Ep 102/120  train 4.0664 / 13.7%  val 3.0405 / 29.7%  lr 1.34e-05     4s
+2026-03-11 10:50:30,339 [INFO]   ★ best 29.68% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:50:34,437 [INFO]   Ep 103/120  train 4.0301 / 14.3%  val 3.0347 / 29.6%  lr 1.20e-05     4s
+2026-03-11 10:50:38,578 [INFO]   Ep 104/120  train 4.0535 / 14.0%  val 3.0378 / 29.5%  lr 1.06e-05     4s
+2026-03-11 10:50:42,593 [INFO]   Ep 105/120  train 4.0474 / 14.1%  val 3.0327 / 29.5%  lr 9.37e-06     4s
+2026-03-11 10:50:46,708 [INFO]   Ep 106/120  train 4.0661 / 13.6%  val 3.0373 / 29.5%  lr 8.18e-06     4s
+2026-03-11 10:50:50,848 [INFO]   Ep 107/120  train 4.0663 / 13.5%  val 3.0343 / 29.6%  lr 7.07e-06     4s
+2026-03-11 10:50:54,947 [INFO]   Ep 108/120  train 4.1107 / 12.9%  val 3.0374 / 29.4%  lr 6.03e-06     4s
+2026-03-11 10:50:59,021 [INFO]   Ep 109/120  train 4.0784 / 13.5%  val 3.0370 / 29.5%  lr 5.08e-06     4s
+2026-03-11 10:51:03,020 [INFO]   Ep 110/120  train 4.0396 / 14.6%  val 3.0345 / 29.5%  lr 4.20e-06     4s
+2026-03-11 10:51:07,263 [INFO]   Ep 111/120  train 4.0561 / 14.1%  val 3.0320 / 29.6%  lr 3.41e-06     4s
+2026-03-11 10:51:11,362 [INFO]   Ep 112/120  train 4.1044 / 12.8%  val 3.0330 / 29.8%  lr 2.70e-06     4s
+2026-03-11 10:51:11,396 [INFO]   ★ best 29.82% → /data/slr/checkpoints_vit/best_fold3.pt
+2026-03-11 10:51:15,532 [INFO]   Ep 113/120  train 4.0395 / 14.5%  val 3.0316 / 29.6%  lr 2.07e-06     4s
+2026-03-11 10:51:19,586 [INFO]   Ep 114/120  train 4.0926 / 13.3%  val 3.0304 / 29.7%  lr 1.52e-06     4s
+2026-03-11 10:51:23,703 [INFO]   Ep 115/120  train 4.0186 / 14.6%  val 3.0296 / 29.6%  lr 1.06e-06     4s
+2026-03-11 10:51:27,872 [INFO]   Ep 116/120  train 4.0725 / 13.4%  val 3.0297 / 29.4%  lr 6.82e-07     4s
+2026-03-11 10:51:32,027 [INFO]   Ep 117/120  train 4.0598 / 14.2%  val 3.0305 / 29.5%  lr 3.87e-07     4s
+2026-03-11 10:51:36,026 [INFO]   Ep 118/120  train 4.0597 / 13.9%  val 3.0303 / 29.5%  lr 1.76e-07     4s
+2026-03-11 10:51:40,179 [INFO]   Ep 119/120  train 4.0384 / 14.3%  val 3.0303 / 29.5%  lr 4.98e-08     4s
+2026-03-11 10:51:44,318 [INFO]   Ep 120/120  train 4.0573 / 13.8%  val 3.0303 / 29.5%  lr 8.00e-09     4s
+2026-03-11 10:51:44,318 [INFO]   Fold 4 best val acc: 29.82%
+2026-03-11 10:51:44,654 [INFO] ================================================================
+2026-03-11 10:51:44,654 [INFO] FOLD 5 / 5
+2026-03-11 10:51:44,654 [INFO] ================================================================
+2026-03-11 10:51:44,712 [INFO] Loading pretrained weights from Hugging Face hub (timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k)
+2026-03-11 10:51:49,896 [INFO] HTTP Request: HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-11 10:51:49,898 [INFO] [timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-11 10:51:49,901 [INFO] Resized position embedding: (14, 14) to (4, 16).
+2026-03-11 10:51:49,906 [INFO] Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-11 10:51:49,915 [INFO] Model: vit_tiny_patch16_224.augreg_in21k_ft_in1k  |  5.52M params
+2026-03-11 10:51:49,916 [INFO] LLRD: 28 param groups, LR range [7.39e-07 … 2.00e-04]
+2026-03-11 10:51:54,466 [INFO]   Ep   1/120  train 5.3187 / 0.7%  val 4.9927 / 1.2%  lr 1.13e-05     5s
+2026-03-11 10:51:54,498 [INFO]   ★ best 1.19% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:51:58,691 [INFO]   Ep   2/120  train 5.1244 / 0.7%  val 4.8859 / 1.1%  lr 2.09e-05     4s
+2026-03-11 10:52:02,900 [INFO]   Ep   3/120  train 4.9922 / 0.9%  val 4.8472 / 1.2%  lr 3.61e-05     4s
+2026-03-11 10:52:07,085 [INFO]   Ep   4/120  train 4.9176 / 0.8%  val 4.8357 / 1.2%  lr 5.60e-05     4s
+2026-03-11 10:52:11,241 [INFO]   Ep   5/120  train 4.8777 / 0.8%  val 4.8286 / 1.3%  lr 7.92e-05     4s
+2026-03-11 10:52:11,280 [INFO]   ★ best 1.32% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:52:15,390 [INFO]   Ep   6/120  train 4.8590 / 0.9%  val 4.8085 / 0.9%  lr 1.04e-04     4s
+2026-03-11 10:52:19,640 [INFO]   Ep   7/120  train 4.8293 / 1.1%  val 4.7318 / 1.2%  lr 1.29e-04     4s
+2026-03-11 10:52:23,776 [INFO]   Ep   8/120  train 4.7902 / 1.3%  val 4.6312 / 1.6%  lr 1.52e-04     4s
+2026-03-11 10:52:23,816 [INFO]   ★ best 1.59% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:52:27,956 [INFO]   Ep   9/120  train 4.7592 / 1.4%  val 4.5735 / 1.8%  lr 1.72e-04     4s
+2026-03-11 10:52:27,991 [INFO]   ★ best 1.83% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:52:32,101 [INFO]   Ep  10/120  train 4.7312 / 1.6%  val 4.5300 / 2.5%  lr 1.87e-04     4s
+2026-03-11 10:52:32,136 [INFO]   ★ best 2.48% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:52:36,296 [INFO]   Ep  11/120  train 4.7176 / 1.5%  val 4.5127 / 2.0%  lr 1.97e-04     4s
+2026-03-11 10:52:40,458 [INFO]   Ep  12/120  train 4.6968 / 1.5%  val 4.4868 / 2.9%  lr 2.00e-04     4s
+2026-03-11 10:52:40,497 [INFO]   ★ best 2.88% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:52:44,631 [INFO]   Ep  13/120  train 4.6826 / 1.5%  val 4.4606 / 2.9%  lr 2.00e-04     4s
+2026-03-11 10:52:44,667 [INFO]   ★ best 2.92% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:52:48,816 [INFO]   Ep  14/120  train 4.6688 / 1.8%  val 4.4823 / 2.5%  lr 2.00e-04     4s
+2026-03-11 10:52:53,063 [INFO]   Ep  15/120  train 4.6506 / 2.0%  val 4.4096 / 3.4%  lr 2.00e-04     4s
+2026-03-11 10:52:53,098 [INFO]   ★ best 3.43% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:52:57,306 [INFO]   Ep  16/120  train 4.6440 / 2.0%  val 4.3713 / 3.4%  lr 1.99e-04     4s
+2026-03-11 10:53:01,346 [INFO]   Ep  17/120  train 4.6353 / 2.4%  val 4.3611 / 3.8%  lr 1.99e-04     4s
+2026-03-11 10:53:01,385 [INFO]   ★ best 3.77% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:05,613 [INFO]   Ep  18/120  train 4.6142 / 2.7%  val 4.2927 / 5.2%  lr 1.98e-04     4s
+2026-03-11 10:53:05,647 [INFO]   ★ best 5.19% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:09,809 [INFO]   Ep  19/120  train 4.6083 / 2.7%  val 4.2529 / 5.2%  lr 1.98e-04     4s
+2026-03-11 10:53:09,844 [INFO]   ★ best 5.22% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:14,141 [INFO]   Ep  20/120  train 4.6023 / 2.8%  val 4.2320 / 5.5%  lr 1.97e-04     4s
+2026-03-11 10:53:14,177 [INFO]   ★ best 5.53% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:18,448 [INFO]   Ep  21/120  train 4.6025 / 3.1%  val 4.2240 / 5.6%  lr 1.97e-04     4s
+2026-03-11 10:53:18,482 [INFO]   ★ best 5.60% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:22,578 [INFO]   Ep  22/120  train 4.5835 / 3.0%  val 4.2005 / 6.1%  lr 1.96e-04     4s
+2026-03-11 10:53:22,617 [INFO]   ★ best 6.11% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:26,687 [INFO]   Ep  23/120  train 4.5679 / 3.3%  val 4.1558 / 7.0%  lr 1.95e-04     4s
+2026-03-11 10:53:26,725 [INFO]   ★ best 6.95% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:30,864 [INFO]   Ep  24/120  train 4.5521 / 3.3%  val 4.1015 / 7.7%  lr 1.94e-04     4s
+2026-03-11 10:53:30,899 [INFO]   ★ best 7.67% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:34,971 [INFO]   Ep  25/120  train 4.5437 / 3.8%  val 4.1080 / 6.9%  lr 1.93e-04     4s
+2026-03-11 10:53:39,195 [INFO]   Ep  26/120  train 4.5117 / 4.0%  val 4.0350 / 8.0%  lr 1.92e-04     4s
+2026-03-11 10:53:39,229 [INFO]   ★ best 7.97% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:43,500 [INFO]   Ep  27/120  train 4.5240 / 3.8%  val 4.0199 / 8.3%  lr 1.91e-04     4s
+2026-03-11 10:53:43,534 [INFO]   ★ best 8.31% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:47,674 [INFO]   Ep  28/120  train 4.4976 / 4.1%  val 3.9761 / 9.4%  lr 1.89e-04     4s
+2026-03-11 10:53:47,709 [INFO]   ★ best 9.40% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:51,873 [INFO]   Ep  29/120  train 4.4747 / 4.5%  val 3.9400 / 9.8%  lr 1.88e-04     4s
+2026-03-11 10:53:51,907 [INFO]   ★ best 9.84% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:53:56,200 [INFO]   Ep  30/120  train 4.4616 / 4.7%  val 3.9094 / 10.0%  lr 1.87e-04     4s
+2026-03-11 10:53:56,237 [INFO]   ★ best 10.04% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:00,357 [INFO]   Ep  31/120  train 4.4761 / 4.6%  val 3.9191 / 10.2%  lr 1.85e-04     4s
+2026-03-11 10:54:00,397 [INFO]   ★ best 10.24% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:04,558 [INFO]   Ep  32/120  train 4.4565 / 4.8%  val 3.8678 / 11.7%  lr 1.84e-04     4s
+2026-03-11 10:54:04,596 [INFO]   ★ best 11.67% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:08,686 [INFO]   Ep  33/120  train 4.4741 / 4.8%  val 3.8457 / 11.6%  lr 1.82e-04     4s
+2026-03-11 10:54:12,868 [INFO]   Ep  34/120  train 4.4423 / 5.1%  val 3.8228 / 12.2%  lr 1.80e-04     4s
+2026-03-11 10:54:12,902 [INFO]   ★ best 12.18% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:17,228 [INFO]   Ep  35/120  train 4.4493 / 5.3%  val 3.7858 / 11.4%  lr 1.78e-04     4s
+2026-03-11 10:54:21,566 [INFO]   Ep  36/120  train 4.4249 / 5.3%  val 3.7897 / 12.5%  lr 1.77e-04     4s
+2026-03-11 10:54:21,602 [INFO]   ★ best 12.48% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:25,932 [INFO]   Ep  37/120  train 4.4265 / 5.5%  val 3.7249 / 13.2%  lr 1.75e-04     4s
+2026-03-11 10:54:25,969 [INFO]   ★ best 13.16% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:30,343 [INFO]   Ep  38/120  train 4.3824 / 6.4%  val 3.6919 / 14.8%  lr 1.73e-04     4s
+2026-03-11 10:54:30,379 [INFO]   ★ best 14.82% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:34,701 [INFO]   Ep  39/120  train 4.3931 / 6.3%  val 3.6829 / 15.0%  lr 1.71e-04     4s
+2026-03-11 10:54:34,738 [INFO]   ★ best 14.99% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:39,068 [INFO]   Ep  40/120  train 4.3793 / 6.3%  val 3.6713 / 15.5%  lr 1.69e-04     4s
+2026-03-11 10:54:39,105 [INFO]   ★ best 15.47% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:43,299 [INFO]   Ep  41/120  train 4.3509 / 6.6%  val 3.5966 / 15.3%  lr 1.66e-04     4s
+2026-03-11 10:54:47,426 [INFO]   Ep  42/120  train 4.3837 / 6.5%  val 3.5840 / 15.8%  lr 1.64e-04     4s
+2026-03-11 10:54:47,464 [INFO]   ★ best 15.77% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:51,741 [INFO]   Ep  43/120  train 4.3680 / 6.5%  val 3.5591 / 16.9%  lr 1.62e-04     4s
+2026-03-11 10:54:51,775 [INFO]   ★ best 16.86% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:54:55,958 [INFO]   Ep  44/120  train 4.3155 / 7.5%  val 3.5633 / 16.9%  lr 1.60e-04     4s
+2026-03-11 10:54:55,996 [INFO]   ★ best 16.93% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:00,239 [INFO]   Ep  45/120  train 4.3466 / 7.4%  val 3.4947 / 18.4%  lr 1.57e-04     4s
+2026-03-11 10:55:00,273 [INFO]   ★ best 18.39% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:04,436 [INFO]   Ep  46/120  train 4.3147 / 7.4%  val 3.4996 / 18.1%  lr 1.55e-04     4s
+2026-03-11 10:55:08,549 [INFO]   Ep  47/120  train 4.3372 / 7.4%  val 3.4926 / 19.4%  lr 1.52e-04     4s
+2026-03-11 10:55:08,584 [INFO]   ★ best 19.40% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:12,973 [INFO]   Ep  48/120  train 4.3181 / 7.7%  val 3.4541 / 19.3%  lr 1.50e-04     4s
+2026-03-11 10:55:17,212 [INFO]   Ep  49/120  train 4.3021 / 8.1%  val 3.4841 / 18.6%  lr 1.47e-04     4s
+2026-03-11 10:55:21,280 [INFO]   Ep  50/120  train 4.3123 / 7.9%  val 3.4166 / 19.8%  lr 1.45e-04     4s
+2026-03-11 10:55:21,314 [INFO]   ★ best 19.78% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:25,626 [INFO]   Ep  51/120  train 4.3287 / 7.7%  val 3.3906 / 21.1%  lr 1.42e-04     4s
+2026-03-11 10:55:25,662 [INFO]   ★ best 21.10% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:29,909 [INFO]   Ep  52/120  train 4.2766 / 8.8%  val 3.4263 / 21.1%  lr 1.40e-04     4s
+2026-03-11 10:55:34,030 [INFO]   Ep  53/120  train 4.2573 / 9.1%  val 3.4107 / 20.8%  lr 1.37e-04     4s
+2026-03-11 10:55:38,251 [INFO]   Ep  54/120  train 4.2394 / 9.5%  val 3.3450 / 21.9%  lr 1.34e-04     4s
+2026-03-11 10:55:38,288 [INFO]   ★ best 21.91% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:42,442 [INFO]   Ep  55/120  train 4.2557 / 9.1%  val 3.3367 / 23.0%  lr 1.31e-04     4s
+2026-03-11 10:55:42,478 [INFO]   ★ best 23.03% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:46,650 [INFO]   Ep  56/120  train 4.2530 / 8.9%  val 3.3545 / 22.5%  lr 1.29e-04     4s
+2026-03-11 10:55:50,905 [INFO]   Ep  57/120  train 4.2491 / 9.3%  val 3.3361 / 22.9%  lr 1.26e-04     4s
+2026-03-11 10:55:55,097 [INFO]   Ep  58/120  train 4.2051 / 10.0%  val 3.2722 / 24.1%  lr 1.23e-04     4s
+2026-03-11 10:55:55,135 [INFO]   ★ best 24.12% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:55:59,467 [INFO]   Ep  59/120  train 4.2199 / 9.4%  val 3.2777 / 23.2%  lr 1.20e-04     4s
+2026-03-11 10:56:03,639 [INFO]   Ep  60/120  train 4.2255 / 9.9%  val 3.2657 / 24.3%  lr 1.17e-04     4s
+2026-03-11 10:56:03,674 [INFO]   ★ best 24.25% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:56:07,963 [INFO]   Ep  61/120  train 4.1816 / 10.7%  val 3.2760 / 24.7%  lr 1.14e-04     4s
+2026-03-11 10:56:07,998 [INFO]   ★ best 24.69% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:56:12,220 [INFO]   Ep  62/120  train 4.1831 / 10.8%  val 3.2219 / 25.7%  lr 1.12e-04     4s
+2026-03-11 10:56:12,267 [INFO]   ★ best 25.75% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:56:16,563 [INFO]   Ep  63/120  train 4.1633 / 10.9%  val 3.2222 / 25.5%  lr 1.09e-04     4s
+2026-03-11 10:56:20,881 [INFO]   Ep  64/120  train 4.1765 / 10.8%  val 3.2309 / 26.3%  lr 1.06e-04     4s
+2026-03-11 10:56:20,918 [INFO]   ★ best 26.26% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:56:25,233 [INFO]   Ep  65/120  train 4.2162 / 9.9%  val 3.2088 / 25.6%  lr 1.03e-04     4s
+2026-03-11 10:56:29,531 [INFO]   Ep  66/120  train 4.1855 / 10.7%  val 3.1733 / 26.3%  lr 1.00e-04     4s
+2026-03-11 10:56:33,821 [INFO]   Ep  67/120  train 4.1964 / 10.6%  val 3.1963 / 26.0%  lr 9.71e-05     4s
+2026-03-11 10:56:38,133 [INFO]   Ep  68/120  train 4.1744 / 11.0%  val 3.1818 / 26.1%  lr 9.42e-05     4s
+2026-03-11 10:56:42,430 [INFO]   Ep  69/120  train 4.1710 / 10.7%  val 3.1680 / 27.7%  lr 9.13e-05     4s
+2026-03-11 10:56:42,467 [INFO]   ★ best 27.68% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:56:46,659 [INFO]   Ep  70/120  train 4.1835 / 11.0%  val 3.1894 / 28.0%  lr 8.84e-05     4s
+2026-03-11 10:56:46,694 [INFO]   ★ best 27.95% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:56:50,938 [INFO]   Ep  71/120  train 4.1936 / 10.7%  val 3.1735 / 27.5%  lr 8.55e-05     4s
+2026-03-11 10:56:55,036 [INFO]   Ep  72/120  train 4.1542 / 11.2%  val 3.1602 / 27.8%  lr 8.26e-05     4s
+2026-03-11 10:56:59,250 [INFO]   Ep  73/120  train 4.1564 / 11.5%  val 3.1640 / 27.2%  lr 7.98e-05     4s
+2026-03-11 10:57:03,544 [INFO]   Ep  74/120  train 4.1583 / 11.1%  val 3.1706 / 27.0%  lr 7.69e-05     4s
+2026-03-11 10:57:07,748 [INFO]   Ep  75/120  train 4.1399 / 11.9%  val 3.1183 / 28.2%  lr 7.41e-05     4s
+2026-03-11 10:57:07,786 [INFO]   ★ best 28.15% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:57:12,014 [INFO]   Ep  76/120  train 4.1566 / 11.3%  val 3.1338 / 28.1%  lr 7.13e-05     4s
+2026-03-11 10:57:16,174 [INFO]   Ep  77/120  train 4.1368 / 12.2%  val 3.0966 / 28.7%  lr 6.85e-05     4s
+2026-03-11 10:57:16,214 [INFO]   ★ best 28.73% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:57:20,394 [INFO]   Ep  78/120  train 4.1708 / 11.4%  val 3.0804 / 29.3%  lr 6.58e-05     4s
+2026-03-11 10:57:20,432 [INFO]   ★ best 29.34% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:57:24,559 [INFO]   Ep  79/120  train 4.1377 / 11.7%  val 3.0894 / 29.1%  lr 6.31e-05     4s
+2026-03-11 10:57:28,730 [INFO]   Ep  80/120  train 4.1204 / 12.4%  val 3.0835 / 29.3%  lr 6.04e-05     4s
+2026-03-11 10:57:32,885 [INFO]   Ep  81/120  train 4.0676 / 12.9%  val 3.0692 / 29.5%  lr 5.77e-05     4s
+2026-03-11 10:57:32,921 [INFO]   ★ best 29.51% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:57:36,938 [INFO]   Ep  82/120  train 4.0690 / 13.6%  val 3.0465 / 29.4%  lr 5.51e-05     4s
+2026-03-11 10:57:40,971 [INFO]   Ep  83/120  train 4.1086 / 12.6%  val 3.0695 / 30.4%  lr 5.25e-05     4s
+2026-03-11 10:57:41,007 [INFO]   ★ best 30.39% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:57:45,185 [INFO]   Ep  84/120  train 4.0978 / 12.7%  val 3.0469 / 30.2%  lr 5.00e-05     4s
+2026-03-11 10:57:49,339 [INFO]   Ep  85/120  train 4.1082 / 12.4%  val 3.0515 / 29.8%  lr 4.75e-05     4s
+2026-03-11 10:57:53,398 [INFO]   Ep  86/120  train 4.1198 / 12.5%  val 3.0706 / 30.4%  lr 4.50e-05     4s
+2026-03-11 10:57:53,434 [INFO]   ★ best 30.43% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:57:57,563 [INFO]   Ep  87/120  train 4.0340 / 13.9%  val 3.0356 / 31.0%  lr 4.26e-05     4s
+2026-03-11 10:57:57,602 [INFO]   ★ best 31.00% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:58:01,715 [INFO]   Ep  88/120  train 4.1192 / 12.1%  val 3.0430 / 30.2%  lr 4.03e-05     4s
+2026-03-11 10:58:05,792 [INFO]   Ep  89/120  train 4.0735 / 13.2%  val 3.0238 / 30.1%  lr 3.80e-05     4s
+2026-03-11 10:58:09,847 [INFO]   Ep  90/120  train 4.0883 / 12.9%  val 3.0374 / 29.9%  lr 3.57e-05     4s
+2026-03-11 10:58:13,887 [INFO]   Ep  91/120  train 4.0452 / 13.9%  val 3.0237 / 30.6%  lr 3.35e-05     4s
+2026-03-11 10:58:17,959 [INFO]   Ep  92/120  train 4.0978 / 12.9%  val 3.0291 / 30.3%  lr 3.14e-05     4s
+2026-03-11 10:58:22,035 [INFO]   Ep  93/120  train 4.1049 / 13.0%  val 3.0399 / 30.8%  lr 2.93e-05     4s
+2026-03-11 10:58:26,055 [INFO]   Ep  94/120  train 4.0960 / 13.1%  val 3.0210 / 30.6%  lr 2.73e-05     4s
+2026-03-11 10:58:30,166 [INFO]   Ep  95/120  train 4.0959 / 12.7%  val 3.0143 / 31.2%  lr 2.53e-05     4s
+2026-03-11 10:58:30,202 [INFO]   ★ best 31.24% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:58:34,287 [INFO]   Ep  96/120  train 4.1014 / 12.7%  val 3.0049 / 31.6%  lr 2.34e-05     4s
+2026-03-11 10:58:34,321 [INFO]   ★ best 31.65% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:58:38,372 [INFO]   Ep  97/120  train 4.1195 / 12.8%  val 3.0226 / 31.6%  lr 2.16e-05     4s
+2026-03-11 10:58:42,439 [INFO]   Ep  98/120  train 4.0891 / 13.2%  val 3.0138 / 31.2%  lr 1.98e-05     4s
+2026-03-11 10:58:46,462 [INFO]   Ep  99/120  train 4.0523 / 13.5%  val 3.0044 / 31.2%  lr 1.81e-05     4s
+2026-03-11 10:58:50,602 [INFO]   Ep 100/120  train 4.0799 / 13.6%  val 3.0023 / 31.3%  lr 1.64e-05     4s
+2026-03-11 10:58:54,583 [INFO]   Ep 101/120  train 4.0430 / 14.0%  val 2.9950 / 31.4%  lr 1.49e-05     4s
+2026-03-11 10:58:58,617 [INFO]   Ep 102/120  train 4.0763 / 13.5%  val 3.0016 / 31.5%  lr 1.34e-05     4s
+2026-03-11 10:59:02,571 [INFO]   Ep 103/120  train 4.0548 / 13.9%  val 2.9928 / 31.5%  lr 1.20e-05     4s
+2026-03-11 10:59:06,599 [INFO]   Ep 104/120  train 4.0741 / 13.4%  val 3.0003 / 31.4%  lr 1.06e-05     4s
+2026-03-11 10:59:10,640 [INFO]   Ep 105/120  train 4.0913 / 13.1%  val 2.9932 / 31.6%  lr 9.37e-06     4s
+2026-03-11 10:59:14,741 [INFO]   Ep 106/120  train 4.0531 / 14.0%  val 2.9929 / 31.6%  lr 8.18e-06     4s
+2026-03-11 10:59:18,890 [INFO]   Ep 107/120  train 4.0811 / 13.3%  val 2.9926 / 31.6%  lr 7.07e-06     4s
+2026-03-11 10:59:22,991 [INFO]   Ep 108/120  train 4.0480 / 14.1%  val 2.9921 / 31.6%  lr 6.03e-06     4s
+2026-03-11 10:59:27,024 [INFO]   Ep 109/120  train 4.0400 / 13.9%  val 2.9866 / 31.8%  lr 5.08e-06     4s
+2026-03-11 10:59:27,059 [INFO]   ★ best 31.75% → /data/slr/checkpoints_vit/best_fold4.pt
+2026-03-11 10:59:31,193 [INFO]   Ep 110/120  train 4.0869 / 13.7%  val 2.9947 / 31.7%  lr 4.20e-06     4s
+2026-03-11 10:59:35,293 [INFO]   Ep 111/120  train 4.0838 / 13.0%  val 2.9908 / 31.7%  lr 3.41e-06     4s
+2026-03-11 10:59:39,398 [INFO]   Ep 112/120  train 4.0590 / 13.6%  val 2.9895 / 31.6%  lr 2.70e-06     4s
+2026-03-11 10:59:43,477 [INFO]   Ep 113/120  train 4.0723 / 13.7%  val 2.9896 / 31.6%  lr 2.07e-06     4s
+2026-03-11 10:59:47,545 [INFO]   Ep 114/120  train 4.0668 / 13.4%  val 2.9899 / 31.7%  lr 1.52e-06     4s
+2026-03-11 10:59:51,623 [INFO]   Ep 115/120  train 4.0789 / 13.5%  val 2.9898 / 31.7%  lr 1.06e-06     4s
+2026-03-11 10:59:55,614 [INFO]   Ep 116/120  train 4.0873 / 13.5%  val 2.9904 / 31.6%  lr 6.82e-07     4s
+2026-03-11 10:59:59,582 [INFO]   Ep 117/120  train 4.0425 / 14.0%  val 2.9895 / 31.6%  lr 3.87e-07     4s
+2026-03-11 11:00:03,663 [INFO]   Ep 118/120  train 4.0883 / 13.4%  val 2.9896 / 31.6%  lr 1.76e-07     4s
+2026-03-11 11:00:07,704 [INFO]   Ep 119/120  train 4.0769 / 13.2%  val 2.9897 / 31.6%  lr 4.98e-08     4s
+2026-03-11 11:00:11,707 [INFO]   Ep 120/120  train 4.0395 / 13.8%  val 2.9896 / 31.6%  lr 8.00e-09     4s
+2026-03-11 11:00:11,710 [INFO]   Fold 5 best val acc: 31.75%
+2026-03-11 11:00:12,043 [INFO] ================================================================
+2026-03-11 11:00:12,043 [INFO] 5-FOLD CV RESULTS
+2026-03-11 11:00:12,043 [INFO] ================================================================
+2026-03-11 11:00:12,044 [INFO]   Fold 1 : 29.13%
+2026-03-11 11:00:12,044 [INFO]   Fold 2 : 30.01%
+2026-03-11 11:00:12,044 [INFO]   Fold 3 : 31.75%
+2026-03-11 11:00:12,044 [INFO]   Fold 4 : 29.82%
+2026-03-11 11:00:12,044 [INFO]   Fold 5 : 31.75%
+2026-03-11 11:00:12,044 [INFO]   Mean  : 30.49% ± 1.07%
+2026-03-11 11:00:12,044 [INFO] Loading best checkpoints for ensemble + TTA …
+2026-03-11 11:00:13,990 [INFO] Submission (no TTA) → /data/slr/checkpoints_vit/submission_no_tta.csv
+2026-03-11 11:00:13,990 [INFO] Running 6-way TTA × 5 folds = 30 forward passes per sample …
+2026-03-11 11:00:20,446 [INFO] Submission (TTA)    → /data/slr/checkpoints_vit/submission_tta.csv
+2026-03-11 11:00:20,446 [INFO] TTA changed 1204 / 4914 predictions (24.5%)
+2026-03-11 11:00:20,446 [INFO] Done.

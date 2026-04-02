@@ -1,0 +1,561 @@
+2026-03-17 14:25:16,154 [INFO] GPU : NVIDIA H200
+2026-03-17 14:25:16,154 [INFO] Config : {
+  "data_dir": "/data/slr/track2_",
+  "output_dir": "/data/slr/checkpoints_v13",
+  "max_frames": 48,
+  "n_classes": 126,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 48,
+  "num_workers": 4,
+  "img_size": 224,
+  "stage1_epochs": 5,
+  "stage1_lr": 0.0002,
+  "stage2_epochs": 150,
+  "stage2_lr": 3e-05,
+  "weight_decay": 0.05,
+  "warmup_pct": 0.05,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 45,
+  "grad_clip_norm": 1.0,
+  "llrd_decay": 0.8,
+  "kd_alpha": 0.5,
+  "kd_tau": 4.0,
+  "pseudo_label_threshold": 0.5,
+  "mixup_alpha": 0.4,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "random_erase_prob": 0.2,
+  "circ_shift_prob": 0.3,
+  "circ_shift_max": 8,
+  "amp_scale_prob": 0.5,
+  "amp_scale_lo": 0.8,
+  "amp_scale_hi": 1.2,
+  "model_name": "convnextv2_tiny.fcmae_ft_in22k_in1k",
+  "drop_path_rate": 0.2,
+  "proj_dim": 512,
+  "drop_rate": 0.3,
+  "ms_dropout_samples": 5,
+  "seed": 42
+}
+2026-03-17 14:25:16,226 [INFO] Train: 14742  |  Eval: 9828  |  Classes: 126
+2026-03-17 14:25:16,226 [INFO] Pre-loading training data …
+2026-03-17 14:25:18,788 [INFO] Pre-loading eval data …
+2026-03-17 14:25:20,483 [INFO] Generating pseudo-labels (threshold=0.50) …
+2026-03-17 14:25:25,532 [INFO]   Loaded 15 teacher models
+2026-03-17 14:26:53,104 [INFO]   Pseudo-labeled: 8973 / 9828 kept (91.3%); avg conf = 0.834
+2026-03-17 14:26:53,152 [INFO] Pre-computing teacher soft labels …
+2026-03-17 14:26:56,246 [INFO]   Loaded 10 teacher models
+2026-03-17 14:27:54,767 [INFO]   Soft labels ready: 14742 samples
+2026-03-17 14:27:54,771 [INFO] KD: α=0.50  τ=4.0  | PL: 8973 extra samples
+2026-03-17 14:27:54,980 [INFO] MultiScaleConvNeXtV2: 28.67M params
+2026-03-17 14:27:54,986 [INFO] ================================================================
+2026-03-17 14:27:54,986 [INFO] FOLD 1 / 5
+2026-03-17 14:27:54,986 [INFO] ================================================================
+2026-03-17 14:27:54,988 [INFO]   Train: 20766 (orig 11793 + PL 8973)  |  Val: 2949
+2026-03-17 14:27:55,191 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnextv2_tiny.fcmae_ft_in22k_in1k)
+2026-03-17 14:27:55,315 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnextv2_tiny.fcmae_ft_in22k_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-17 14:27:55,317 [INFO] [timm/convnextv2_tiny.fcmae_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-17 14:27:55,334 [INFO] Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-17 14:27:55,451 [INFO]   Born-again ← best_fold0.pt (val 90.78%)
+2026-03-17 14:27:55,452 [INFO] ── Stage 1: head-only warmup (5 epochs, no mix) ──
+2026-03-17 14:28:18,878 [INFO]   S1 Ep  1/5  train 0.4901 / 96.6%  val 1.1114 / 90.7%    23s
+2026-03-17 14:28:19,009 [INFO]   ★ best 90.71%
+2026-03-17 14:28:31,110 [INFO]   S1 Ep  2/5  train 0.4949 / 96.7%  val 1.1126 / 90.6%    12s
+2026-03-17 14:28:43,100 [INFO]   S1 Ep  3/5  train 0.4954 / 96.5%  val 1.1088 / 90.5%    12s
+2026-03-17 14:28:55,320 [INFO]   S1 Ep  4/5  train 0.4901 / 96.7%  val 1.1088 / 90.6%    12s
+2026-03-17 14:29:07,349 [INFO]   S1 Ep  5/5  train 0.4864 / 96.8%  val 1.1084 / 90.6%    12s
+2026-03-17 14:29:07,349 [INFO] Stage 1 done — best val: 90.71%
+2026-03-17 14:29:07,349 [INFO] ── Stage 2: full fine-tune + LLRD (150 epochs, patience 45) ──
+2026-03-17 14:29:07,350 [INFO] LLRD: 12 groups, LR [9.83e-06 … 3.00e-05]
+2026-03-17 14:29:54,342 [INFO]   S2 Ep   1/150  train 1.0697 / 71.5%  val 1.1107 / 90.7%  lr 2.45e-06  GeM_p=1.80    47s
+2026-03-17 14:29:54,504 [INFO]   ★ best 90.74% → /data/slr/checkpoints_v13/best_fold0.pt
+2026-03-17 14:30:37,275 [INFO]   S2 Ep   2/150  train 1.0745 / 70.8%  val 1.1099 / 90.6%  lr 5.97e-06  GeM_p=1.80    43s
+2026-03-17 14:31:20,106 [INFO]   S2 Ep   3/150  train 1.0834 / 70.7%  val 1.1189 / 90.3%  lr 1.12e-05  GeM_p=1.80    43s
+2026-03-17 14:32:02,827 [INFO]   S2 Ep   4/150  train 1.0346 / 73.2%  val 1.1242 / 90.5%  lr 1.71e-05  GeM_p=1.80    43s
+2026-03-17 14:32:45,585 [INFO]   S2 Ep   5/150  train 1.0788 / 70.6%  val 1.1224 / 90.2%  lr 2.28e-05  GeM_p=1.80    43s
+2026-03-17 14:33:28,372 [INFO]   S2 Ep   6/150  train 1.0843 / 70.4%  val 1.1355 / 89.6%  lr 2.73e-05  GeM_p=1.80    43s
+2026-03-17 14:34:11,088 [INFO]   S2 Ep   7/150  train 1.0957 / 70.1%  val 1.1323 / 90.0%  lr 2.97e-05  GeM_p=1.80    43s
+2026-03-17 14:34:53,844 [INFO]   S2 Ep   8/150  train 1.0641 / 71.7%  val 1.1459 / 89.8%  lr 3.00e-05  GeM_p=1.80    43s
+2026-03-17 14:35:36,589 [INFO]   S2 Ep   9/150  train 1.1125 / 69.6%  val 1.1439 / 89.4%  lr 3.00e-05  GeM_p=1.80    43s
+2026-03-17 14:36:19,304 [INFO]   S2 Ep  10/150  train 1.0828 / 70.3%  val 1.1302 / 90.3%  lr 3.00e-05  GeM_p=1.80    43s
+2026-03-17 14:37:02,002 [INFO]   S2 Ep  11/150  train 1.0873 / 70.1%  val 1.1522 / 89.3%  lr 3.00e-05  GeM_p=1.80    43s
+2026-03-17 14:37:44,714 [INFO]   S2 Ep  12/150  train 1.0920 / 70.6%  val 1.1613 / 89.5%  lr 2.99e-05  GeM_p=1.80    43s
+2026-03-17 14:38:27,407 [INFO]   S2 Ep  13/150  train 1.0796 / 70.7%  val 1.1459 / 89.7%  lr 2.99e-05  GeM_p=1.80    43s
+2026-03-17 14:39:10,059 [INFO]   S2 Ep  14/150  train 1.0868 / 71.0%  val 1.1508 / 89.6%  lr 2.98e-05  GeM_p=1.80    43s
+2026-03-17 14:39:52,810 [INFO]   S2 Ep  15/150  train 1.0719 / 71.4%  val 1.1582 / 89.8%  lr 2.98e-05  GeM_p=1.80    43s
+2026-03-17 14:40:35,486 [INFO]   S2 Ep  16/150  train 1.0478 / 72.2%  val 1.1576 / 89.7%  lr 2.97e-05  GeM_p=1.80    43s
+2026-03-17 14:41:18,179 [INFO]   S2 Ep  17/150  train 1.0694 / 71.1%  val 1.1572 / 89.4%  lr 2.97e-05  GeM_p=1.80    43s
+2026-03-17 14:42:00,879 [INFO]   S2 Ep  18/150  train 1.0680 / 71.3%  val 1.1492 / 90.0%  lr 2.96e-05  GeM_p=1.80    43s
+2026-03-17 14:42:43,611 [INFO]   S2 Ep  19/150  train 1.0881 / 70.1%  val 1.1653 / 89.3%  lr 2.95e-05  GeM_p=1.80    43s
+2026-03-17 14:43:26,413 [INFO]   S2 Ep  20/150  train 1.0965 / 70.1%  val 1.1328 / 90.1%  lr 2.94e-05  GeM_p=1.80    43s
+2026-03-17 14:44:09,193 [INFO]   S2 Ep  21/150  train 1.0613 / 71.9%  val 1.1407 / 90.2%  lr 2.93e-05  GeM_p=1.80    43s
+2026-03-17 14:44:51,949 [INFO]   S2 Ep  22/150  train 1.0355 / 73.4%  val 1.1534 / 89.8%  lr 2.92e-05  GeM_p=1.80    43s
+2026-03-17 14:45:34,664 [INFO]   S2 Ep  23/150  train 1.0783 / 70.8%  val 1.1523 / 89.7%  lr 2.91e-05  GeM_p=1.80    43s
+2026-03-17 14:46:17,475 [INFO]   S2 Ep  24/150  train 1.0559 / 71.3%  val 1.1423 / 89.9%  lr 2.90e-05  GeM_p=1.80    43s
+2026-03-17 14:47:00,262 [INFO]   S2 Ep  25/150  train 1.0697 / 71.6%  val 1.1424 / 89.9%  lr 2.89e-05  GeM_p=1.80    43s
+2026-03-17 14:47:43,029 [INFO]   S2 Ep  26/150  train 1.0582 / 72.0%  val 1.1406 / 89.6%  lr 2.88e-05  GeM_p=1.80    43s
+2026-03-17 14:48:25,811 [INFO]   S2 Ep  27/150  train 1.0477 / 72.2%  val 1.1494 / 89.6%  lr 2.86e-05  GeM_p=1.80    43s
+2026-03-17 14:49:08,517 [INFO]   S2 Ep  28/150  train 1.0896 / 70.1%  val 1.1579 / 89.4%  lr 2.85e-05  GeM_p=1.80    43s
+2026-03-17 14:49:51,277 [INFO]   S2 Ep  29/150  train 1.0503 / 72.6%  val 1.1657 / 89.7%  lr 2.83e-05  GeM_p=1.80    43s
+2026-03-17 14:50:33,962 [INFO]   S2 Ep  30/150  train 1.0678 / 71.2%  val 1.1495 / 89.6%  lr 2.82e-05  GeM_p=1.80    43s
+2026-03-17 14:51:16,652 [INFO]   S2 Ep  31/150  train 1.0705 / 71.1%  val 1.1572 / 89.1%  lr 2.80e-05  GeM_p=1.80    43s
+2026-03-17 14:51:59,374 [INFO]   S2 Ep  32/150  train 1.0341 / 73.1%  val 1.1517 / 89.5%  lr 2.79e-05  GeM_p=1.80    43s
+2026-03-17 14:52:42,130 [INFO]   S2 Ep  33/150  train 1.0467 / 72.3%  val 1.1556 / 89.8%  lr 2.77e-05  GeM_p=1.80    43s
+2026-03-17 14:53:24,832 [INFO]   S2 Ep  34/150  train 1.0572 / 71.8%  val 1.1478 / 89.6%  lr 2.75e-05  GeM_p=1.80    43s
+2026-03-17 14:54:07,587 [INFO]   S2 Ep  35/150  train 1.0564 / 72.2%  val 1.1464 / 89.7%  lr 2.73e-05  GeM_p=1.80    43s
+2026-03-17 14:54:50,352 [INFO]   S2 Ep  36/150  train 1.0638 / 71.2%  val 1.1380 / 90.1%  lr 2.71e-05  GeM_p=1.80    43s
+2026-03-17 14:55:33,082 [INFO]   S2 Ep  37/150  train 1.0402 / 73.0%  val 1.1508 / 90.1%  lr 2.69e-05  GeM_p=1.80    43s
+2026-03-17 14:56:15,807 [INFO]   S2 Ep  38/150  train 1.0823 / 70.1%  val 1.1459 / 89.8%  lr 2.67e-05  GeM_p=1.80    43s
+2026-03-17 14:56:58,530 [INFO]   S2 Ep  39/150  train 1.0479 / 72.4%  val 1.1498 / 89.9%  lr 2.65e-05  GeM_p=1.80    43s
+2026-03-17 14:57:41,298 [INFO]   S2 Ep  40/150  train 1.0553 / 71.9%  val 1.1264 / 90.4%  lr 2.63e-05  GeM_p=1.80    43s
+2026-03-17 14:58:24,038 [INFO]   S2 Ep  41/150  train 1.0576 / 71.9%  val 1.1554 / 89.3%  lr 2.61e-05  GeM_p=1.80    43s
+2026-03-17 14:59:06,762 [INFO]   S2 Ep  42/150  train 1.0426 / 72.7%  val 1.1425 / 90.3%  lr 2.59e-05  GeM_p=1.80    43s
+2026-03-17 14:59:49,527 [INFO]   S2 Ep  43/150  train 1.0443 / 72.2%  val 1.1444 / 89.8%  lr 2.56e-05  GeM_p=1.80    43s
+2026-03-17 15:00:32,317 [INFO]   S2 Ep  44/150  train 1.0568 / 71.7%  val 1.1352 / 90.1%  lr 2.54e-05  GeM_p=1.80    43s
+2026-03-17 15:01:15,118 [INFO]   S2 Ep  45/150  train 1.0457 / 72.6%  val 1.1334 / 90.4%  lr 2.52e-05  GeM_p=1.80    43s
+2026-03-17 15:01:57,901 [INFO]   S2 Ep  46/150  train 1.0520 / 71.9%  val 1.1467 / 89.8%  lr 2.49e-05  GeM_p=1.80    43s
+2026-03-17 15:01:57,901 [INFO]   Early stopping at S2 epoch 46
+2026-03-17 15:01:57,902 [INFO]   Fold 1 best val acc: 90.74%
+2026-03-17 15:01:58,214 [INFO] ================================================================
+2026-03-17 15:01:58,214 [INFO] FOLD 2 / 5
+2026-03-17 15:01:58,214 [INFO] ================================================================
+2026-03-17 15:01:58,217 [INFO]   Train: 20766 (orig 11793 + PL 8973)  |  Val: 2949
+2026-03-17 15:01:58,430 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnextv2_tiny.fcmae_ft_in22k_in1k)
+2026-03-17 15:02:03,584 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnextv2_tiny.fcmae_ft_in22k_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-17 15:02:03,586 [INFO] [timm/convnextv2_tiny.fcmae_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-17 15:02:03,602 [INFO] Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-17 15:02:03,707 [INFO]   Born-again ← best_fold1.pt (val 89.69%)
+2026-03-17 15:02:03,708 [INFO] ── Stage 1: head-only warmup (5 epochs, no mix) ──
+2026-03-17 15:02:16,264 [INFO]   S1 Ep  1/5  train 0.4929 / 96.6%  val 1.1552 / 89.6%    13s
+2026-03-17 15:02:16,381 [INFO]   ★ best 89.62%
+2026-03-17 15:02:28,417 [INFO]   S1 Ep  2/5  train 0.4955 / 96.6%  val 1.1544 / 89.6%    12s
+2026-03-17 15:02:40,495 [INFO]   S1 Ep  3/5  train 0.5002 / 96.5%  val 1.1537 / 89.6%    12s
+2026-03-17 15:02:52,579 [INFO]   S1 Ep  4/5  train 0.4930 / 96.5%  val 1.1500 / 89.6%    12s
+2026-03-17 15:03:04,784 [INFO]   S1 Ep  5/5  train 0.4922 / 96.6%  val 1.1499 / 89.6%    12s
+2026-03-17 15:03:04,784 [INFO] Stage 1 done — best val: 89.62%
+2026-03-17 15:03:04,784 [INFO] ── Stage 2: full fine-tune + LLRD (150 epochs, patience 45) ──
+2026-03-17 15:03:04,785 [INFO] LLRD: 12 groups, LR [9.83e-06 … 3.00e-05]
+2026-03-17 15:03:47,597 [INFO]   S2 Ep   1/150  train 1.0636 / 71.5%  val 1.1509 / 89.4%  lr 2.45e-06  GeM_p=1.81    43s
+2026-03-17 15:04:30,363 [INFO]   S2 Ep   2/150  train 1.0653 / 71.4%  val 1.1533 / 89.3%  lr 5.97e-06  GeM_p=1.81    43s
+2026-03-17 15:05:13,099 [INFO]   S2 Ep   3/150  train 1.0711 / 71.2%  val 1.1571 / 89.2%  lr 1.12e-05  GeM_p=1.81    43s
+2026-03-17 15:05:55,993 [INFO]   S2 Ep   4/150  train 1.0836 / 70.6%  val 1.1474 / 89.8%  lr 1.71e-05  GeM_p=1.81    43s
+2026-03-17 15:05:56,146 [INFO]   ★ best 89.79% → /data/slr/checkpoints_v13/best_fold1.pt
+2026-03-17 15:06:38,881 [INFO]   S2 Ep   5/150  train 1.0844 / 70.6%  val 1.1576 / 89.4%  lr 2.28e-05  GeM_p=1.81    43s
+2026-03-17 15:07:21,693 [INFO]   S2 Ep   6/150  train 1.0970 / 70.2%  val 1.1638 / 88.9%  lr 2.73e-05  GeM_p=1.81    43s
+2026-03-17 15:08:04,467 [INFO]   S2 Ep   7/150  train 1.0933 / 70.5%  val 1.1717 / 89.0%  lr 2.97e-05  GeM_p=1.81    43s
+2026-03-17 15:08:47,296 [INFO]   S2 Ep   8/150  train 1.1002 / 70.4%  val 1.1674 / 89.3%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 15:09:30,053 [INFO]   S2 Ep   9/150  train 1.0737 / 70.7%  val 1.1777 / 89.0%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 15:10:12,857 [INFO]   S2 Ep  10/150  train 1.1066 / 69.5%  val 1.1709 / 89.0%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 15:10:55,647 [INFO]   S2 Ep  11/150  train 1.0833 / 71.0%  val 1.1689 / 89.1%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 15:11:38,468 [INFO]   S2 Ep  12/150  train 1.0612 / 71.7%  val 1.1551 / 89.8%  lr 2.99e-05  GeM_p=1.81    43s
+2026-03-17 15:12:21,274 [INFO]   S2 Ep  13/150  train 1.0600 / 72.3%  val 1.1810 / 88.9%  lr 2.99e-05  GeM_p=1.81    43s
+2026-03-17 15:13:04,035 [INFO]   S2 Ep  14/150  train 1.0734 / 71.4%  val 1.1749 / 89.3%  lr 2.98e-05  GeM_p=1.81    43s
+2026-03-17 15:13:46,830 [INFO]   S2 Ep  15/150  train 1.0234 / 73.5%  val 1.1649 / 89.3%  lr 2.98e-05  GeM_p=1.81    43s
+2026-03-17 15:14:29,707 [INFO]   S2 Ep  16/150  train 1.0478 / 72.5%  val 1.1677 / 88.9%  lr 2.97e-05  GeM_p=1.81    43s
+2026-03-17 15:15:12,516 [INFO]   S2 Ep  17/150  train 1.0326 / 72.7%  val 1.1773 / 89.3%  lr 2.97e-05  GeM_p=1.81    43s
+2026-03-17 15:15:55,326 [INFO]   S2 Ep  18/150  train 1.0896 / 70.5%  val 1.1799 / 89.0%  lr 2.96e-05  GeM_p=1.81    43s
+2026-03-17 15:16:38,139 [INFO]   S2 Ep  19/150  train 1.0816 / 70.6%  val 1.1681 / 89.1%  lr 2.95e-05  GeM_p=1.81    43s
+2026-03-17 15:17:20,953 [INFO]   S2 Ep  20/150  train 1.0660 / 71.9%  val 1.1732 / 89.5%  lr 2.94e-05  GeM_p=1.81    43s
+2026-03-17 15:18:03,747 [INFO]   S2 Ep  21/150  train 1.0946 / 69.7%  val 1.1544 / 89.8%  lr 2.93e-05  GeM_p=1.81    43s
+2026-03-17 15:18:03,899 [INFO]   ★ best 89.83% → /data/slr/checkpoints_v13/best_fold1.pt
+2026-03-17 15:18:46,699 [INFO]   S2 Ep  22/150  train 1.0899 / 70.5%  val 1.1553 / 89.9%  lr 2.92e-05  GeM_p=1.81    43s
+2026-03-17 15:18:46,852 [INFO]   ★ best 89.89% → /data/slr/checkpoints_v13/best_fold1.pt
+2026-03-17 15:19:29,637 [INFO]   S2 Ep  23/150  train 1.0880 / 70.1%  val 1.1635 / 89.8%  lr 2.91e-05  GeM_p=1.81    43s
+2026-03-17 15:20:12,400 [INFO]   S2 Ep  24/150  train 1.0647 / 71.8%  val 1.1602 / 89.1%  lr 2.90e-05  GeM_p=1.81    43s
+2026-03-17 15:20:55,145 [INFO]   S2 Ep  25/150  train 1.0641 / 72.0%  val 1.1717 / 89.1%  lr 2.89e-05  GeM_p=1.81    43s
+2026-03-17 15:21:37,923 [INFO]   S2 Ep  26/150  train 1.0597 / 71.6%  val 1.1666 / 89.1%  lr 2.88e-05  GeM_p=1.81    43s
+2026-03-17 15:22:20,731 [INFO]   S2 Ep  27/150  train 1.0564 / 71.9%  val 1.1639 / 89.5%  lr 2.86e-05  GeM_p=1.81    43s
+2026-03-17 15:23:03,565 [INFO]   S2 Ep  28/150  train 1.0622 / 71.8%  val 1.1687 / 89.7%  lr 2.85e-05  GeM_p=1.81    43s
+2026-03-17 15:23:46,416 [INFO]   S2 Ep  29/150  train 1.0839 / 70.5%  val 1.1607 / 89.5%  lr 2.83e-05  GeM_p=1.81    43s
+2026-03-17 15:24:29,188 [INFO]   S2 Ep  30/150  train 1.0753 / 70.9%  val 1.1675 / 89.1%  lr 2.82e-05  GeM_p=1.81    43s
+2026-03-17 15:25:11,887 [INFO]   S2 Ep  31/150  train 1.0924 / 70.4%  val 1.1655 / 89.4%  lr 2.80e-05  GeM_p=1.81    43s
+2026-03-17 15:25:54,698 [INFO]   S2 Ep  32/150  train 1.0556 / 71.6%  val 1.1728 / 89.0%  lr 2.79e-05  GeM_p=1.81    43s
+2026-03-17 15:26:37,518 [INFO]   S2 Ep  33/150  train 1.0291 / 73.2%  val 1.1606 / 89.5%  lr 2.77e-05  GeM_p=1.81    43s
+2026-03-17 15:27:20,262 [INFO]   S2 Ep  34/150  train 1.0837 / 71.2%  val 1.1585 / 89.1%  lr 2.75e-05  GeM_p=1.81    43s
+2026-03-17 15:28:02,995 [INFO]   S2 Ep  35/150  train 1.0856 / 70.3%  val 1.1704 / 89.3%  lr 2.73e-05  GeM_p=1.81    43s
+2026-03-17 15:28:45,751 [INFO]   S2 Ep  36/150  train 1.0734 / 70.7%  val 1.1665 / 89.5%  lr 2.71e-05  GeM_p=1.81    43s
+2026-03-17 15:29:28,475 [INFO]   S2 Ep  37/150  train 1.0529 / 72.2%  val 1.1783 / 89.1%  lr 2.69e-05  GeM_p=1.81    43s
+2026-03-17 15:30:11,247 [INFO]   S2 Ep  38/150  train 1.0526 / 72.0%  val 1.1654 / 89.1%  lr 2.67e-05  GeM_p=1.81    43s
+2026-03-17 15:30:54,058 [INFO]   S2 Ep  39/150  train 1.0209 / 73.7%  val 1.1635 / 89.4%  lr 2.65e-05  GeM_p=1.81    43s
+2026-03-17 15:31:36,833 [INFO]   S2 Ep  40/150  train 1.0480 / 72.4%  val 1.1640 / 89.4%  lr 2.63e-05  GeM_p=1.81    43s
+2026-03-17 15:32:19,557 [INFO]   S2 Ep  41/150  train 1.0884 / 70.3%  val 1.1587 / 89.3%  lr 2.61e-05  GeM_p=1.81    43s
+2026-03-17 15:33:02,294 [INFO]   S2 Ep  42/150  train 1.0620 / 71.9%  val 1.1606 / 89.3%  lr 2.59e-05  GeM_p=1.81    43s
+2026-03-17 15:33:45,054 [INFO]   S2 Ep  43/150  train 1.0567 / 71.7%  val 1.1642 / 89.2%  lr 2.56e-05  GeM_p=1.81    43s
+2026-03-17 15:34:27,853 [INFO]   S2 Ep  44/150  train 1.0579 / 71.9%  val 1.1614 / 89.6%  lr 2.54e-05  GeM_p=1.80    43s
+2026-03-17 15:35:10,643 [INFO]   S2 Ep  45/150  train 1.0743 / 71.2%  val 1.1590 / 89.5%  lr 2.52e-05  GeM_p=1.80    43s
+2026-03-17 15:35:53,402 [INFO]   S2 Ep  46/150  train 1.0392 / 73.3%  val 1.1631 / 89.3%  lr 2.49e-05  GeM_p=1.80    43s
+2026-03-17 15:36:36,245 [INFO]   S2 Ep  47/150  train 1.0257 / 73.4%  val 1.1572 / 89.4%  lr 2.47e-05  GeM_p=1.80    43s
+2026-03-17 15:37:18,975 [INFO]   S2 Ep  48/150  train 1.0561 / 71.6%  val 1.1641 / 89.3%  lr 2.44e-05  GeM_p=1.80    43s
+2026-03-17 15:38:01,734 [INFO]   S2 Ep  49/150  train 1.0397 / 72.5%  val 1.1680 / 89.1%  lr 2.41e-05  GeM_p=1.80    43s
+2026-03-17 15:38:44,459 [INFO]   S2 Ep  50/150  train 1.0502 / 71.9%  val 1.1652 / 89.2%  lr 2.39e-05  GeM_p=1.80    43s
+2026-03-17 15:39:27,211 [INFO]   S2 Ep  51/150  train 1.0357 / 72.8%  val 1.1594 / 89.3%  lr 2.36e-05  GeM_p=1.80    43s
+2026-03-17 15:40:09,930 [INFO]   S2 Ep  52/150  train 1.0606 / 71.7%  val 1.1475 / 89.7%  lr 2.33e-05  GeM_p=1.80    43s
+2026-03-17 15:40:52,729 [INFO]   S2 Ep  53/150  train 1.0226 / 73.7%  val 1.1667 / 89.5%  lr 2.31e-05  GeM_p=1.80    43s
+2026-03-17 15:41:35,515 [INFO]   S2 Ep  54/150  train 1.0302 / 73.1%  val 1.1442 / 89.7%  lr 2.28e-05  GeM_p=1.80    43s
+2026-03-17 15:42:18,281 [INFO]   S2 Ep  55/150  train 1.0575 / 72.3%  val 1.1705 / 89.4%  lr 2.25e-05  GeM_p=1.80    43s
+2026-03-17 15:43:01,034 [INFO]   S2 Ep  56/150  train 1.0817 / 70.1%  val 1.1603 / 89.1%  lr 2.22e-05  GeM_p=1.80    43s
+2026-03-17 15:43:43,789 [INFO]   S2 Ep  57/150  train 1.0646 / 71.1%  val 1.1627 / 89.3%  lr 2.19e-05  GeM_p=1.80    43s
+2026-03-17 15:44:26,601 [INFO]   S2 Ep  58/150  train 1.0344 / 72.9%  val 1.1881 / 89.1%  lr 2.16e-05  GeM_p=1.80    43s
+2026-03-17 15:45:09,397 [INFO]   S2 Ep  59/150  train 1.0546 / 71.9%  val 1.1624 / 89.3%  lr 2.13e-05  GeM_p=1.80    43s
+2026-03-17 15:45:52,197 [INFO]   S2 Ep  60/150  train 1.0509 / 71.5%  val 1.1627 / 89.4%  lr 2.10e-05  GeM_p=1.80    43s
+2026-03-17 15:46:34,931 [INFO]   S2 Ep  61/150  train 1.0745 / 70.7%  val 1.1586 / 89.5%  lr 2.07e-05  GeM_p=1.80    43s
+2026-03-17 15:47:17,721 [INFO]   S2 Ep  62/150  train 1.0300 / 73.1%  val 1.1699 / 89.4%  lr 2.04e-05  GeM_p=1.80    43s
+2026-03-17 15:48:00,485 [INFO]   S2 Ep  63/150  train 1.0422 / 72.3%  val 1.1651 / 89.9%  lr 2.01e-05  GeM_p=1.80    43s
+2026-03-17 15:48:43,314 [INFO]   S2 Ep  64/150  train 1.0197 / 73.5%  val 1.1576 / 89.8%  lr 1.98e-05  GeM_p=1.80    43s
+2026-03-17 15:49:26,125 [INFO]   S2 Ep  65/150  train 1.0328 / 73.1%  val 1.1680 / 89.7%  lr 1.95e-05  GeM_p=1.80    43s
+2026-03-17 15:50:08,910 [INFO]   S2 Ep  66/150  train 1.0453 / 72.2%  val 1.1593 / 89.6%  lr 1.92e-05  GeM_p=1.80    43s
+2026-03-17 15:50:51,726 [INFO]   S2 Ep  67/150  train 1.0401 / 72.9%  val 1.1711 / 89.1%  lr 1.88e-05  GeM_p=1.80    43s
+2026-03-17 15:50:51,727 [INFO]   Early stopping at S2 epoch 67
+2026-03-17 15:50:51,727 [INFO]   Fold 2 best val acc: 89.89%
+2026-03-17 15:50:52,012 [INFO] ================================================================
+2026-03-17 15:50:52,012 [INFO] FOLD 3 / 5
+2026-03-17 15:50:52,012 [INFO] ================================================================
+2026-03-17 15:50:52,015 [INFO]   Train: 20767 (orig 11794 + PL 8973)  |  Val: 2948
+2026-03-17 15:50:52,215 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnextv2_tiny.fcmae_ft_in22k_in1k)
+2026-03-17 15:50:52,596 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnextv2_tiny.fcmae_ft_in22k_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-17 15:50:52,597 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-17 15:50:52,598 [INFO] [timm/convnextv2_tiny.fcmae_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-17 15:50:52,614 [INFO] Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-17 15:50:52,730 [INFO]   Born-again ← best_fold2.pt (val 91.25%)
+2026-03-17 15:50:52,731 [INFO] ── Stage 1: head-only warmup (5 epochs, no mix) ──
+2026-03-17 15:51:10,644 [INFO]   S1 Ep  1/5  train 0.4978 / 96.3%  val 1.0904 / 91.1%    18s
+2026-03-17 15:51:10,764 [INFO]   ★ best 91.08%
+2026-03-17 15:51:22,896 [INFO]   S1 Ep  2/5  train 0.5035 / 96.2%  val 1.0905 / 91.1%    12s
+2026-03-17 15:51:23,046 [INFO]   ★ best 91.11%
+2026-03-17 15:51:35,085 [INFO]   S1 Ep  3/5  train 0.5002 / 96.3%  val 1.0897 / 91.2%    12s
+2026-03-17 15:51:35,227 [INFO]   ★ best 91.25%
+2026-03-17 15:51:47,536 [INFO]   S1 Ep  4/5  train 0.4946 / 96.5%  val 1.0881 / 91.0%    12s
+2026-03-17 15:51:59,570 [INFO]   S1 Ep  5/5  train 0.4911 / 96.5%  val 1.0872 / 91.0%    12s
+2026-03-17 15:51:59,570 [INFO] Stage 1 done — best val: 91.25%
+2026-03-17 15:51:59,570 [INFO] ── Stage 2: full fine-tune + LLRD (150 epochs, patience 45) ──
+2026-03-17 15:51:59,571 [INFO] LLRD: 12 groups, LR [9.83e-06 … 3.00e-05]
+2026-03-17 15:52:42,481 [INFO]   S2 Ep   1/150  train 1.0694 / 71.0%  val 1.0933 / 90.8%  lr 2.45e-06  GeM_p=1.81    43s
+2026-03-17 15:53:25,275 [INFO]   S2 Ep   2/150  train 1.0910 / 71.0%  val 1.0907 / 91.0%  lr 5.97e-06  GeM_p=1.81    43s
+2026-03-17 15:54:08,102 [INFO]   S2 Ep   3/150  train 1.0753 / 70.9%  val 1.1017 / 90.9%  lr 1.12e-05  GeM_p=1.81    43s
+2026-03-17 15:54:50,870 [INFO]   S2 Ep   4/150  train 1.0700 / 71.4%  val 1.1004 / 91.0%  lr 1.71e-05  GeM_p=1.81    43s
+2026-03-17 15:55:33,667 [INFO]   S2 Ep   5/150  train 1.0664 / 71.5%  val 1.1071 / 90.8%  lr 2.28e-05  GeM_p=1.81    43s
+2026-03-17 15:56:16,397 [INFO]   S2 Ep   6/150  train 1.0639 / 71.8%  val 1.1043 / 90.8%  lr 2.73e-05  GeM_p=1.81    43s
+2026-03-17 15:56:59,153 [INFO]   S2 Ep   7/150  train 1.1223 / 68.7%  val 1.1149 / 90.8%  lr 2.97e-05  GeM_p=1.81    43s
+2026-03-17 15:57:41,859 [INFO]   S2 Ep   8/150  train 1.0800 / 70.9%  val 1.1185 / 90.3%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 15:58:24,632 [INFO]   S2 Ep   9/150  train 1.1101 / 69.7%  val 1.1285 / 90.3%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 15:59:07,410 [INFO]   S2 Ep  10/150  train 1.1195 / 68.7%  val 1.0964 / 91.0%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 15:59:50,133 [INFO]   S2 Ep  11/150  train 1.0680 / 71.4%  val 1.1077 / 90.7%  lr 3.00e-05  GeM_p=1.81    43s
+2026-03-17 16:00:32,908 [INFO]   S2 Ep  12/150  train 1.0967 / 70.0%  val 1.1140 / 90.8%  lr 2.99e-05  GeM_p=1.82    43s
+2026-03-17 16:01:15,648 [INFO]   S2 Ep  13/150  train 1.1088 / 69.4%  val 1.1221 / 90.6%  lr 2.99e-05  GeM_p=1.81    43s
+2026-03-17 16:01:58,427 [INFO]   S2 Ep  14/150  train 1.0753 / 71.5%  val 1.1154 / 90.6%  lr 2.98e-05  GeM_p=1.81    43s
+2026-03-17 16:02:41,215 [INFO]   S2 Ep  15/150  train 1.0755 / 70.9%  val 1.1178 / 90.3%  lr 2.98e-05  GeM_p=1.81    43s
+2026-03-17 16:03:23,968 [INFO]   S2 Ep  16/150  train 1.0880 / 70.6%  val 1.1227 / 90.4%  lr 2.97e-05  GeM_p=1.81    43s
+2026-03-17 16:04:06,761 [INFO]   S2 Ep  17/150  train 1.0696 / 70.9%  val 1.1311 / 90.0%  lr 2.97e-05  GeM_p=1.81    43s
+2026-03-17 16:04:49,573 [INFO]   S2 Ep  18/150  train 1.0653 / 71.8%  val 1.1192 / 90.8%  lr 2.96e-05  GeM_p=1.81    43s
+2026-03-17 16:05:32,342 [INFO]   S2 Ep  19/150  train 1.0851 / 70.6%  val 1.1088 / 90.8%  lr 2.95e-05  GeM_p=1.81    43s
+2026-03-17 16:06:15,114 [INFO]   S2 Ep  20/150  train 1.0623 / 71.8%  val 1.1208 / 90.7%  lr 2.94e-05  GeM_p=1.81    43s
+2026-03-17 16:06:57,933 [INFO]   S2 Ep  21/150  train 1.0804 / 70.6%  val 1.1037 / 91.1%  lr 2.93e-05  GeM_p=1.81    43s
+2026-03-17 16:07:40,663 [INFO]   S2 Ep  22/150  train 1.0683 / 71.3%  val 1.1180 / 90.4%  lr 2.92e-05  GeM_p=1.81    43s
+2026-03-17 16:08:23,361 [INFO]   S2 Ep  23/150  train 1.0455 / 72.3%  val 1.1145 / 90.4%  lr 2.91e-05  GeM_p=1.81    43s
+2026-03-17 16:09:06,131 [INFO]   S2 Ep  24/150  train 1.0619 / 71.8%  val 1.1377 / 90.2%  lr 2.90e-05  GeM_p=1.81    43s
+2026-03-17 16:09:48,922 [INFO]   S2 Ep  25/150  train 1.0780 / 71.0%  val 1.1174 / 90.8%  lr 2.89e-05  GeM_p=1.81    43s
+2026-03-17 16:10:31,712 [INFO]   S2 Ep  26/150  train 1.0740 / 71.2%  val 1.1203 / 90.6%  lr 2.88e-05  GeM_p=1.81    43s
+2026-03-17 16:11:14,450 [INFO]   S2 Ep  27/150  train 1.0924 / 70.4%  val 1.1253 / 90.6%  lr 2.86e-05  GeM_p=1.81    43s
+2026-03-17 16:11:57,204 [INFO]   S2 Ep  28/150  train 1.0523 / 72.0%  val 1.1164 / 90.7%  lr 2.85e-05  GeM_p=1.81    43s
+2026-03-17 16:12:39,963 [INFO]   S2 Ep  29/150  train 1.0610 / 72.2%  val 1.1316 / 90.3%  lr 2.83e-05  GeM_p=1.81    43s
+2026-03-17 16:13:22,933 [INFO]   S2 Ep  30/150  train 1.0778 / 70.9%  val 1.1267 / 90.2%  lr 2.82e-05  GeM_p=1.81    43s
+2026-03-17 16:14:05,739 [INFO]   S2 Ep  31/150  train 1.0645 / 71.4%  val 1.1435 / 90.3%  lr 2.80e-05  GeM_p=1.81    43s
+2026-03-17 16:14:48,529 [INFO]   S2 Ep  32/150  train 1.0663 / 71.4%  val 1.1201 / 90.6%  lr 2.79e-05  GeM_p=1.81    43s
+2026-03-17 16:15:31,266 [INFO]   S2 Ep  33/150  train 1.0528 / 71.9%  val 1.1244 / 90.2%  lr 2.77e-05  GeM_p=1.81    43s
+2026-03-17 16:16:14,065 [INFO]   S2 Ep  34/150  train 1.0532 / 72.1%  val 1.1233 / 90.5%  lr 2.75e-05  GeM_p=1.81    43s
+2026-03-17 16:16:56,751 [INFO]   S2 Ep  35/150  train 1.0579 / 71.8%  val 1.1323 / 90.4%  lr 2.73e-05  GeM_p=1.81    43s
+2026-03-17 16:17:39,513 [INFO]   S2 Ep  36/150  train 1.0689 / 71.6%  val 1.1188 / 90.7%  lr 2.71e-05  GeM_p=1.81    43s
+2026-03-17 16:18:22,294 [INFO]   S2 Ep  37/150  train 1.0624 / 71.8%  val 1.1170 / 90.7%  lr 2.69e-05  GeM_p=1.81    43s
+2026-03-17 16:19:05,039 [INFO]   S2 Ep  38/150  train 1.0682 / 71.8%  val 1.1287 / 90.2%  lr 2.67e-05  GeM_p=1.81    43s
+2026-03-17 16:19:47,849 [INFO]   S2 Ep  39/150  train 1.0946 / 70.3%  val 1.1271 / 90.3%  lr 2.65e-05  GeM_p=1.81    43s
+2026-03-17 16:20:30,648 [INFO]   S2 Ep  40/150  train 1.0576 / 71.6%  val 1.1223 / 90.9%  lr 2.63e-05  GeM_p=1.81    43s
+2026-03-17 16:21:13,423 [INFO]   S2 Ep  41/150  train 1.0873 / 70.7%  val 1.1169 / 90.6%  lr 2.61e-05  GeM_p=1.81    43s
+2026-03-17 16:21:56,190 [INFO]   S2 Ep  42/150  train 1.0821 / 70.2%  val 1.1137 / 90.4%  lr 2.59e-05  GeM_p=1.81    43s
+2026-03-17 16:22:39,010 [INFO]   S2 Ep  43/150  train 1.0672 / 70.8%  val 1.1298 / 90.3%  lr 2.56e-05  GeM_p=1.81    43s
+2026-03-17 16:23:21,729 [INFO]   S2 Ep  44/150  train 1.0446 / 72.4%  val 1.1238 / 90.6%  lr 2.54e-05  GeM_p=1.80    43s
+2026-03-17 16:24:04,455 [INFO]   S2 Ep  45/150  train 1.0644 / 71.2%  val 1.1198 / 90.4%  lr 2.52e-05  GeM_p=1.80    43s
+2026-03-17 16:24:04,456 [INFO]   Early stopping at S2 epoch 45
+2026-03-17 16:24:04,456 [INFO]   Fold 3 best val acc: 91.25%
+2026-03-17 16:24:04,779 [INFO] ================================================================
+2026-03-17 16:24:04,779 [INFO] FOLD 4 / 5
+2026-03-17 16:24:04,780 [INFO] ================================================================
+2026-03-17 16:24:04,783 [INFO]   Train: 20767 (orig 11794 + PL 8973)  |  Val: 2948
+2026-03-17 16:24:04,998 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnextv2_tiny.fcmae_ft_in22k_in1k)
+2026-03-17 16:24:05,108 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnextv2_tiny.fcmae_ft_in22k_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-17 16:24:05,110 [INFO] [timm/convnextv2_tiny.fcmae_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-17 16:24:05,125 [INFO] Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-17 16:24:05,226 [INFO]   Born-again ← best_fold3.pt (val 90.98%)
+2026-03-17 16:24:05,227 [INFO] ── Stage 1: head-only warmup (5 epochs, no mix) ──
+2026-03-17 16:24:17,791 [INFO]   S1 Ep  1/5  train 0.4905 / 96.7%  val 1.1036 / 90.7%    13s
+2026-03-17 16:24:17,915 [INFO]   ★ best 90.67%
+2026-03-17 16:24:29,958 [INFO]   S1 Ep  2/5  train 0.4948 / 96.6%  val 1.1016 / 90.9%    12s
+2026-03-17 16:24:30,099 [INFO]   ★ best 90.88%
+2026-03-17 16:24:42,158 [INFO]   S1 Ep  3/5  train 0.4962 / 96.5%  val 1.1028 / 90.6%    12s
+2026-03-17 16:24:54,187 [INFO]   S1 Ep  4/5  train 0.4878 / 96.7%  val 1.0994 / 90.6%    12s
+2026-03-17 16:25:06,230 [INFO]   S1 Ep  5/5  train 0.4854 / 96.8%  val 1.0988 / 90.7%    12s
+2026-03-17 16:25:06,230 [INFO] Stage 1 done — best val: 90.88%
+2026-03-17 16:25:06,230 [INFO] ── Stage 2: full fine-tune + LLRD (150 epochs, patience 45) ──
+2026-03-17 16:25:06,231 [INFO] LLRD: 12 groups, LR [9.83e-06 … 3.00e-05]
+2026-03-17 16:25:48,957 [INFO]   S2 Ep   1/150  train 1.0515 / 72.0%  val 1.1018 / 90.7%  lr 2.45e-06  GeM_p=1.82    43s
+2026-03-17 16:26:31,697 [INFO]   S2 Ep   2/150  train 1.0562 / 71.8%  val 1.1022 / 90.9%  lr 5.97e-06  GeM_p=1.82    43s
+2026-03-17 16:27:14,436 [INFO]   S2 Ep   3/150  train 1.0778 / 71.4%  val 1.1026 / 90.5%  lr 1.12e-05  GeM_p=1.82    43s
+2026-03-17 16:27:57,146 [INFO]   S2 Ep   4/150  train 1.0609 / 71.9%  val 1.1200 / 90.1%  lr 1.71e-05  GeM_p=1.82    43s
+2026-03-17 16:28:39,922 [INFO]   S2 Ep   5/150  train 1.0729 / 71.3%  val 1.1183 / 90.3%  lr 2.28e-05  GeM_p=1.82    43s
+2026-03-17 16:29:22,630 [INFO]   S2 Ep   6/150  train 1.0694 / 71.5%  val 1.1190 / 90.4%  lr 2.73e-05  GeM_p=1.82    43s
+2026-03-17 16:30:05,339 [INFO]   S2 Ep   7/150  train 1.0671 / 71.3%  val 1.1270 / 89.7%  lr 2.97e-05  GeM_p=1.82    43s
+2026-03-17 16:30:48,079 [INFO]   S2 Ep   8/150  train 1.0442 / 72.8%  val 1.1316 / 90.3%  lr 3.00e-05  GeM_p=1.82    43s
+2026-03-17 16:31:30,827 [INFO]   S2 Ep   9/150  train 1.0941 / 70.2%  val 1.1304 / 89.8%  lr 3.00e-05  GeM_p=1.82    43s
+2026-03-17 16:32:13,594 [INFO]   S2 Ep  10/150  train 1.0674 / 71.6%  val 1.1291 / 90.1%  lr 3.00e-05  GeM_p=1.82    43s
+2026-03-17 16:32:56,382 [INFO]   S2 Ep  11/150  train 1.0442 / 72.7%  val 1.1431 / 89.8%  lr 3.00e-05  GeM_p=1.82    43s
+2026-03-17 16:33:39,190 [INFO]   S2 Ep  12/150  train 1.0816 / 70.8%  val 1.1216 / 90.1%  lr 2.99e-05  GeM_p=1.82    43s
+2026-03-17 16:34:21,950 [INFO]   S2 Ep  13/150  train 1.0974 / 69.7%  val 1.1254 / 90.8%  lr 2.99e-05  GeM_p=1.82    43s
+2026-03-17 16:35:04,637 [INFO]   S2 Ep  14/150  train 1.0582 / 71.6%  val 1.1320 / 90.3%  lr 2.98e-05  GeM_p=1.82    43s
+2026-03-17 16:35:47,325 [INFO]   S2 Ep  15/150  train 1.0535 / 72.6%  val 1.1204 / 90.3%  lr 2.98e-05  GeM_p=1.82    43s
+2026-03-17 16:36:30,032 [INFO]   S2 Ep  16/150  train 1.0663 / 71.6%  val 1.1330 / 89.3%  lr 2.97e-05  GeM_p=1.82    43s
+2026-03-17 16:37:12,734 [INFO]   S2 Ep  17/150  train 1.0793 / 70.9%  val 1.1269 / 90.2%  lr 2.97e-05  GeM_p=1.82    43s
+2026-03-17 16:37:55,413 [INFO]   S2 Ep  18/150  train 1.0908 / 70.2%  val 1.1349 / 90.2%  lr 2.96e-05  GeM_p=1.82    43s
+2026-03-17 16:38:38,208 [INFO]   S2 Ep  19/150  train 1.0618 / 71.6%  val 1.1398 / 90.0%  lr 2.95e-05  GeM_p=1.82    43s
+2026-03-17 16:39:20,976 [INFO]   S2 Ep  20/150  train 1.0795 / 70.7%  val 1.1303 / 90.6%  lr 2.94e-05  GeM_p=1.82    43s
+2026-03-17 16:40:03,776 [INFO]   S2 Ep  21/150  train 1.0545 / 71.8%  val 1.1342 / 90.2%  lr 2.93e-05  GeM_p=1.82    43s
+2026-03-17 16:40:46,517 [INFO]   S2 Ep  22/150  train 1.0454 / 72.9%  val 1.1276 / 90.7%  lr 2.92e-05  GeM_p=1.82    43s
+2026-03-17 16:41:29,216 [INFO]   S2 Ep  23/150  train 1.0297 / 72.9%  val 1.1224 / 90.6%  lr 2.91e-05  GeM_p=1.82    43s
+2026-03-17 16:42:11,973 [INFO]   S2 Ep  24/150  train 1.0774 / 70.9%  val 1.1290 / 90.0%  lr 2.90e-05  GeM_p=1.82    43s
+2026-03-17 16:42:54,700 [INFO]   S2 Ep  25/150  train 1.0547 / 71.4%  val 1.1160 / 90.5%  lr 2.89e-05  GeM_p=1.82    43s
+2026-03-17 16:43:37,397 [INFO]   S2 Ep  26/150  train 1.0547 / 72.0%  val 1.1215 / 90.3%  lr 2.88e-05  GeM_p=1.82    43s
+2026-03-17 16:44:20,161 [INFO]   S2 Ep  27/150  train 1.0744 / 70.9%  val 1.1349 / 90.2%  lr 2.86e-05  GeM_p=1.82    43s
+2026-03-17 16:45:02,921 [INFO]   S2 Ep  28/150  train 1.0503 / 72.3%  val 1.1251 / 90.1%  lr 2.85e-05  GeM_p=1.82    43s
+2026-03-17 16:45:45,702 [INFO]   S2 Ep  29/150  train 1.0319 / 72.9%  val 1.1278 / 90.4%  lr 2.83e-05  GeM_p=1.82    43s
+2026-03-17 16:46:28,435 [INFO]   S2 Ep  30/150  train 1.0865 / 70.1%  val 1.1294 / 90.2%  lr 2.82e-05  GeM_p=1.82    43s
+2026-03-17 16:47:11,164 [INFO]   S2 Ep  31/150  train 1.0564 / 71.6%  val 1.1376 / 90.2%  lr 2.80e-05  GeM_p=1.82    43s
+2026-03-17 16:47:53,881 [INFO]   S2 Ep  32/150  train 1.0535 / 72.4%  val 1.1238 / 90.3%  lr 2.79e-05  GeM_p=1.82    43s
+2026-03-17 16:48:36,621 [INFO]   S2 Ep  33/150  train 1.0699 / 70.9%  val 1.1344 / 90.3%  lr 2.77e-05  GeM_p=1.82    43s
+2026-03-17 16:49:19,369 [INFO]   S2 Ep  34/150  train 1.0655 / 71.2%  val 1.1319 / 90.2%  lr 2.75e-05  GeM_p=1.82    43s
+2026-03-17 16:50:02,071 [INFO]   S2 Ep  35/150  train 1.0805 / 70.4%  val 1.1420 / 90.3%  lr 2.73e-05  GeM_p=1.82    43s
+2026-03-17 16:50:44,762 [INFO]   S2 Ep  36/150  train 1.0352 / 73.0%  val 1.1342 / 90.5%  lr 2.71e-05  GeM_p=1.82    43s
+2026-03-17 16:51:27,271 [INFO]   S2 Ep  37/150  train 1.0400 / 72.4%  val 1.1329 / 90.1%  lr 2.69e-05  GeM_p=1.82    43s
+2026-03-17 16:52:09,834 [INFO]   S2 Ep  38/150  train 1.0457 / 72.7%  val 1.1322 / 90.2%  lr 2.67e-05  GeM_p=1.82    43s
+2026-03-17 16:52:52,416 [INFO]   S2 Ep  39/150  train 1.0553 / 71.8%  val 1.1276 / 90.2%  lr 2.65e-05  GeM_p=1.81    43s
+2026-03-17 16:53:34,973 [INFO]   S2 Ep  40/150  train 1.0429 / 73.1%  val 1.1390 / 90.1%  lr 2.63e-05  GeM_p=1.81    43s
+2026-03-17 16:54:17,533 [INFO]   S2 Ep  41/150  train 1.0401 / 72.7%  val 1.1314 / 90.3%  lr 2.61e-05  GeM_p=1.81    43s
+2026-03-17 16:55:00,100 [INFO]   S2 Ep  42/150  train 1.0426 / 72.5%  val 1.1336 / 90.0%  lr 2.59e-05  GeM_p=1.81    43s
+2026-03-17 16:55:42,729 [INFO]   S2 Ep  43/150  train 1.0565 / 72.1%  val 1.1346 / 90.5%  lr 2.56e-05  GeM_p=1.81    43s
+2026-03-17 16:56:25,297 [INFO]   S2 Ep  44/150  train 1.0400 / 72.6%  val 1.1308 / 90.3%  lr 2.54e-05  GeM_p=1.81    43s
+2026-03-17 16:57:07,854 [INFO]   S2 Ep  45/150  train 1.0266 / 73.3%  val 1.1289 / 90.6%  lr 2.52e-05  GeM_p=1.81    43s
+2026-03-17 16:57:07,854 [INFO]   Early stopping at S2 epoch 45
+2026-03-17 16:57:07,855 [INFO]   Fold 4 best val acc: 90.88%
+2026-03-17 16:57:08,162 [INFO] ================================================================
+2026-03-17 16:57:08,162 [INFO] FOLD 5 / 5
+2026-03-17 16:57:08,162 [INFO] ================================================================
+2026-03-17 16:57:08,165 [INFO]   Train: 20767 (orig 11794 + PL 8973)  |  Val: 2948
+2026-03-17 16:57:08,379 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnextv2_tiny.fcmae_ft_in22k_in1k)
+2026-03-17 16:57:08,551 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnextv2_tiny.fcmae_ft_in22k_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-17 16:57:08,553 [INFO] [timm/convnextv2_tiny.fcmae_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-17 16:57:08,571 [INFO] Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-17 16:57:08,659 [INFO]   Born-again ← best_fold4.pt (val 89.08%)
+2026-03-17 16:57:08,660 [INFO] ── Stage 1: head-only warmup (5 epochs, no mix) ──
+2026-03-17 16:57:22,028 [INFO]   S1 Ep  1/5  train 0.5830 / 92.0%  val 1.1566 / 89.0%    13s
+2026-03-17 16:57:22,154 [INFO]   ★ best 88.98%
+2026-03-17 16:57:34,573 [INFO]   S1 Ep  2/5  train 0.5860 / 92.2%  val 1.1551 / 89.1%    12s
+2026-03-17 16:57:34,720 [INFO]   ★ best 89.08%
+2026-03-17 16:57:46,689 [INFO]   S1 Ep  3/5  train 0.5905 / 91.9%  val 1.1545 / 88.7%    12s
+2026-03-17 16:57:58,724 [INFO]   S1 Ep  4/5  train 0.5811 / 92.1%  val 1.1524 / 88.9%    12s
+2026-03-17 16:58:10,886 [INFO]   S1 Ep  5/5  train 0.5743 / 92.1%  val 1.1513 / 88.9%    12s
+2026-03-17 16:58:10,886 [INFO] Stage 1 done — best val: 89.08%
+2026-03-17 16:58:10,887 [INFO] ── Stage 2: full fine-tune + LLRD (150 epochs, patience 45) ──
+2026-03-17 16:58:10,888 [INFO] LLRD: 12 groups, LR [9.83e-06 … 3.00e-05]
+2026-03-17 16:58:53,512 [INFO]   S2 Ep   1/150  train 1.1981 / 66.0%  val 1.1549 / 89.1%  lr 2.45e-06  GeM_p=1.96    43s
+2026-03-17 16:58:53,691 [INFO]   ★ best 89.15% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 16:59:36,256 [INFO]   S2 Ep   2/150  train 1.1891 / 66.1%  val 1.1568 / 89.0%  lr 5.97e-06  GeM_p=1.96    43s
+2026-03-17 17:00:18,756 [INFO]   S2 Ep   3/150  train 1.1768 / 67.5%  val 1.1605 / 88.5%  lr 1.12e-05  GeM_p=1.96    42s
+2026-03-17 17:01:01,308 [INFO]   S2 Ep   4/150  train 1.2087 / 65.7%  val 1.1563 / 88.5%  lr 1.71e-05  GeM_p=1.96    43s
+2026-03-17 17:01:43,846 [INFO]   S2 Ep   5/150  train 1.1579 / 68.0%  val 1.1593 / 88.4%  lr 2.28e-05  GeM_p=1.96    43s
+2026-03-17 17:02:26,408 [INFO]   S2 Ep   6/150  train 1.2053 / 65.8%  val 1.1691 / 88.0%  lr 2.73e-05  GeM_p=1.96    43s
+2026-03-17 17:03:08,955 [INFO]   S2 Ep   7/150  train 1.2039 / 65.4%  val 1.1573 / 88.4%  lr 2.97e-05  GeM_p=1.96    43s
+2026-03-17 17:03:51,456 [INFO]   S2 Ep   8/150  train 1.1846 / 66.8%  val 1.1697 / 87.8%  lr 3.00e-05  GeM_p=1.96    43s
+2026-03-17 17:04:34,008 [INFO]   S2 Ep   9/150  train 1.2017 / 66.1%  val 1.1633 / 88.3%  lr 3.00e-05  GeM_p=1.96    43s
+2026-03-17 17:05:16,553 [INFO]   S2 Ep  10/150  train 1.1786 / 67.2%  val 1.1625 / 88.2%  lr 3.00e-05  GeM_p=1.96    43s
+2026-03-17 17:05:59,119 [INFO]   S2 Ep  11/150  train 1.1952 / 66.4%  val 1.1567 / 89.0%  lr 3.00e-05  GeM_p=1.95    43s
+2026-03-17 17:06:41,574 [INFO]   S2 Ep  12/150  train 1.1599 / 68.5%  val 1.1731 / 88.5%  lr 2.99e-05  GeM_p=1.95    42s
+2026-03-17 17:07:24,056 [INFO]   S2 Ep  13/150  train 1.2108 / 66.0%  val 1.1839 / 87.6%  lr 2.99e-05  GeM_p=1.95    42s
+2026-03-17 17:08:06,577 [INFO]   S2 Ep  14/150  train 1.1873 / 66.7%  val 1.1642 / 88.4%  lr 2.98e-05  GeM_p=1.95    43s
+2026-03-17 17:08:49,060 [INFO]   S2 Ep  15/150  train 1.1761 / 67.7%  val 1.1720 / 88.3%  lr 2.98e-05  GeM_p=1.95    42s
+2026-03-17 17:09:31,525 [INFO]   S2 Ep  16/150  train 1.1971 / 66.5%  val 1.1711 / 88.4%  lr 2.97e-05  GeM_p=1.95    42s
+2026-03-17 17:10:14,093 [INFO]   S2 Ep  17/150  train 1.2142 / 65.3%  val 1.1687 / 88.3%  lr 2.97e-05  GeM_p=1.95    43s
+2026-03-17 17:10:56,647 [INFO]   S2 Ep  18/150  train 1.2018 / 66.6%  val 1.1574 / 88.9%  lr 2.96e-05  GeM_p=1.95    43s
+2026-03-17 17:11:39,202 [INFO]   S2 Ep  19/150  train 1.1465 / 68.7%  val 1.1597 / 88.9%  lr 2.95e-05  GeM_p=1.95    43s
+2026-03-17 17:12:21,800 [INFO]   S2 Ep  20/150  train 1.1746 / 67.5%  val 1.1636 / 88.2%  lr 2.94e-05  GeM_p=1.94    43s
+2026-03-17 17:13:04,443 [INFO]   S2 Ep  21/150  train 1.1963 / 66.3%  val 1.1573 / 88.8%  lr 2.93e-05  GeM_p=1.94    43s
+2026-03-17 17:13:47,029 [INFO]   S2 Ep  22/150  train 1.1411 / 69.0%  val 1.1546 / 89.0%  lr 2.92e-05  GeM_p=1.94    43s
+2026-03-17 17:14:29,625 [INFO]   S2 Ep  23/150  train 1.1714 / 67.9%  val 1.1639 / 88.7%  lr 2.91e-05  GeM_p=1.94    43s
+2026-03-17 17:15:12,197 [INFO]   S2 Ep  24/150  train 1.1590 / 68.4%  val 1.1711 / 88.5%  lr 2.90e-05  GeM_p=1.94    43s
+2026-03-17 17:15:54,775 [INFO]   S2 Ep  25/150  train 1.1385 / 68.9%  val 1.1729 / 88.2%  lr 2.89e-05  GeM_p=1.94    43s
+2026-03-17 17:16:37,431 [INFO]   S2 Ep  26/150  train 1.1328 / 69.2%  val 1.1577 / 88.5%  lr 2.88e-05  GeM_p=1.94    43s
+2026-03-17 17:17:20,081 [INFO]   S2 Ep  27/150  train 1.1741 / 67.1%  val 1.1622 / 89.2%  lr 2.86e-05  GeM_p=1.94    43s
+2026-03-17 17:17:20,234 [INFO]   ★ best 89.25% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:18:02,834 [INFO]   S2 Ep  28/150  train 1.1504 / 68.5%  val 1.1631 / 88.5%  lr 2.85e-05  GeM_p=1.94    43s
+2026-03-17 17:18:45,445 [INFO]   S2 Ep  29/150  train 1.1638 / 67.6%  val 1.1507 / 89.0%  lr 2.83e-05  GeM_p=1.93    43s
+2026-03-17 17:19:28,088 [INFO]   S2 Ep  30/150  train 1.1336 / 69.6%  val 1.1572 / 88.8%  lr 2.82e-05  GeM_p=1.93    43s
+2026-03-17 17:20:10,785 [INFO]   S2 Ep  31/150  train 1.1967 / 66.8%  val 1.1595 / 88.2%  lr 2.80e-05  GeM_p=1.93    43s
+2026-03-17 17:20:53,403 [INFO]   S2 Ep  32/150  train 1.1492 / 68.5%  val 1.1680 / 88.6%  lr 2.79e-05  GeM_p=1.93    43s
+2026-03-17 17:21:36,357 [INFO]   S2 Ep  33/150  train 1.1656 / 67.5%  val 1.1542 / 88.9%  lr 2.77e-05  GeM_p=1.93    43s
+2026-03-17 17:22:18,907 [INFO]   S2 Ep  34/150  train 1.1717 / 67.7%  val 1.1550 / 88.7%  lr 2.75e-05  GeM_p=1.93    43s
+2026-03-17 17:23:01,538 [INFO]   S2 Ep  35/150  train 1.1497 / 68.3%  val 1.1493 / 88.8%  lr 2.73e-05  GeM_p=1.93    43s
+2026-03-17 17:23:44,130 [INFO]   S2 Ep  36/150  train 1.1337 / 69.7%  val 1.1661 / 89.0%  lr 2.71e-05  GeM_p=1.93    43s
+2026-03-17 17:24:26,760 [INFO]   S2 Ep  37/150  train 1.1254 / 69.3%  val 1.1426 / 89.6%  lr 2.69e-05  GeM_p=1.93    43s
+2026-03-17 17:24:26,912 [INFO]   ★ best 89.55% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:25:09,498 [INFO]   S2 Ep  38/150  train 1.1565 / 68.4%  val 1.1471 / 89.1%  lr 2.67e-05  GeM_p=1.93    43s
+2026-03-17 17:25:52,125 [INFO]   S2 Ep  39/150  train 1.1558 / 68.3%  val 1.1590 / 89.0%  lr 2.65e-05  GeM_p=1.92    43s
+2026-03-17 17:26:34,743 [INFO]   S2 Ep  40/150  train 1.1347 / 68.7%  val 1.1506 / 88.9%  lr 2.63e-05  GeM_p=1.92    43s
+2026-03-17 17:27:17,371 [INFO]   S2 Ep  41/150  train 1.1460 / 68.7%  val 1.1396 / 89.5%  lr 2.61e-05  GeM_p=1.92    43s
+2026-03-17 17:28:00,028 [INFO]   S2 Ep  42/150  train 1.1275 / 69.4%  val 1.1433 / 89.1%  lr 2.59e-05  GeM_p=1.92    43s
+2026-03-17 17:28:42,693 [INFO]   S2 Ep  43/150  train 1.1441 / 68.6%  val 1.1359 / 89.6%  lr 2.56e-05  GeM_p=1.92    43s
+2026-03-17 17:28:42,865 [INFO]   ★ best 89.59% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:29:25,504 [INFO]   S2 Ep  44/150  train 1.1415 / 68.8%  val 1.1355 / 89.6%  lr 2.54e-05  GeM_p=1.92    43s
+2026-03-17 17:30:08,137 [INFO]   S2 Ep  45/150  train 1.1528 / 68.0%  val 1.1434 / 89.1%  lr 2.52e-05  GeM_p=1.92    43s
+2026-03-17 17:30:50,797 [INFO]   S2 Ep  46/150  train 1.1553 / 68.2%  val 1.1482 / 89.2%  lr 2.49e-05  GeM_p=1.92    43s
+2026-03-17 17:31:33,429 [INFO]   S2 Ep  47/150  train 1.1127 / 70.4%  val 1.1513 / 89.6%  lr 2.47e-05  GeM_p=1.92    43s
+2026-03-17 17:32:16,121 [INFO]   S2 Ep  48/150  train 1.1382 / 68.6%  val 1.1491 / 89.0%  lr 2.44e-05  GeM_p=1.92    43s
+2026-03-17 17:32:58,796 [INFO]   S2 Ep  49/150  train 1.0943 / 71.1%  val 1.1544 / 89.6%  lr 2.41e-05  GeM_p=1.92    43s
+2026-03-17 17:32:58,968 [INFO]   ★ best 89.62% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:33:41,628 [INFO]   S2 Ep  50/150  train 1.1254 / 69.7%  val 1.1500 / 89.4%  lr 2.39e-05  GeM_p=1.92    43s
+2026-03-17 17:34:24,148 [INFO]   S2 Ep  51/150  train 1.1351 / 68.8%  val 1.1450 / 89.2%  lr 2.36e-05  GeM_p=1.91    43s
+2026-03-17 17:35:06,820 [INFO]   S2 Ep  52/150  train 1.1254 / 69.3%  val 1.1600 / 88.9%  lr 2.33e-05  GeM_p=1.91    43s
+2026-03-17 17:35:49,360 [INFO]   S2 Ep  53/150  train 1.1438 / 68.6%  val 1.1536 / 88.8%  lr 2.31e-05  GeM_p=1.91    43s
+2026-03-17 17:36:31,920 [INFO]   S2 Ep  54/150  train 1.1479 / 68.4%  val 1.1581 / 89.0%  lr 2.28e-05  GeM_p=1.91    43s
+2026-03-17 17:37:14,502 [INFO]   S2 Ep  55/150  train 1.1171 / 69.4%  val 1.1424 / 89.4%  lr 2.25e-05  GeM_p=1.91    43s
+2026-03-17 17:37:57,113 [INFO]   S2 Ep  56/150  train 1.1090 / 70.1%  val 1.1485 / 89.1%  lr 2.22e-05  GeM_p=1.91    43s
+2026-03-17 17:38:39,698 [INFO]   S2 Ep  57/150  train 1.1071 / 70.5%  val 1.1431 / 89.2%  lr 2.19e-05  GeM_p=1.91    43s
+2026-03-17 17:39:22,268 [INFO]   S2 Ep  58/150  train 1.1278 / 69.0%  val 1.1437 / 89.2%  lr 2.16e-05  GeM_p=1.91    43s
+2026-03-17 17:40:04,849 [INFO]   S2 Ep  59/150  train 1.1498 / 67.9%  val 1.1416 / 89.2%  lr 2.13e-05  GeM_p=1.91    43s
+2026-03-17 17:40:47,437 [INFO]   S2 Ep  60/150  train 1.1292 / 69.3%  val 1.1437 / 89.1%  lr 2.10e-05  GeM_p=1.91    43s
+2026-03-17 17:41:30,045 [INFO]   S2 Ep  61/150  train 1.1181 / 70.0%  val 1.1543 / 89.3%  lr 2.07e-05  GeM_p=1.91    43s
+2026-03-17 17:42:12,723 [INFO]   S2 Ep  62/150  train 1.1310 / 68.7%  val 1.1279 / 89.5%  lr 2.04e-05  GeM_p=1.91    43s
+2026-03-17 17:42:55,401 [INFO]   S2 Ep  63/150  train 1.1095 / 70.4%  val 1.1494 / 89.2%  lr 2.01e-05  GeM_p=1.91    43s
+2026-03-17 17:43:38,010 [INFO]   S2 Ep  64/150  train 1.1055 / 70.2%  val 1.1399 / 89.6%  lr 1.98e-05  GeM_p=1.91    43s
+2026-03-17 17:44:20,653 [INFO]   S2 Ep  65/150  train 1.1169 / 69.1%  val 1.1417 / 89.8%  lr 1.95e-05  GeM_p=1.91    43s
+2026-03-17 17:44:20,805 [INFO]   ★ best 89.76% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:45:03,424 [INFO]   S2 Ep  66/150  train 1.0817 / 71.6%  val 1.1506 / 89.3%  lr 1.92e-05  GeM_p=1.90    43s
+2026-03-17 17:45:46,033 [INFO]   S2 Ep  67/150  train 1.1315 / 69.0%  val 1.1351 / 89.4%  lr 1.88e-05  GeM_p=1.90    43s
+2026-03-17 17:46:28,706 [INFO]   S2 Ep  68/150  train 1.0984 / 70.3%  val 1.1395 / 89.7%  lr 1.85e-05  GeM_p=1.90    43s
+2026-03-17 17:47:11,361 [INFO]   S2 Ep  69/150  train 1.0821 / 71.2%  val 1.1362 / 89.8%  lr 1.82e-05  GeM_p=1.90    43s
+2026-03-17 17:47:11,511 [INFO]   ★ best 89.79% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:47:54,135 [INFO]   S2 Ep  70/150  train 1.0928 / 71.0%  val 1.1354 / 89.9%  lr 1.79e-05  GeM_p=1.90    43s
+2026-03-17 17:47:54,283 [INFO]   ★ best 89.89% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:48:36,921 [INFO]   S2 Ep  71/150  train 1.1034 / 69.8%  val 1.1349 / 89.7%  lr 1.76e-05  GeM_p=1.90    43s
+2026-03-17 17:49:19,586 [INFO]   S2 Ep  72/150  train 1.1157 / 70.3%  val 1.1432 / 89.6%  lr 1.72e-05  GeM_p=1.90    43s
+2026-03-17 17:50:02,206 [INFO]   S2 Ep  73/150  train 1.1155 / 69.9%  val 1.1366 / 89.4%  lr 1.69e-05  GeM_p=1.90    43s
+2026-03-17 17:50:44,867 [INFO]   S2 Ep  74/150  train 1.0939 / 70.3%  val 1.1420 / 89.5%  lr 1.66e-05  GeM_p=1.90    43s
+2026-03-17 17:51:27,506 [INFO]   S2 Ep  75/150  train 1.0957 / 70.2%  val 1.1334 / 89.8%  lr 1.62e-05  GeM_p=1.90    43s
+2026-03-17 17:52:10,187 [INFO]   S2 Ep  76/150  train 1.0914 / 70.5%  val 1.1375 / 90.1%  lr 1.59e-05  GeM_p=1.90    43s
+2026-03-17 17:52:10,347 [INFO]   ★ best 90.06% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 17:52:53,020 [INFO]   S2 Ep  77/150  train 1.0905 / 70.4%  val 1.1308 / 89.5%  lr 1.56e-05  GeM_p=1.90    43s
+2026-03-17 17:53:35,660 [INFO]   S2 Ep  78/150  train 1.1196 / 69.3%  val 1.1342 / 89.7%  lr 1.52e-05  GeM_p=1.90    43s
+2026-03-17 17:54:18,324 [INFO]   S2 Ep  79/150  train 1.0714 / 71.6%  val 1.1360 / 89.3%  lr 1.49e-05  GeM_p=1.90    43s
+2026-03-17 17:55:00,962 [INFO]   S2 Ep  80/150  train 1.1036 / 70.1%  val 1.1413 / 89.6%  lr 1.46e-05  GeM_p=1.90    43s
+2026-03-17 17:55:43,619 [INFO]   S2 Ep  81/150  train 1.1107 / 69.8%  val 1.1427 / 89.2%  lr 1.43e-05  GeM_p=1.90    43s
+2026-03-17 17:56:26,316 [INFO]   S2 Ep  82/150  train 1.0586 / 72.4%  val 1.1451 / 89.7%  lr 1.39e-05  GeM_p=1.90    43s
+2026-03-17 17:57:09,005 [INFO]   S2 Ep  83/150  train 1.0986 / 70.2%  val 1.1410 / 89.3%  lr 1.36e-05  GeM_p=1.90    43s
+2026-03-17 17:57:51,611 [INFO]   S2 Ep  84/150  train 1.1097 / 70.6%  val 1.1408 / 89.2%  lr 1.33e-05  GeM_p=1.90    43s
+2026-03-17 17:58:34,248 [INFO]   S2 Ep  85/150  train 1.0943 / 70.6%  val 1.1359 / 89.7%  lr 1.29e-05  GeM_p=1.89    43s
+2026-03-17 17:59:16,904 [INFO]   S2 Ep  86/150  train 1.0493 / 72.6%  val 1.1349 / 89.8%  lr 1.26e-05  GeM_p=1.89    43s
+2026-03-17 17:59:59,549 [INFO]   S2 Ep  87/150  train 1.0936 / 70.8%  val 1.1291 / 89.9%  lr 1.23e-05  GeM_p=1.89    43s
+2026-03-17 18:00:42,165 [INFO]   S2 Ep  88/150  train 1.1171 / 69.6%  val 1.1383 / 89.4%  lr 1.20e-05  GeM_p=1.89    43s
+2026-03-17 18:01:24,773 [INFO]   S2 Ep  89/150  train 1.1026 / 70.4%  val 1.1347 / 89.4%  lr 1.16e-05  GeM_p=1.89    43s
+2026-03-17 18:02:07,464 [INFO]   S2 Ep  90/150  train 1.0958 / 70.3%  val 1.1398 / 89.5%  lr 1.13e-05  GeM_p=1.89    43s
+2026-03-17 18:02:50,165 [INFO]   S2 Ep  91/150  train 1.1042 / 69.8%  val 1.1331 / 89.9%  lr 1.10e-05  GeM_p=1.89    43s
+2026-03-17 18:03:32,771 [INFO]   S2 Ep  92/150  train 1.1032 / 70.2%  val 1.1386 / 89.6%  lr 1.07e-05  GeM_p=1.89    43s
+2026-03-17 18:04:15,385 [INFO]   S2 Ep  93/150  train 1.1102 / 69.7%  val 1.1279 / 89.9%  lr 1.04e-05  GeM_p=1.89    43s
+2026-03-17 18:04:58,022 [INFO]   S2 Ep  94/150  train 1.0903 / 70.5%  val 1.1276 / 89.6%  lr 1.01e-05  GeM_p=1.89    43s
+2026-03-17 18:05:40,592 [INFO]   S2 Ep  95/150  train 1.0774 / 70.9%  val 1.1251 / 89.8%  lr 9.74e-06  GeM_p=1.89    43s
+2026-03-17 18:06:23,247 [INFO]   S2 Ep  96/150  train 1.0754 / 71.6%  val 1.1305 / 89.5%  lr 9.43e-06  GeM_p=1.89    43s
+2026-03-17 18:07:05,848 [INFO]   S2 Ep  97/150  train 1.1031 / 70.0%  val 1.1388 / 89.5%  lr 9.13e-06  GeM_p=1.89    43s
+2026-03-17 18:07:48,510 [INFO]   S2 Ep  98/150  train 1.0891 / 71.1%  val 1.1276 / 89.9%  lr 8.82e-06  GeM_p=1.89    43s
+2026-03-17 18:08:31,165 [INFO]   S2 Ep  99/150  train 1.0663 / 71.9%  val 1.1333 / 89.9%  lr 8.52e-06  GeM_p=1.89    43s
+2026-03-17 18:09:13,843 [INFO]   S2 Ep 100/150  train 1.0635 / 71.7%  val 1.1354 / 89.6%  lr 8.23e-06  GeM_p=1.89    43s
+2026-03-17 18:09:56,457 [INFO]   S2 Ep 101/150  train 1.1060 / 69.5%  val 1.1265 / 89.9%  lr 7.93e-06  GeM_p=1.89    43s
+2026-03-17 18:10:39,030 [INFO]   S2 Ep 102/150  train 1.0963 / 70.4%  val 1.1258 / 89.9%  lr 7.64e-06  GeM_p=1.89    43s
+2026-03-17 18:11:21,621 [INFO]   S2 Ep 103/150  train 1.0868 / 71.0%  val 1.1281 / 89.7%  lr 7.36e-06  GeM_p=1.89    43s
+2026-03-17 18:12:04,269 [INFO]   S2 Ep 104/150  train 1.0478 / 72.7%  val 1.1259 / 89.6%  lr 7.07e-06  GeM_p=1.89    43s
+2026-03-17 18:12:46,893 [INFO]   S2 Ep 105/150  train 1.0569 / 72.9%  val 1.1263 / 89.7%  lr 6.80e-06  GeM_p=1.89    43s
+2026-03-17 18:13:29,467 [INFO]   S2 Ep 106/150  train 1.0669 / 71.5%  val 1.1241 / 89.9%  lr 6.52e-06  GeM_p=1.89    43s
+2026-03-17 18:14:12,071 [INFO]   S2 Ep 107/150  train 1.0849 / 71.4%  val 1.1286 / 89.7%  lr 6.25e-06  GeM_p=1.89    43s
+2026-03-17 18:14:54,726 [INFO]   S2 Ep 108/150  train 1.0686 / 71.6%  val 1.1274 / 89.6%  lr 5.98e-06  GeM_p=1.89    43s
+2026-03-17 18:15:37,387 [INFO]   S2 Ep 109/150  train 1.0783 / 71.6%  val 1.1241 / 89.9%  lr 5.72e-06  GeM_p=1.89    43s
+2026-03-17 18:16:19,974 [INFO]   S2 Ep 110/150  train 1.0884 / 70.5%  val 1.1274 / 90.0%  lr 5.46e-06  GeM_p=1.89    43s
+2026-03-17 18:17:02,672 [INFO]   S2 Ep 111/150  train 1.0860 / 70.7%  val 1.1271 / 89.8%  lr 5.21e-06  GeM_p=1.89    43s
+2026-03-17 18:17:45,282 [INFO]   S2 Ep 112/150  train 1.0873 / 70.9%  val 1.1290 / 89.8%  lr 4.96e-06  GeM_p=1.89    43s
+2026-03-17 18:18:27,983 [INFO]   S2 Ep 113/150  train 1.0637 / 71.3%  val 1.1284 / 89.8%  lr 4.72e-06  GeM_p=1.89    43s
+2026-03-17 18:19:10,607 [INFO]   S2 Ep 114/150  train 1.0961 / 70.3%  val 1.1257 / 89.7%  lr 4.48e-06  GeM_p=1.89    43s
+2026-03-17 18:19:53,239 [INFO]   S2 Ep 115/150  train 1.0885 / 70.7%  val 1.1268 / 89.9%  lr 4.25e-06  GeM_p=1.89    43s
+2026-03-17 18:20:35,891 [INFO]   S2 Ep 116/150  train 1.0618 / 71.4%  val 1.1226 / 89.9%  lr 4.02e-06  GeM_p=1.89    43s
+2026-03-17 18:21:18,564 [INFO]   S2 Ep 117/150  train 1.0877 / 70.7%  val 1.1209 / 90.0%  lr 3.80e-06  GeM_p=1.89    43s
+2026-03-17 18:22:01,174 [INFO]   S2 Ep 118/150  train 1.0806 / 71.2%  val 1.1237 / 90.1%  lr 3.58e-06  GeM_p=1.89    43s
+2026-03-17 18:22:01,328 [INFO]   ★ best 90.13% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 18:22:43,958 [INFO]   S2 Ep 119/150  train 1.0694 / 71.8%  val 1.1244 / 90.0%  lr 3.37e-06  GeM_p=1.89    43s
+2026-03-17 18:23:26,610 [INFO]   S2 Ep 120/150  train 1.0611 / 72.1%  val 1.1251 / 90.0%  lr 3.16e-06  GeM_p=1.89    43s
+2026-03-17 18:24:09,223 [INFO]   S2 Ep 121/150  train 1.0767 / 71.2%  val 1.1239 / 90.1%  lr 2.96e-06  GeM_p=1.89    43s
+2026-03-17 18:24:51,866 [INFO]   S2 Ep 122/150  train 1.0917 / 70.4%  val 1.1208 / 90.1%  lr 2.77e-06  GeM_p=1.89    43s
+2026-03-17 18:25:34,415 [INFO]   S2 Ep 123/150  train 1.0708 / 71.5%  val 1.1214 / 90.4%  lr 2.58e-06  GeM_p=1.89    43s
+2026-03-17 18:25:34,571 [INFO]   ★ best 90.40% → /data/slr/checkpoints_v13/best_fold4.pt
+2026-03-17 18:26:17,269 [INFO]   S2 Ep 124/150  train 1.0980 / 70.2%  val 1.1206 / 89.9%  lr 2.40e-06  GeM_p=1.89    43s
+2026-03-17 18:26:59,856 [INFO]   S2 Ep 125/150  train 1.0567 / 72.2%  val 1.1193 / 89.8%  lr 2.22e-06  GeM_p=1.89    43s
+2026-03-17 18:27:42,401 [INFO]   S2 Ep 126/150  train 1.0506 / 72.5%  val 1.1186 / 90.0%  lr 2.05e-06  GeM_p=1.89    43s
+2026-03-17 18:28:25,052 [INFO]   S2 Ep 127/150  train 1.0675 / 72.1%  val 1.1202 / 90.2%  lr 1.89e-06  GeM_p=1.89    43s
+2026-03-17 18:29:07,670 [INFO]   S2 Ep 128/150  train 1.0798 / 71.0%  val 1.1215 / 90.0%  lr 1.73e-06  GeM_p=1.89    43s
+2026-03-17 18:29:50,219 [INFO]   S2 Ep 129/150  train 1.1041 / 69.8%  val 1.1219 / 89.8%  lr 1.58e-06  GeM_p=1.89    43s
+2026-03-17 18:30:32,725 [INFO]   S2 Ep 130/150  train 1.0836 / 70.9%  val 1.1230 / 90.0%  lr 1.44e-06  GeM_p=1.89    43s
+2026-03-17 18:31:15,354 [INFO]   S2 Ep 131/150  train 1.0918 / 70.2%  val 1.1209 / 90.0%  lr 1.30e-06  GeM_p=1.89    43s
+2026-03-17 18:31:57,954 [INFO]   S2 Ep 132/150  train 1.0992 / 70.2%  val 1.1220 / 89.9%  lr 1.17e-06  GeM_p=1.89    43s
+2026-03-17 18:32:40,574 [INFO]   S2 Ep 133/150  train 1.0728 / 70.8%  val 1.1232 / 90.0%  lr 1.04e-06  GeM_p=1.89    43s
+2026-03-17 18:33:23,149 [INFO]   S2 Ep 134/150  train 1.0351 / 73.5%  val 1.1214 / 89.9%  lr 9.24e-07  GeM_p=1.89    43s
+2026-03-17 18:34:05,840 [INFO]   S2 Ep 135/150  train 1.0405 / 73.0%  val 1.1213 / 90.0%  lr 8.14e-07  GeM_p=1.89    43s
+2026-03-17 18:34:48,493 [INFO]   S2 Ep 136/150  train 1.0704 / 71.7%  val 1.1205 / 89.8%  lr 7.10e-07  GeM_p=1.89    43s
+2026-03-17 18:35:31,180 [INFO]   S2 Ep 137/150  train 1.0861 / 71.0%  val 1.1197 / 89.8%  lr 6.13e-07  GeM_p=1.89    43s
+2026-03-17 18:36:13,786 [INFO]   S2 Ep 138/150  train 1.0499 / 73.0%  val 1.1194 / 89.8%  lr 5.23e-07  GeM_p=1.89    43s
+2026-03-17 18:36:56,403 [INFO]   S2 Ep 139/150  train 1.0615 / 72.0%  val 1.1202 / 89.9%  lr 4.40e-07  GeM_p=1.89    43s
+2026-03-17 18:37:39,006 [INFO]   S2 Ep 140/150  train 1.0732 / 71.6%  val 1.1198 / 89.8%  lr 3.64e-07  GeM_p=1.89    43s
+2026-03-17 18:38:21,612 [INFO]   S2 Ep 141/150  train 1.0954 / 71.1%  val 1.1197 / 89.7%  lr 2.95e-07  GeM_p=1.89    43s
+2026-03-17 18:39:04,254 [INFO]   S2 Ep 142/150  train 1.0684 / 71.8%  val 1.1198 / 89.7%  lr 2.34e-07  GeM_p=1.89    43s
+2026-03-17 18:39:46,896 [INFO]   S2 Ep 143/150  train 1.0463 / 72.3%  val 1.1203 / 89.8%  lr 1.79e-07  GeM_p=1.89    43s
+2026-03-17 18:40:29,587 [INFO]   S2 Ep 144/150  train 1.0682 / 71.8%  val 1.1198 / 89.8%  lr 1.32e-07  GeM_p=1.89    43s
+2026-03-17 18:41:12,200 [INFO]   S2 Ep 145/150  train 1.0916 / 70.4%  val 1.1198 / 89.8%  lr 9.22e-08  GeM_p=1.89    43s
+2026-03-17 18:41:54,815 [INFO]   S2 Ep 146/150  train 1.0741 / 71.8%  val 1.1199 / 89.8%  lr 5.94e-08  GeM_p=1.89    43s
+2026-03-17 18:42:37,428 [INFO]   S2 Ep 147/150  train 1.0884 / 70.6%  val 1.1197 / 89.8%  lr 3.39e-08  GeM_p=1.89    43s
+2026-03-17 18:43:20,061 [INFO]   S2 Ep 148/150  train 1.0769 / 71.4%  val 1.1197 / 89.8%  lr 1.57e-08  GeM_p=1.89    43s
+2026-03-17 18:44:02,647 [INFO]   S2 Ep 149/150  train 1.0672 / 71.0%  val 1.1197 / 89.8%  lr 4.83e-09  GeM_p=1.89    43s
+2026-03-17 18:44:45,226 [INFO]   S2 Ep 150/150  train 1.0721 / 71.5%  val 1.1197 / 89.8%  lr 1.20e-09  GeM_p=1.89    43s
+2026-03-17 18:44:45,226 [INFO]   Fold 5 best val acc: 90.40%
+2026-03-17 18:44:45,555 [INFO] ================================================================
+2026-03-17 18:44:45,555 [INFO] 5-FOLD CV RESULTS
+2026-03-17 18:44:45,555 [INFO] ================================================================
+2026-03-17 18:44:45,555 [INFO]   Fold 1 : 90.74%
+2026-03-17 18:44:45,555 [INFO]   Fold 2 : 89.89%
+2026-03-17 18:44:45,555 [INFO]   Fold 3 : 91.25%
+2026-03-17 18:44:45,555 [INFO]   Fold 4 : 90.88%
+2026-03-17 18:44:45,555 [INFO]   Fold 5 : 90.40%
+2026-03-17 18:44:45,555 [INFO]   Mean  : 90.63% ± 0.46%
+2026-03-17 18:44:45,556 [INFO] Loading v13 checkpoints for ensemble …
+2026-03-17 18:45:09,219 [INFO] Submission (no TTA) → /data/slr/checkpoints_v13/submission_no_tta.csv  (9828 rows)
+2026-03-17 18:45:09,219 [INFO] Running 10-way TTA × 5 folds …
+2026-03-17 18:48:45,392 [INFO] Submission (TTA) → /data/slr/checkpoints_v13/submission_tta.csv
+2026-03-17 18:48:45,392 [INFO] TTA changed 118 / 9828 (1.2%)
+2026-03-17 18:48:45,401 [INFO] Saved v13 TTA probs → /data/slr/checkpoints_v13/eval_probs_tta.pt
+2026-03-17 18:48:45,401 [INFO] Done.

@@ -1,0 +1,93 @@
+2026-03-22 06:42:27,962 [INFO] GPU: NVIDIA H200
+2026-03-22 06:42:27,962 [INFO] Config: {
+  "data_dir": "/data/slr/track2_",
+  "output_dir": "/data/slr/checkpoints_v48",
+  "max_frames": 48,
+  "img_size": 448,
+  "n_classes": 126,
+  "teacher_img_size": 224,
+  "teacher_max_frames": 48,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 20,
+  "num_workers": 4,
+  "stage1_epochs": 5,
+  "stage1_lr": 0.0002,
+  "stage2_epochs": 100,
+  "stage2_lr": 4e-05,
+  "swa_epochs": 15,
+  "swa_lr": 4e-06,
+  "weight_decay": 0.05,
+  "warmup_pct": 0.05,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 30,
+  "grad_clip_norm": 1.0,
+  "llrd_decay": 0.75,
+  "kd_alpha": 0.3,
+  "kd_tau": 4.0,
+  "mixup_alpha": 0.4,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "random_erase_prob": 0.2,
+  "circ_shift_prob": 0.3,
+  "circ_shift_max": 8,
+  "amp_scale_prob": 0.5,
+  "amp_scale_lo": 0.8,
+  "amp_scale_hi": 1.2,
+  "model_name": "tf_efficientnetv2_s.in21k_ft_in1k",
+  "drop_path_rate": 0.2,
+  "proj_dim": 384,
+  "drop_rate": 0.3,
+  "ms_dropout_samples": 5,
+  "seed": 42
+}
+2026-03-22 06:42:27,962 [INFO] ★★★ EfficientNetV2-S @ 448 + SWA ★★★
+2026-03-22 06:42:28,038 [INFO] Train: 14742 | Eval: 9828
+2026-03-22 06:42:32,524 [INFO] Pre-computing teacher soft labels (z-score @ 224) …
+2026-03-22 06:42:36,038 [INFO]   Loaded 10 teachers
+2026-03-22 06:44:46,953 [INFO]   Soft labels: 14742
+2026-03-22 06:44:46,955 [INFO] KD α=0.30 τ=4.0 | born-again from v24
+2026-03-22 06:44:46,960 [INFO] ================================================================
+2026-03-22 06:44:46,961 [INFO] FOLD 1 / 5
+2026-03-22 06:44:46,961 [INFO] ================================================================
+2026-03-22 06:44:47,144 [INFO] Loading pretrained weights from Hugging Face hub (timm/tf_efficientnetv2_s.in21k_ft_in1k)
+2026-03-22 06:44:47,224 [INFO] HTTP Request: HEAD https://huggingface.co/timm/tf_efficientnetv2_s.in21k_ft_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-22 06:44:47,226 [INFO] [timm/tf_efficientnetv2_s.in21k_ft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-22 06:44:47,282 [WARNING] Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+2026-03-22 06:44:47,493 [INFO]   Born-again from /data/slr/checkpoints_v24/best_fold0.pt (val 88.03%)
+2026-03-22 06:44:47,494 [INFO] ── Stage 1: head warmup (5 ep) ──
+2026-03-22 06:45:30,755 [INFO]   S1 Ep 1/5  loss=0.4801 acc=87.5%  val=81.9%  43s
+2026-03-22 06:45:30,882 [INFO]   ★ best 81.86%
+2026-03-22 06:45:51,256 [INFO]   S1 Ep 2/5  loss=0.4745 acc=88.0%  val=81.9%  20s
+2026-03-22 06:45:51,413 [INFO]   ★ best 81.93%
+2026-03-22 06:46:12,012 [INFO]   S1 Ep 3/5  loss=0.4702 acc=88.4%  val=82.0%  21s
+2026-03-22 06:46:12,169 [INFO]   ★ best 82.03%
+2026-03-22 06:46:32,435 [INFO]   S1 Ep 4/5  loss=0.4572 acc=89.1%  val=81.7%  20s
+2026-03-22 06:46:52,628 [INFO]   S1 Ep 5/5  loss=0.4527 acc=88.7%  val=82.4%  20s
+2026-03-22 06:46:52,776 [INFO]   ★ best 82.37%
+2026-03-22 06:46:52,777 [INFO] ── Stage 2: full fine-tune (100 ep) ──
+2026-03-22 06:46:52,780 [INFO] LLRD: 14 groups, LR [7.12e-06 … 4.00e-05]
+2026-03-22 06:47:49,039 [INFO]   S2 Ep   1/100  loss=0.9057 acc=64.8%  val=84.7%  lr=5.27e-06    56s
+2026-03-22 06:47:49,258 [INFO]   ★ best 84.71%
+2026-03-22 06:48:33,911 [INFO]   S2 Ep   2/100  loss=0.8889 acc=66.0%  val=85.6%  lr=1.49e-05    45s
+2026-03-22 06:48:34,091 [INFO]   ★ best 85.62%
+2026-03-22 06:49:18,717 [INFO]   S2 Ep   3/100  loss=0.8497 acc=68.4%  val=86.0%  lr=2.67e-05    45s
+2026-03-22 06:49:18,894 [INFO]   ★ best 85.96%
+2026-03-22 06:50:03,807 [INFO]   S2 Ep   4/100  loss=0.8660 acc=67.1%  val=85.1%  lr=3.63e-05    45s

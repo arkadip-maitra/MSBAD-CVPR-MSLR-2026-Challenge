@@ -1,0 +1,134 @@
+2026-03-23 11:36:30,503 [INFO] GPU: NVIDIA H200
+2026-03-23 11:36:30,504 [INFO] Config: {
+  "data_dir": "/data/slr/track2_",
+  "output_dir": "/data/slr/checkpoints_v78",
+  "max_frames": 48,
+  "img_size": 224,
+  "n_classes": 126,
+  "channel_means": [
+    -64.3217,
+    -62.9119,
+    -63.9254
+  ],
+  "channel_stds": [
+    12.5721,
+    11.662,
+    11.7259
+  ],
+  "n_folds": 5,
+  "batch_size": 48,
+  "num_workers": 2,
+  "stage1_epochs": 5,
+  "stage1_lr": 0.0002,
+  "stage2_epochs": 150,
+  "stage2_lr": 4e-05,
+  "swa_epochs": 20,
+  "swa_lr": 4e-06,
+  "weight_decay": 0.05,
+  "warmup_pct": 0.05,
+  "label_smoothing": 0.1,
+  "early_stopping_patience": 30,
+  "grad_clip_norm": 1.0,
+  "llrd_decay": 0.75,
+  "mixup_alpha": 0.4,
+  "cutmix_alpha": 1.0,
+  "cutmix_prob": 0.5,
+  "time_mask_max": 8,
+  "range_mask_max": 30,
+  "noise_std": 0.1,
+  "time_warp_lo": 0.8,
+  "time_warp_hi": 1.2,
+  "time_reverse_prob": 0.5,
+  "channel_shuffle_prob": 0.2,
+  "channel_drop_prob": 0.1,
+  "random_erase_prob": 0.2,
+  "circ_shift_prob": 0.3,
+  "circ_shift_max": 8,
+  "amp_scale_prob": 0.5,
+  "amp_scale_lo": 0.8,
+  "amp_scale_hi": 1.2,
+  "model_name": "convnextv2_tiny.fcmae_ft_in22k_in1k",
+  "drop_path_rate": 0.2,
+  "proj_dim": 512,
+  "drop_rate": 0.3,
+  "ms_dropout_samples": 5,
+  "seed": 42
+}
+2026-03-23 11:36:30,504 [INFO] FOCAL LOSS + PSEUDO-LABELS | Born-again v66 | Fold 0
+2026-03-23 11:36:30,593 [INFO] Train: 14742 | Eval: 9828
+2026-03-23 11:36:36,074 [INFO] ================================================================
+2026-03-23 11:36:36,074 [INFO] FOLD 0 — FOCAL + PSEUDO, born-again v66
+2026-03-23 11:36:36,074 [INFO] ================================================================
+2026-03-23 11:36:36,082 [INFO]   Train (labeled): 11793 | Val: 2949
+2026-03-23 11:36:36,121 [INFO]   Pseudo-labels (>0.85): 8406 added
+2026-03-23 11:36:36,121 [INFO]   Total train: 20199
+2026-03-23 11:36:36,366 [INFO] Loading pretrained weights from Hugging Face hub (timm/convnextv2_tiny.fcmae_ft_in22k_in1k)
+2026-03-23 11:36:36,428 [INFO] HTTP Request: HEAD https://huggingface.co/timm/convnextv2_tiny.fcmae_ft_in22k_in1k/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-23 11:36:36,430 [INFO] [timm/convnextv2_tiny.fcmae_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2026-03-23 11:36:36,448 [INFO] Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2026-03-23 11:36:36,718 [INFO]   Born-again ← best_fold0.pt (val 90.84%)
+2026-03-23 11:36:36,719 [INFO] ── Stage 1: head warmup (5 ep) ──
+2026-03-23 11:37:16,360 [INFO]   S1 Ep 1/5  loss=0.3387 acc=97.4%  val=90.7%  40s
+2026-03-23 11:37:16,501 [INFO]   ★ best 90.67%
+2026-03-23 11:37:39,455 [INFO]   S1 Ep 2/5  loss=0.3436 acc=97.2%  val=90.5%  23s
+2026-03-23 11:38:03,395 [INFO]   S1 Ep 3/5  loss=0.3429 acc=97.3%  val=90.6%  24s
+2026-03-23 11:38:26,484 [INFO]   S1 Ep 4/5  loss=0.3344 acc=97.5%  val=90.6%  23s
+2026-03-23 11:38:49,475 [INFO]   S1 Ep 5/5  loss=0.3281 acc=97.7%  val=90.6%  23s
+2026-03-23 11:38:49,475 [INFO] ── Stage 2: full fine-tune (150 ep, patience 30) ──
+2026-03-23 11:38:49,476 [INFO] LLRD: 12 groups, LR [9.49e-06 … 4.00e-05]
+2026-03-23 11:39:24,382 [INFO]   S2 Ep   1/150  loss=1.4056 acc=71.7%  val=90.6%  lr=3.26e-06    35s
+2026-03-23 11:39:49,079 [INFO]   S2 Ep   2/150  loss=1.3963 acc=71.0%  val=90.4%  lr=7.96e-06    25s
+2026-03-23 11:40:13,576 [INFO]   S2 Ep   3/150  loss=1.4261 acc=70.6%  val=90.3%  lr=1.49e-05    24s
+2026-03-23 11:40:38,475 [INFO]   S2 Ep   4/150  loss=1.3245 acc=73.1%  val=90.1%  lr=2.28e-05    25s
+2026-03-23 11:41:03,219 [INFO]   S2 Ep   5/150  loss=1.4077 acc=71.0%  val=90.1%  lr=3.04e-05    25s
+2026-03-23 11:41:28,102 [INFO]   S2 Ep   6/150  loss=1.4215 acc=70.1%  val=89.3%  lr=3.63e-05    25s
+2026-03-23 11:41:53,451 [INFO]   S2 Ep   7/150  loss=1.4510 acc=69.9%  val=89.1%  lr=3.96e-05    25s
+2026-03-23 11:42:18,936 [INFO]   S2 Ep   8/150  loss=1.3948 acc=71.4%  val=89.0%  lr=4.00e-05    25s
+2026-03-23 11:42:44,174 [INFO]   S2 Ep   9/150  loss=1.4584 acc=69.9%  val=88.7%  lr=4.00e-05    25s
+2026-03-23 11:43:09,388 [INFO]   S2 Ep  10/150  loss=1.4149 acc=70.3%  val=88.9%  lr=4.00e-05    25s
+2026-03-23 11:43:34,366 [INFO]   S2 Ep  11/150  loss=1.4477 acc=69.2%  val=89.4%  lr=3.99e-05    25s
+2026-03-23 11:43:59,324 [INFO]   S2 Ep  12/150  loss=1.4345 acc=70.0%  val=89.7%  lr=3.99e-05    25s
+2026-03-23 11:44:24,408 [INFO]   S2 Ep  13/150  loss=1.4104 acc=71.1%  val=89.1%  lr=3.99e-05    25s
+2026-03-23 11:44:49,434 [INFO]   S2 Ep  14/150  loss=1.4183 acc=70.2%  val=89.3%  lr=3.98e-05    25s
+2026-03-23 11:45:14,540 [INFO]   S2 Ep  15/150  loss=1.4107 acc=71.4%  val=88.8%  lr=3.97e-05    25s
+2026-03-23 11:45:39,684 [INFO]   S2 Ep  16/150  loss=1.3597 acc=71.8%  val=89.8%  lr=3.96e-05    25s
+2026-03-23 11:46:04,867 [INFO]   S2 Ep  17/150  loss=1.4244 acc=69.7%  val=89.7%  lr=3.96e-05    25s
+2026-03-23 11:46:30,002 [INFO]   S2 Ep  18/150  loss=1.3868 acc=71.1%  val=89.3%  lr=3.95e-05    25s
+2026-03-23 11:46:55,341 [INFO]   S2 Ep  19/150  loss=1.3600 acc=72.3%  val=89.3%  lr=3.94e-05    25s
+2026-03-23 11:47:20,968 [INFO]   S2 Ep  20/150  loss=1.4444 acc=69.5%  val=88.8%  lr=3.92e-05    26s
+2026-03-23 11:47:46,194 [INFO]   S2 Ep  21/150  loss=1.4172 acc=70.5%  val=89.3%  lr=3.91e-05    25s
+2026-03-23 11:48:11,218 [INFO]   S2 Ep  22/150  loss=1.3836 acc=71.9%  val=89.4%  lr=3.90e-05    25s
+2026-03-23 11:48:36,684 [INFO]   S2 Ep  23/150  loss=1.3544 acc=72.0%  val=88.9%  lr=3.88e-05    25s
+2026-03-23 11:49:02,124 [INFO]   S2 Ep  24/150  loss=1.3823 acc=71.2%  val=88.7%  lr=3.87e-05    25s
+2026-03-23 11:49:27,324 [INFO]   S2 Ep  25/150  loss=1.3574 acc=71.1%  val=88.5%  lr=3.85e-05    25s
+2026-03-23 11:49:52,589 [INFO]   S2 Ep  26/150  loss=1.3831 acc=71.7%  val=89.6%  lr=3.84e-05    25s
+2026-03-23 11:50:17,599 [INFO]   S2 Ep  27/150  loss=1.3712 acc=71.2%  val=89.8%  lr=3.82e-05    25s
+2026-03-23 11:50:42,837 [INFO]   S2 Ep  28/150  loss=1.3474 acc=72.3%  val=88.9%  lr=3.80e-05    25s
+2026-03-23 11:51:07,741 [INFO]   S2 Ep  29/150  loss=1.4651 acc=68.5%  val=89.4%  lr=3.78e-05    25s
+2026-03-23 11:51:33,174 [INFO]   S2 Ep  30/150  loss=1.3300 acc=73.3%  val=89.1%  lr=3.76e-05    25s
+2026-03-23 11:51:33,174 [INFO]   Early stop at ep 30
+2026-03-23 11:51:33,175 [INFO] ── Stage 3: SWA (20 ep, lr=4.0e-06) ──
+2026-03-23 11:51:59,333 [INFO]   SWA Ep  1/20  loss=1.4029  swa_val=90.6%  26s
+2026-03-23 11:52:24,085 [INFO]   SWA Ep  2/20  loss=1.3860  swa_val=90.5%  25s
+2026-03-23 11:52:48,863 [INFO]   SWA Ep  3/20  loss=1.3467  swa_val=90.5%  25s
+2026-03-23 11:53:14,131 [INFO]   SWA Ep  4/20  loss=1.3470  swa_val=90.6%  25s
+2026-03-23 11:53:39,201 [INFO]   SWA Ep  5/20  loss=1.3789  swa_val=90.6%  25s
+2026-03-23 11:54:04,339 [INFO]   SWA Ep  6/20  loss=1.3875  swa_val=90.7%  25s
+2026-03-23 11:54:29,512 [INFO]   SWA Ep  7/20  loss=1.3925  swa_val=90.7%  25s
+2026-03-23 11:54:54,758 [INFO]   SWA Ep  8/20  loss=1.3411  swa_val=90.7%  25s
+2026-03-23 11:55:20,793 [INFO]   SWA Ep  9/20  loss=1.4156  swa_val=90.7%  26s
+2026-03-23 11:55:46,622 [INFO]   SWA Ep 10/20  loss=1.3391  swa_val=90.7%  26s
+2026-03-23 11:56:11,494 [INFO]   SWA Ep 11/20  loss=1.3573  swa_val=90.7%  25s
+2026-03-23 11:56:36,964 [INFO]   SWA Ep 12/20  loss=1.3893  swa_val=90.7%  25s
+2026-03-23 11:57:02,051 [INFO]   SWA Ep 13/20  loss=1.3459  swa_val=90.7%  25s
+2026-03-23 11:57:27,026 [INFO]   SWA Ep 14/20  loss=1.3550  swa_val=90.5%  25s
+2026-03-23 11:57:52,793 [INFO]   SWA Ep 15/20  loss=1.3670  swa_val=90.5%  26s
+2026-03-23 11:58:18,535 [INFO]   SWA Ep 16/20  loss=1.4038  swa_val=90.6%  26s
+2026-03-23 11:58:43,687 [INFO]   SWA Ep 17/20  loss=1.3594  swa_val=90.6%  25s
+2026-03-23 11:59:08,796 [INFO]   SWA Ep 18/20  loss=1.3654  swa_val=90.5%  25s
+2026-03-23 11:59:33,691 [INFO]   SWA Ep 19/20  loss=1.3524  swa_val=90.5%  25s
+2026-03-23 11:59:58,850 [INFO]   SWA Ep 20/20  loss=1.3670  swa_val=90.5%  25s
+2026-03-23 12:00:00,867 [INFO]   SWA final: 90.47% (regular best: 90.67%)
+2026-03-23 12:00:00,867 [INFO]   Fold 0 best: 90.67%
+2026-03-23 12:00:39,398 [INFO] TTA changed 129 / 9828 (1.3%)
+2026-03-23 12:00:39,406 [INFO] Done.
