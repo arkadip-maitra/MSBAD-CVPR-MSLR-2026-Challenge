@@ -42,7 +42,6 @@ The best submission uses a 6-model ensemble with geometric-mean fusion and conse
 ```
 .
 ├── README.md
-├── method_report.tex              # 1-page method report (CVPR format)
 ├── best_submission.csv            # Best submission file (89.91% private)
 ├── consensus_3plus.csv            # 6-model geo + consensus (89.906% private)
 ├── submit1_best5_plus_v38_geo.csv # 6-model geo mean (89.906% private)
