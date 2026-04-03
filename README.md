@@ -2,7 +2,7 @@
 
 **CVPR MSLR 2026 Challenge -- Track 2 (Radar-Only)**
 
-Final test accuracy: **89.91%**
+Final test accuracy: **89.99%**
 
 ## Overview
 
@@ -15,7 +15,8 @@ Our approach combines:
 - **Multi-architecture ensemble** (ConvNeXtV2, EfficientNetV2, CAFormer)
 - **Consensus filtering** on top of geometric-mean probability fusion
 
-## Best Results
+## Checkpoint Folder
+[Drive Link](https://drive.google.com/drive/folders/1mE_hN_jbSE0VlUWizDjD_RlbIa8BkSDt?usp=sharing)
 
 ### Highlighted Runs
 
