@@ -256,3 +256,5 @@ All four submission CSVs are included in this repository.
   year={2026}
 }
 ```
+
+Thank you for using this repository. For any questions or support, please open an issue in this repository.
