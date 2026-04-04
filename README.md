@@ -250,10 +250,11 @@ All four submission CSVs are included in this repository.
 ## Citation
 
 ```bibtex
-@inproceedings{msbad2026signeval,
-  title={MSBAD at SignEval 2026: Multi-Scale Born-Again Distillation Ensemble for Radar-Based Sign Language Recognition},
-  booktitle={CVPR Workshops},
-  year={2026}
+@inproceedings{maitra2026msbad,
+  title     = {{MSBAD} at {SignEval} 2026: Multi-Scale Born-Again Distillation Ensemble for Radar-Based Sign Language Recognition},
+  author    = {Maitra, Arkadip and Patra, Suvajit and Samanta, Soumitra},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
+  year      = {2026}
 }
 ```
 
